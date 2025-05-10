@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+databases[aiosqlite] 
+anyio
+websockets>=12.0
+python-dotenv
+Faker==22.6.0
+openai

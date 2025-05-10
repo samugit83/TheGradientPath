@@ -1,0 +1,4 @@
+websockets>=12.0
+pydantic
+python-dotenv
+openai
