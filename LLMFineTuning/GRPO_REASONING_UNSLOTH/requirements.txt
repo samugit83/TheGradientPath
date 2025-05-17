@@ -1,0 +1,7 @@
+torch
+unsloth
+datasets
+transformers
+trl
+pillow
+vllm 
