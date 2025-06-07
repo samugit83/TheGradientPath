@@ -1,0 +1,4 @@
+tensorflow==2.16.2
+numpy>=1.21.0
+matplotlib>=3.5.0
+visualkeras>=0.0.2
