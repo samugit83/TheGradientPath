@@ -17,6 +17,9 @@ from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
+# OpenAI imports
+from openai import OpenAI
+
 class DartboardRetrieval:
     """
     Implements the Dartboard RAG retrieval algorithm that balances relevance and diversity.
@@ -43,6 +46,9 @@ class DartboardRetrieval:
         # Initialize embeddings
         load_dotenv()
         self.embeddings = OpenAIEmbeddings()
+        
+        # Initialize OpenAI client
+        self.openai_client = OpenAI()
     
     @staticmethod
     def lognorm(dist: np.ndarray, sigma: float) -> np.ndarray:
@@ -214,6 +220,46 @@ class DartboardRetrieval:
             print(text[:500] + ("..." if len(text) > 500 else ""))
             print("-" * 80)
     
+    def generate_answer(self, query: str, context_texts: List[str]) -> str:
+        """
+        Generate an answer using OpenAI based on the query and retrieved context.
+        
+        Args:
+            query: The user's question
+            context_texts: List of retrieved context documents
+            
+        Returns:
+            Generated answer from OpenAI
+        """
+        # Combine context texts
+        combined_context = "\n\n".join([f"Context {i+1}:\n{text}" for i, text in enumerate(context_texts)])
+        
+        # Create prompt
+        prompt = f"""Based on the following context documents, please answer the question. Your answer must be well-articulated and include all the pertinent information from the context. Use only the information provided in the context to answer the question. If the context doesn't contain enough information to answer the question, please say so.
+
+Context:
+{combined_context}
+
+Question: {query}
+
+Answer:"""
+
+        try:
+            response = self.openai_client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant that answers questions based only on the provided context."},
+                    {"role": "user", "content": prompt}
+                ],
+                max_tokens=500,
+                temperature=0.3
+            )
+            
+            return response.choices[0].message.content.strip()
+        
+        except Exception as e:
+            return f"Error generating answer: {str(e)}"
+    
     def compare_retrievals(self, query: str, k: int = 3):
         """
         Compare simple retrieval vs dartboard retrieval for the same query.
@@ -226,9 +272,19 @@ class DartboardRetrieval:
         simple_texts = self.get_context_simple(query, k)
         self.show_context(simple_texts)
         
+        # Generate answer for simple retrieval
+        print("\n--- SIMPLE RETRIEVAL ANSWER ---")
+        simple_answer = self.generate_answer(query, simple_texts)
+        print(f"Answer: {simple_answer}")
+        
         print("\n=== DARTBOARD RETRIEVAL ===")
         dartboard_texts, scores = self.get_context_with_dartboard(query, k)
         self.show_context(dartboard_texts, scores)
+        
+        # Generate answer for dartboard retrieval
+        print("\n--- DARTBOARD RETRIEVAL ANSWER ---")
+        dartboard_answer = self.generate_answer(query, dartboard_texts)
+        print(f"Answer: {dartboard_answer}")
     
     def update_weights(self, diversity_weight: float, relevance_weight: float, sigma: float):
         """

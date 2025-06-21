@@ -1,3 +1,6 @@
+https://arxiv.org/html/2407.12101v2
+
+
 # Dartboard RAG: Retrieval-Augmented Generation with Balanced Relevance and Diversity
 
 A production-ready implementation of the Dartboard RAG algorithm that addresses redundancy in document retrieval by optimizing both relevance and diversity.
@@ -39,7 +42,7 @@ OPENAI_API_KEY=your_api_key_here
 ### 1. Run the Complete Example
 
 ```bash
-python example_usage.py
+python main.py
 ```
 
 This will:
@@ -129,7 +132,7 @@ Rag/dartboard/
 ├── requirements.txt      # Python dependencies
 ├── ingestion.py         # Document processing and vector store creation
 ├── retrieval.py         # Dartboard retrieval algorithm
-├── example_usage.py     # Complete workflow demonstration
+├── main.py     # Complete workflow demonstration
 └── README.md           # This file
 ```
 

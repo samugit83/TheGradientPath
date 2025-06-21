@@ -57,7 +57,7 @@ class DocumentIngestion:
         return docs
     
     def encode_pdf(self, path: str, chunk_size: int = 1000, chunk_overlap: int = 200, 
-                   density_multiplier: int = 1) -> FAISS:
+                   density_multiplier: int = 1, max_pages: Optional[int] = None) -> FAISS:
         """
         Encodes a PDF document into a vector store using OpenAI embeddings.
         
@@ -66,6 +66,7 @@ class DocumentIngestion:
             chunk_size: The desired size of each text chunk
             chunk_overlap: The amount of overlap between consecutive chunks
             density_multiplier: Multiplier to simulate dense dataset (for testing)
+            max_pages: Maximum number of pages to ingest from the PDF (None for all pages)
             
         Returns:
             A FAISS vector store containing the encoded document content
@@ -79,12 +80,27 @@ class DocumentIngestion:
         loader = PyPDFLoader(path)
         documents = loader.load()
         
+        # Limit to max_pages if specified
+        if max_pages is not None:
+            original_count = len(documents)
+            documents = documents[:max_pages]
+            print(f"Limited to first {len(documents)} pages (out of {original_count} total pages)")
+        
         # Multiply documents to simulate dense dataset if needed
         if density_multiplier > 1:
             print(f"Multiplying documents by {density_multiplier} to simulate dense dataset")
             documents = documents * density_multiplier
         
-        print(f"Loaded {len(documents)} document pages")
+        print(f"Processing {len(documents)} document pages")
+        
+        # Debug: Check if documents have content
+        non_empty_docs = [doc for doc in documents if doc.page_content.strip()]
+        print(f"Documents with non-empty content: {len(non_empty_docs)}")
+        
+        if non_empty_docs:
+            # Sample first few characters of first non-empty document
+            sample_content = non_empty_docs[0].page_content[:200]
+            print(f"Sample content from first document: {repr(sample_content)}")
         
         # Split documents into chunks
         text_splitter = RecursiveCharacterTextSplitter(
@@ -94,6 +110,12 @@ class DocumentIngestion:
         )
         texts = text_splitter.split_documents(documents)
         print(f"Split into {len(texts)} chunks")
+        
+        # Debug: If no chunks, try with non-empty documents only
+        if len(texts) == 0 and non_empty_docs:
+            print("No chunks created from all documents. Trying with non-empty documents only...")
+            texts = text_splitter.split_documents(non_empty_docs)
+            print(f"Split non-empty documents into {len(texts)} chunks")
         
         # Clean texts by replacing tabs with spaces
         cleaned_texts = self.replace_t_with_space(texts)
@@ -149,7 +171,8 @@ def main():
             path=pdf_path,
             chunk_size=1000,
             chunk_overlap=200,
-            density_multiplier=5  # Simulate dense dataset
+            density_multiplier=5,  # Simulate dense dataset
+            max_pages=10  # Limit to first 10 pages
         )
         
         # Save vector store
