@@ -28,7 +28,7 @@ This isn't just another RAG tutorial. This repository contains the complete impl
 
 ### 📚 Complete Tutorial
 
-**👉 [Open the Complete Notebook Tutorial](notebook.txt)**
+**👉 [Open the Complete Notebook Tutorial](notebook.ipynb)**
 
 The notebook contains:
 - **Comprehensive Setup Instructions**
@@ -48,4 +48,4 @@ The notebook contains:
 
 **Ready to master the future of intelligent information retrieval?** 
 
-Start with the [notebook tutorial](notebook.txt) and transform from a RAG novice into a hybrid AI architect! 🎓 
+Start with the [notebook tutorial](notebook.ipynb) and transform from a RAG novice into a hybrid AI architect! 🎓 
