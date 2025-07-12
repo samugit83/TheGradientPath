@@ -1,0 +1,10 @@
+langchain-core>=0.3.0
+langchain-experimental>=0.3.0
+langchain-openai>=0.2.0
+langchain-neo4j>=0.1.0
+openai>=1.51.0
+neo4j>=5.25.0
+python-dotenv>=1.0.1
+tiktoken>=0.8.0
+numpy>=1.24.0
+scikit-learn>=1.3.0

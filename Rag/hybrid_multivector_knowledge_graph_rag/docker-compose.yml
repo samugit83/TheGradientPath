@@ -1,0 +1,63 @@
+# Docker Compose configuration for Neo4j Knowledge Graph Database
+# This sets up a Neo4j Enterprise Edition instance for the knowledge graph extraction project
+# Enterprise Edition is required for relationship vector indexes
+
+version: '3.8'  # Docker Compose file format version
+
+services:
+  neo4j:
+    # Use Neo4j Enterprise Edition (required for relationship vector indexes)
+    # Version 5.25 is the latest stable version with full vector index support
+    image: neo4j:5.25-enterprise
+    
+    # Container name for easy reference (docker logs neo4j-kg, docker exec neo4j-kg, etc.)
+    container_name: neo4j-kg
+    
+    # Port mappings: host_port:container_port
+    ports:
+      - "7474:7474"  # HTTP port - Neo4j Browser web interface (http://localhost:7474)
+      - "7687:7687"  # Bolt port - Database connection protocol used by Python neo4j driver
+    
+    # Volume mappings: docker_volume_name:container_path
+    # These ensure data persists even when container is stopped/removed
+    volumes:
+      - neo4j_data:/data                    # Database files (nodes, relationships, indexes)
+      - neo4j_logs:/logs                    # Server logs for debugging and monitoring
+      - neo4j_import:/var/lib/neo4j/import  # Directory for CSV/JSON imports (LOAD CSV commands)
+      - neo4j_plugins:/plugins              # Extensions like APOC procedures
+    
+    # Environment variables to configure Neo4j
+    environment:
+      # Set initial username/password (neo4j/password)
+      # Format: NEO4J_AUTH=username/password or NEO4J_AUTH=none to disable auth
+      - NEO4J_AUTH=neo4j/password
+      
+      # Accept Neo4j Enterprise Edition license
+      # Required for Enterprise Edition - accepts the license agreement
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      
+      # Automatically install plugins on startup
+      # APOC (Awesome Procedures on Cypher) provides extra functions and procedures
+      - NEO4J_PLUGINS=["apoc"]
+      
+      # Transaction log retention policy - keeps only 1 log file to save disk space
+      # In production, you might want more files for better recovery options
+      - NEO4J_db_tx__log_rotation_retention__policy=1 files
+      
+      # Memory settings for better performance with vector operations
+      - NEO4J_dbms_memory_heap_initial__size=1G
+      - NEO4J_dbms_memory_heap_max__size=2G
+      - NEO4J_dbms_memory_pagecache_size=1G
+    
+    # Restart policy - container will restart automatically unless manually stopped
+    # Options: no, always, on-failure, unless-stopped
+    restart: unless-stopped
+
+# Named volumes managed by Docker
+# These persist data even when containers are removed (docker-compose down)
+# Located in Docker's volume directory (usually /var/lib/docker/volumes/)
+volumes:
+  neo4j_data:      # Stores actual database files - YOUR KNOWLEDGE GRAPH DATA
+  neo4j_logs:      # Stores server logs - for troubleshooting and monitoring
+  neo4j_import:    # Stores files for bulk imports - CSV/JSON data files
+  neo4j_plugins:   # Stores installed plugins - APOC and other extensions 
