@@ -21,7 +21,7 @@ The project consists of two main components:
 
 ## 📚 Get Started with the Interactive Guide
 
-**👉 For the complete learning experience, open [`notebook.ipynb`](MCPFromScratch/notebook.ipynb)**
+**👉 For the complete learning experience, open [`notebook.ipynb`](notebook.ipynb)**
 
 The notebook provides:
 - Step-by-step explanations of all concepts
@@ -62,7 +62,7 @@ By following this project, you'll create:
 
 ## 🎓 Learning Path
 
-1. **Start Here**: Open [`notebook.ipynb`](MCPFromScratch/notebook.ipynb) for the complete guide
+1. **Start Here**: Open [`notebook.ipynb`](notebook.ipynb) for the complete guide
 2. **Explore the Code**: Examine the server and client implementations
 3. **Run the Application**: Follow the setup instructions in the notebook
 4. **Experiment**: Try adding your own tools, prompts, or resources
@@ -77,7 +77,4 @@ By following this project, you'll create:
 - **Async Programming**: Modern Python concurrency patterns
 
 ---
-
-**Ready to dive in?** Open the [`notebook.ipynb`](MCPFromScratch/notebook.ipynb) file to begin your journey into building intelligent client-server applications!
-
 
