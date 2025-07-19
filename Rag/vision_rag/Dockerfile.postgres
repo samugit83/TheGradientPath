@@ -1,0 +1,13 @@
+FROM postgres:15
+
+# Install pgvector extension
+RUN apt-get update && apt-get install -y \
+    postgresql-server-dev-15 \
+    build-essential \
+    git \
+    && git clone --depth 1 https://github.com/pgvector/pgvector \
+    && cd pgvector && make && make install \
+    && cd .. && rm -rf pgvector \
+    && apt-get remove -y postgresql-server-dev-15 build-essential git \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* 
