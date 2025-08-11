@@ -15,6 +15,9 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+
+
 class PDFProcessor:
     """Handles PDF processing to extract text and images"""
     

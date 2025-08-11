@@ -44,7 +44,7 @@ class HybridRAGQuery:
     
     def __new__(cls):
         """Ensure only one instance of HybridRAGQuery exists."""
-        if cls._instance is None:
+        if cls._instance is None: 
             cls._instance = super(HybridRAGQuery, cls).__new__(cls)
         return cls._instance
     

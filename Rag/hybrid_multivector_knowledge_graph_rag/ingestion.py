@@ -28,7 +28,7 @@ class KnowledgeGraphIngestion:
         self.graph: Optional[Neo4jGraph] = None
         self.llm: Optional[ChatOpenAI] = None
         self.transformer: Optional[LLMGraphTransformer] = None
-        
+
         # Embedding services
         self.embeddings: Optional[OpenAIEmbeddings] = None
         self.chunker_embeddings: Optional[OpenAIEmbeddings] = None

@@ -1,0 +1,934 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Creates a complete web application infrastructure with CI/CD pipeline.
+  Includes Application Load Balancer with HTTPS/HTTP listeners, target group,
+  Launch Template, and Auto Scaling Group with CPU target-tracking scaling policy
+  using existing networking, security groups, and ACM certificate.
+  Sets up automated CI/CD pipeline using CodePipeline, CodeBuild, and CodeDeploy
+  with GitHub integration via CodeStar connections for continuous deployment
+  to EC2 instances in the Auto Scaling Group.
+
+###############################################################################
+# Parameters – IDs or ARNs you already have                                    #
+###############################################################################
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Default: vpc-XXXXXXXXXXXXXXXX
+    Description: Existing VPC where the ALB will live
+
+  SubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+    Default: "subnet-XXXXXXXXXXXXXXXX1,subnet-XXXXXXXXXXXXXXXX2,subnet-XXXXXXXXXXXXXXXX3"
+    Description: Three public subnets (in at least two AZs) to attach to ALB
+
+  ALBSecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Default: sg-XXXXXXXXXXXXXXXX
+    Description: Security group that allows inbound :80 and :443 to the ALB
+
+  ACMCertificateArn:
+    Type: String
+    Default: arn:aws:acm:YOUR-REGION:YOUR-ACCOUNT-ID:certificate/YOUR-CERTIFICATE-ID
+    Description: ARN of an ACM certificate for your HTTPS listener
+
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: your-keypair-name
+    Description: Existing EC2 key pair to enable SSH access
+
+  InstanceType:
+    Type: String
+    Default: t3a.medium
+    Description: EC2 instance type for the Auto Scaling Group
+
+  MlInstanceType:
+    Type: String
+    Default: t3a.medium
+    Description: EC2 instance type for the ML service
+
+  RootVolumeSize:
+    Type: Number
+    Default: 36
+    Description: Size (GiB) of the root EBS volume
+
+  MLRootVolumeSize:
+    Type: Number
+    Default: 36
+    Description: Size (GiB) of the root EBS volume for the ML service
+
+  AmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id
+    Description: Latest Ubuntu 22.04 LTS AMI ID (automatically fetched for current region)
+
+  MLAMIId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id
+    Description: Latest Ubuntu 22.04 LTS AMI ID (automatically fetched for current region) for the ML service
+
+  CodeStarConnectionArn:
+    Type: String
+    Default: arn:aws:codeconnections:YOUR-REGION:YOUR-ACCOUNT-ID:connection/YOUR-CONNECTION-ID
+    Description: CodeStar Connections ARN for GitHub App integration
+
+  RepositoryOwner:
+    Type: String
+    Default: your-github-username
+    Description: GitHub organisation / user that owns the repository
+
+  RepositoryName:
+    Type: String
+    Default: your-monitor-app-repo
+    Description: GitHub repository name for the web app
+
+  MLRepositoryName:
+    Type: String
+    Default: your-ml-service-repo
+    Description: GitHub repository name for the ML service
+
+  BranchName:
+    Type: String
+    Default: master
+    Description: Git branch that triggers the pipeline (push events)
+
+  MLBranchName:
+    Type: String
+    Default: master
+    Description: Git branch that triggers the ML pipeline (push events)
+
+  CodePipelineManagedPolicyArn:
+    Type: String
+    Default: arn:aws:iam::aws:policy/AWSCodePipeline_FullAccess
+    Description: Managed-policy ARN to attach to the CodePipeline service role
+
+  CodeBuildManagedPolicyArn:
+    Type: String
+    Default: arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess
+    Description: Managed-policy ARN to attach to the CodeBuild service role
+
+  BuildSpecFileName:
+    Type: String
+    Default: buildspec-dual-asg.yml
+    Description: Name of the buildspec file in the repository
+
+  CodeDeployManagedPolicyArn:
+    Type: String
+    Default: arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole
+    Description: Managed-policy ARN to attach to the CodeDeploy service role
+
+
+###############################################################################
+# Application Load Balancer                                                    #
+###############################################################################
+Resources:
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: !Sub '${AWS::StackName}-balancer'
+      Scheme: internet-facing
+      Type: application
+      IpAddressType: ipv4
+      SecurityGroups: [!Ref ALBSecurityGroupId]
+      Subnets: !Ref SubnetIds
+      # ————— console customisations preserved —————
+      LoadBalancerAttributes:
+        - { Key: routing.http.xff_header_processing.mode, Value: append }
+        - { Key: routing.http2.enabled,                 Value: 'true' }
+        - { Key: load_balancing.cross_zone.enabled,     Value: 'true' }
+        - { Key: client_keep_alive.seconds,             Value: '3600' }
+
+###############################################################################
+# Target Group (no pre‑registered targets)                                     #
+###############################################################################
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: !Sub '${AWS::StackName}-tg'
+      VpcId: !Ref VpcId
+      Port: 80
+      Protocol: HTTP
+      TargetType: instance
+      HealthCheckEnabled: true
+      HealthCheckProtocol: HTTP
+      HealthCheckPath: /api/healthcheck
+      Matcher: { HttpCode: '200' }
+      HealthCheckIntervalSeconds: 30
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 5
+      UnhealthyThresholdCount: 2
+      # ————— stickiness & algorithm tweaks from console —————
+      TargetGroupAttributes:
+        - { Key: stickiness.type,          Value: lb_cookie }
+        - { Key: stickiness.enabled,       Value: 'false' }
+        - { Key: stickiness.lb_cookie.duration_seconds, Value: '86400' }
+        - { Key: stickiness.app_cookie.duration_seconds, Value: '86400' }
+        - { Key: load_balancing.cross_zone.enabled,      Value: use_load_balancer_configuration }
+        - { Key: load_balancing.algorithm.type,          Value: round_robin }
+        - { Key: load_balancing.algorithm.anomaly_mitigation, Value: 'off' }
+        - { Key: target_group_health.dns_failover.minimum_healthy_targets.count, Value: '1' }
+        - { Key: target_group_health.unhealthy_state_routing.minimum_healthy_targets.count, Value: '1' }
+        - { Key: target_group_health.dns_failover.minimum_healthy_targets.percentage, Value: 'off' }
+        - { Key: target_group_health.unhealthy_state_routing.minimum_healthy_targets.percentage, Value: 'off' }
+        - { Key: slow_start.duration_seconds,            Value: '0' }
+        - { Key: deregistration_delay.timeout_seconds,   Value: '300' }
+
+###############################################################################
+# Listeners                                                                    #
+###############################################################################
+  ListenerHTTPS:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 443
+      Protocol: HTTPS
+      Certificates: [{ CertificateArn: !Ref ACMCertificateArn }]
+      SslPolicy: ELBSecurityPolicy-TLS13-1-2-2021-06    # customised
+      DefaultActions:
+        - Type: forward
+          Order: 1
+          ForwardConfig:
+            TargetGroups:
+              - { TargetGroupArn: !Ref TargetGroup, Weight: 1 }
+            TargetGroupStickinessConfig:
+              Enabled: false
+              DurationSeconds: 3600                    # customised
+      ListenerAttributes:
+        - { Key: routing.http.response.server.enabled, Value: 'true' }
+
+  ListenerHTTP:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: redirect
+          Order: 1
+          RedirectConfig:
+            Protocol: HTTPS
+            Port: '443'
+            StatusCode: HTTP_301
+            Host: '#{host}'
+            Path: '/#{path}'
+            Query: '#{query}'
+      ListenerAttributes:
+        - { Key: routing.http.response.server.enabled, Value: 'true' }
+
+
+###############################################################################
+# Launch Template                                                  #
+###############################################################################
+  LaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: !Sub '${AWS::StackName}-lt'
+      LaunchTemplateData:
+        ImageId: !Ref AmiId
+        InstanceType: !Ref InstanceType
+        KeyName: !Ref KeyPairName
+        IamInstanceProfile:
+          Arn: !GetAtt EC2InstanceProfile.Arn
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash
+            exec > /var/log/user-data.log 2>&1
+            set -x
+            
+            # Update system
+            apt update
+            
+            # Install required packages for CodeDeploy agent
+            apt install -y ruby-full wget awscli
+            
+            # Navigate to home directory
+            cd /home/ubuntu
+            
+            # Download CodeDeploy agent installer for current region
+            wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+            
+            # Make installer executable
+            chmod +x ./install
+            
+            # Install CodeDeploy agent with logging
+            ./install auto > /var/log/codedeploy-install.log 2>&1
+            
+            # Configure CodeDeploy agent
+            cat > /etc/codedeploy-agent/conf/codedeployagent.yml << 'EOL'
+            ---
+            :log_aws_wire: false
+            :log_dir: '/var/log/aws/codedeploy-agent/'
+            :pid_dir: '/opt/codedeploy-agent/state/.pid/'
+            :program_name: codedeploy-agent
+            :root_dir: '/opt/codedeploy-agent/deployment-root'
+            :verbose: true
+            :wait_between_runs: 1
+            :proxy_uri:
+            :max_revisions: 1
+            EOL
+            
+            # Ensure log directory exists
+            mkdir -p /var/log/aws/codedeploy-agent/
+            
+            # Start CodeDeploy agent
+            systemctl start codedeploy-agent
+            
+            # Enable CodeDeploy agent to start on boot
+            systemctl enable codedeploy-agent
+            
+            # Wait for agent to fully start
+            sleep 10
+            
+            # Verify CodeDeploy agent is running and log status
+            systemctl status codedeploy-agent >> /var/log/user-data.log 2>&1
+            
+            # Test agent connectivity
+            if systemctl is-active --quiet codedeploy-agent; then
+                echo "✓ CodeDeploy agent is running successfully"
+            else
+                echo "✗ CodeDeploy agent failed to start"
+                systemctl status codedeploy-agent
+                journalctl -u codedeploy-agent --no-pager -l
+                exit 1
+            fi
+            
+            # Set proper permissions for CodeDeploy
+            chown -R codedeploy:codedeploy /opt/codedeploy-agent/ || echo "codedeploy user may not exist yet"
+            
+            # Clean up any existing deployment artifacts to ensure fresh start
+            rm -rf /opt/codedeploy-agent/deployment-root/* || echo "No existing deployments to clean"
+            
+            # Create cleanup script for regular maintenance
+            cat > /usr/local/bin/codedeploy-cleanup.sh << 'CLEANUP_SCRIPT'
+            #!/bin/bash
+            # CodeDeploy cleanup script to maintain only 1 revision
+            
+            DEPLOYMENT_ROOT="/opt/codedeploy-agent/deployment-root"
+            
+            # Keep only the most recent deployment directory
+            if [ -d "$DEPLOYMENT_ROOT" ]; then
+                cd "$DEPLOYMENT_ROOT"
+                # Find all deployment directories and keep only the newest one
+                ls -1dt */ 2>/dev/null | tail -n +2 | xargs rm -rf
+                echo "$(date): Cleaned up old CodeDeploy revisions, keeping only latest" >> /var/log/codedeploy-cleanup.log
+            fi
+            CLEANUP_SCRIPT
+            
+            # Make cleanup script executable
+            chmod +x /usr/local/bin/codedeploy-cleanup.sh
+            
+            # Add cron job to run cleanup after each deployment (every 30 minutes)
+            echo "*/30 * * * * root /usr/local/bin/codedeploy-cleanup.sh" >> /etc/crontab
+            
+            echo "CodeDeploy agent installation and configuration completed successfully"
+        BlockDeviceMappings:
+          - DeviceName: /dev/sda1
+            Ebs:
+              VolumeSize: !Ref RootVolumeSize
+              VolumeType: gp3
+              DeleteOnTermination: true
+        SecurityGroupIds:
+          - !Ref ALBSecurityGroupId
+        MetadataOptions:
+          HttpTokens: required
+          HttpEndpoint: enabled
+        TagSpecifications:
+          - ResourceType: instance
+            Tags:
+              - Key: Name
+                Value: !Sub '${AWS::StackName}-instance'
+
+###############################################################################
+# Auto Scaling Group
+###############################################################################
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: !Sub '${AWS::StackName}-asg'
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplate
+        Version: '1'
+      VPCZoneIdentifier: !Ref SubnetIds
+      TargetGroupARNs:
+        - !Ref TargetGroup
+      MinSize: 1
+      MaxSize: 3
+      DesiredCapacity: 1
+      HealthCheckType: EC2
+      HealthCheckGracePeriod: 300
+      TerminationPolicies: [Default]
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-instance'
+          PropagateAtLaunch: true
+
+  CPU80TargetTrackingPolicy:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AutoScalingGroupName: !Ref AutoScalingGroup
+      PolicyType: TargetTrackingScaling
+      TargetTrackingConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ASGAverageCPUUtilization
+        TargetValue: 80
+
+
+###############################################################################
+# ML Pipeline EC2 Instance and Resources                                     #
+###############################################################################
+  # Elastic IP for ML instance
+  MLElasticIP:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      EIP: YOUR.ELASTIC.IP.ADDRESS
+      InstanceId: !Ref MLInstance
+
+  # ML EC2 Instance
+  MLInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref MLAMIId
+      InstanceType: !Ref MlInstanceType
+      KeyName: !Ref KeyPairName
+      IamInstanceProfile: !Ref EC2InstanceProfile
+      SecurityGroupIds:
+        - !Ref ALBSecurityGroupId
+      SubnetId: !Select [0, !Ref SubnetIds]
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          exec > /var/log/user-data.log 2>&1
+          set -x
+          
+          # Update system
+          apt update
+          
+          # Install required packages for CodeDeploy agent
+          apt install -y ruby-full wget awscli
+          
+          # Navigate to home directory
+          cd /home/ubuntu
+          
+          # Download CodeDeploy agent installer for current region
+          wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+          
+          # Make installer executable
+          chmod +x ./install
+          
+          # Install CodeDeploy agent with logging
+          ./install auto > /var/log/codedeploy-install.log 2>&1
+          
+          # Configure CodeDeploy agent
+          cat > /etc/codedeploy-agent/conf/codedeployagent.yml << 'EOL'
+          ---
+          :log_aws_wire: false
+          :log_dir: '/var/log/aws/codedeploy-agent/'
+          :pid_dir: '/opt/codedeploy-agent/state/.pid/'
+          :program_name: codedeploy-agent
+          :root_dir: '/opt/codedeploy-agent/deployment-root'
+          :verbose: true
+          :wait_between_runs: 1
+          :proxy_uri:
+          :max_revisions: 1
+          EOL
+          
+          # Ensure log directory exists
+          mkdir -p /var/log/aws/codedeploy-agent/
+          
+          # Start CodeDeploy agent
+          systemctl start codedeploy-agent
+          
+          # Enable CodeDeploy agent to start on boot
+          systemctl enable codedeploy-agent
+          
+          # Wait for agent to fully start
+          sleep 10
+          
+          # Verify CodeDeploy agent is running and log status
+          systemctl status codedeploy-agent >> /var/log/user-data.log 2>&1
+          
+          # Test agent connectivity
+          if systemctl is-active --quiet codedeploy-agent; then
+              echo "✓ CodeDeploy agent is running successfully"
+          else
+              echo "✗ CodeDeploy agent failed to start"
+              systemctl status codedeploy-agent
+              journalctl -u codedeploy-agent --no-pager -l
+              exit 1
+          fi
+          
+          # Set proper permissions for CodeDeploy
+          chown -R codedeploy:codedeploy /opt/codedeploy-agent/ || echo "codedeploy user may not exist yet"
+          
+          # Clean up any existing deployment artifacts to ensure fresh start
+          rm -rf /opt/codedeploy-agent/deployment-root/* || echo "No existing deployments to clean"
+          
+          # Create cleanup script for regular maintenance
+          cat > /usr/local/bin/codedeploy-cleanup.sh << 'CLEANUP_SCRIPT'
+          #!/bin/bash
+          # CodeDeploy cleanup script to maintain only 1 revision
+          
+          DEPLOYMENT_ROOT="/opt/codedeploy-agent/deployment-root"
+          
+          # Keep only the most recent deployment directory
+          if [ -d "$DEPLOYMENT_ROOT" ]; then
+              cd "$DEPLOYMENT_ROOT"
+              # Find all deployment directories and keep only the newest one
+              ls -1dt */ 2>/dev/null | tail -n +2 | xargs rm -rf
+              echo "$(date): Cleaned up old CodeDeploy revisions, keeping only latest" >> /var/log/codedeploy-cleanup.log
+          fi
+          CLEANUP_SCRIPT
+          
+          # Make cleanup script executable
+          chmod +x /usr/local/bin/codedeploy-cleanup.sh
+          
+          # Add cron job to run cleanup after each deployment (every 30 minutes)
+          echo "*/30 * * * * root /usr/local/bin/codedeploy-cleanup.sh" >> /etc/crontab
+          
+          echo "CodeDeploy agent installation and configuration completed successfully"
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: !Ref MLRootVolumeSize
+            VolumeType: gp3
+            DeleteOnTermination: true
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-ml-instance'
+
+###########################################################################
+# Artifact bucket                                                          #
+###########################################################################
+  PipelineArtifactsBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+###########################################################################
+# IAM service‑roles for CodePipeline and CodeBuild                        #
+###########################################################################
+  CodePipelineServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codepipeline.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Ref CodePipelineManagedPolicyArn
+      Policies:
+        - PolicyName: CodeStarConnectionsPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - codeconnections:UseConnection
+                Resource: !Ref CodeStarConnectionArn
+              - Effect: Allow
+                Action:
+                  - s3:GetBucketVersioning
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:PutObject
+                Resource:
+                  - !Sub '${PipelineArtifactsBucket.Arn}/*'
+                  - !GetAtt PipelineArtifactsBucket.Arn
+              - Effect: Allow
+                Action:
+                  - codebuild:BatchGetBuilds
+                  - codebuild:StartBuild
+                Resource: !GetAtt BuildProject.Arn
+              - Effect: Allow
+                Action:
+                  - codedeploy:CreateDeployment
+                  - codedeploy:GetApplication
+                  - codedeploy:GetApplicationRevision
+                  - codedeploy:GetDeployment
+                  - codedeploy:GetDeploymentConfig
+                  - codedeploy:RegisterApplicationRevision
+                Resource: '*'
+
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Ref CodeBuildManagedPolicyArn
+      Policies:
+        - PolicyName: CloudWatchLogsPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: 
+                  - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*'
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:PutObject
+                Resource:
+                  - !Sub '${PipelineArtifactsBucket.Arn}/*'
+
+  CodeDeployServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codedeploy.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Ref CodeDeployManagedPolicyArn
+
+  ###########################################################################
+  # IAM Role for EC2 instances to work with CodeDeploy                     #
+  ###########################################################################
+  EC2Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      Policies:
+        - PolicyName: CodeDeployAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource: 
+                  - !Sub '${PipelineArtifactsBucket.Arn}/*'
+                  - !GetAtt PipelineArtifactsBucket.Arn
+
+  EC2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [!Ref EC2Role]
+
+  ###########################################################################
+  # CodeBuild project                                                        #
+  ###########################################################################
+  BuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub '${AWS::StackName}-build'
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
+        Type: LINUX_CONTAINER
+        EnvironmentVariables:
+          - Name: BUILDSPEC_FILE
+            Value: !Ref BuildSpecFileName
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: !Ref BuildSpecFileName
+      Cache:
+        Type: NO_CACHE
+
+  ###########################################################################
+  # CodeDeploy application & deployment group                                #
+  ###########################################################################
+  # Custom deployment configuration for better revision control
+  CustomDeploymentConfig:
+    Type: AWS::CodeDeploy::DeploymentConfig
+    Properties:
+      DeploymentConfigName: !Sub '${AWS::StackName}-SingleRevisionConfig'
+      ComputePlatform: Server
+      MinimumHealthyHosts:
+        Type: HOST_COUNT
+        Value: 0  # Allow all instances to be updated at once for single revision
+
+  CodeDeployApplication:
+    Type: AWS::CodeDeploy::Application
+    Properties:
+      ApplicationName: !Sub '${AWS::StackName}-app'
+      ComputePlatform: Server           # EC2/on‑prem
+
+  CodeDeployDeploymentGroup:
+    Type: AWS::CodeDeploy::DeploymentGroup
+    Properties:
+      ApplicationName: !Ref CodeDeployApplication
+      DeploymentGroupName: !Sub '${AWS::StackName}-dg'
+      ServiceRoleArn: !GetAtt CodeDeployServiceRole.Arn
+      DeploymentConfigName: !Ref CustomDeploymentConfig
+      AutoScalingGroups:
+        - !Ref AutoScalingGroup
+      DeploymentStyle:
+        DeploymentType: IN_PLACE
+        DeploymentOption: WITHOUT_TRAFFIC_CONTROL
+
+  ###########################################################################
+  # CodePipeline V2                                                          #
+  ###########################################################################
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: !Sub '${AWS::StackName}-pipeline'
+      RoleArn: !GetAtt CodePipelineServiceRole.Arn
+      PipelineType: V2
+      ArtifactStores:
+        - Region: !Ref AWS::Region
+          ArtifactStore:
+            Type: S3
+            Location: !Ref PipelineArtifactsBucket
+      Triggers:
+        - ProviderType: CodeStarSourceConnection
+          GitConfiguration:
+            SourceActionName: Source
+            Push:
+              - Branches:
+                  Includes:
+                    - !Ref BranchName
+      Stages:
+        #####################################################################
+        # 1. Source                                                         #
+        #####################################################################
+        - Name: Source
+          Actions:
+            - Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: 1
+              Configuration:
+                ConnectionArn: !Ref CodeStarConnectionArn
+                FullRepositoryId: !Sub '${RepositoryOwner}/${RepositoryName}'
+                BranchName: !Ref BranchName
+                OutputArtifactFormat: CODE_ZIP
+              OutputArtifacts:
+                - Name: SourceArtifact
+        #####################################################################
+        # 2. Build                                                          #
+        #####################################################################
+        - Name: Build
+          Actions:
+            - Name: Build
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: 1
+              Configuration:
+                ProjectName: !Ref BuildProject
+              InputArtifacts:
+                - Name: SourceArtifact
+              OutputArtifacts:
+                - Name: BuildStageArtifact
+        #####################################################################
+        # 3. Deploy                                                         #
+        #####################################################################
+        - Name: Deploy
+          Actions:
+            - Name: Deploy
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CodeDeploy
+                Version: 1
+              Configuration:
+                ApplicationName: !Ref CodeDeployApplication
+                DeploymentGroupName: !Ref CodeDeployDeploymentGroup
+              InputArtifacts:
+                - Name: BuildStageArtifact
+
+
+
+###############################################################################
+# ML Pipeline CodeDeploy Resources                                           #
+###############################################################################
+  # ML CodeDeploy Application
+  MLCodeDeployApplication:
+    Type: AWS::CodeDeploy::Application
+    Properties:
+      ApplicationName: !Sub '${AWS::StackName}-ml-app'
+      ComputePlatform: Server
+
+  # ML CodeDeploy Deployment Group
+  MLCodeDeployDeploymentGroup:
+    Type: AWS::CodeDeploy::DeploymentGroup
+    Properties:
+      ApplicationName: !Ref MLCodeDeployApplication
+      DeploymentGroupName: !Sub '${AWS::StackName}-ml-dg'
+      ServiceRoleArn: !GetAtt CodeDeployServiceRole.Arn
+      DeploymentConfigName: CodeDeployDefault.AllAtOnce
+      Ec2TagFilters:
+        - Type: KEY_AND_VALUE
+          Key: Name
+          Value: !Sub '${AWS::StackName}-ml-instance'
+      DeploymentStyle:
+        DeploymentType: IN_PLACE
+        DeploymentOption: WITHOUT_TRAFFIC_CONTROL
+
+  ###########################################################################
+  # ML Pipeline                                                             #
+  ###########################################################################
+  MLPipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: !Sub '${AWS::StackName}-ml-pipeline'
+      RoleArn: !GetAtt CodePipelineServiceRole.Arn
+      PipelineType: V2
+      ArtifactStores:
+        - Region: !Ref AWS::Region
+          ArtifactStore:
+            Type: S3
+            Location: !Ref PipelineArtifactsBucket
+      Triggers:
+        - ProviderType: CodeStarSourceConnection
+          GitConfiguration:
+            SourceActionName: MLSource
+            Push:
+              - Branches:
+                  Includes:
+                    - !Ref MLBranchName
+      Stages:
+        #####################################################################
+        # 1. Source                                                         #
+        #####################################################################
+        - Name: Source
+          Actions:
+            - Name: MLSource
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: 1
+              Configuration:
+                ConnectionArn: !Ref CodeStarConnectionArn
+                FullRepositoryId: !Sub '${RepositoryOwner}/${MLRepositoryName}'
+                BranchName: !Ref MLBranchName
+                OutputArtifactFormat: CODE_ZIP
+              OutputArtifacts:
+                - Name: MLSourceArtifact
+        #####################################################################
+        # 2. Deploy (Direct to CodeDeploy - No Build Stage)                #
+        #####################################################################
+        - Name: Deploy
+          Actions:
+            - Name: MLDeploy
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CodeDeploy
+                Version: 1
+              Configuration:
+                ApplicationName: !Ref MLCodeDeployApplication
+                DeploymentGroupName: !Ref MLCodeDeployDeploymentGroup
+              InputArtifacts:
+                - Name: MLSourceArtifact
+
+###############################################################################
+# Outputs                                                                      #
+###############################################################################
+Outputs:
+  LoadBalancerDNS:
+    Description: DNS name of the public Application Load Balancer
+    Value: !GetAtt LoadBalancer.DNSName
+  
+  LoadBalancerArn:
+    Description: ARN of the Application Load Balancer
+    Value: !Ref LoadBalancer
+  
+  LoadBalancerCanonicalHostedZoneID:
+    Description: Canonical hosted zone ID of the load balancer
+    Value: !GetAtt LoadBalancer.CanonicalHostedZoneID
+  
+  TargetGroupArn:
+    Description: ARN of the target group
+    Value: !Ref TargetGroup
+  
+  ListenerHTTPSArn:
+    Description: ARN of the HTTPS listener
+    Value: !Ref ListenerHTTPS
+  
+  ListenerHTTPArn:
+    Description: ARN of the HTTP listener
+    Value: !Ref ListenerHTTP
+
+  LaunchTemplateIdOut:
+    Description: ID of the EC2 Launch Template
+    Value: !Ref LaunchTemplate
+
+  AutoScalingGroupNameOut:
+    Description: Name of the Auto Scaling Group
+    Value: !Ref AutoScalingGroup
+
+  ScalingPolicyArn:
+    Description: ARN of the CPU target-tracking scaling policy
+    Value: !Ref CPU80TargetTrackingPolicy
+
+  PipelineName:
+    Description: CodePipeline name
+    Value: !Ref Pipeline
+
+  BuildProjectName:
+    Description: CodeBuild project name
+    Value: !Ref BuildProject
+
+  CodeDeployApplicationName:
+    Description: Name of the CodeDeploy application
+    Value: !Ref CodeDeployApplication
+
+  CodeDeployDeploymentGroupName:
+    Description: Name of the CodeDeploy deployment group
+    Value: !Ref CodeDeployDeploymentGroup
+
+  EC2RoleArn:
+    Description: ARN of the EC2 IAM Role
+    Value: !GetAtt EC2Role.Arn
+
+  EC2InstanceProfileArn:
+    Description: ARN of the EC2 Instance Profile
+    Value: !GetAtt EC2InstanceProfile.Arn
+
+  # ML Pipeline Outputs
+  MLInstanceId:
+    Description: ID of the ML EC2 Instance
+    Value: !Ref MLInstance
+
+  MLElasticIPAssociation:
+    Description: Elastic IP Association for ML Instance
+    Value: !Ref MLElasticIP
+
+  MLPipelineName:
+    Description: ML CodePipeline name
+    Value: !Ref MLPipeline
+
+  MLCodeDeployApplicationName:
+    Description: Name of the ML CodeDeploy application
+    Value: !Ref MLCodeDeployApplication
+
+  MLCodeDeployDeploymentGroupName:
+    Description: Name of the ML CodeDeploy deployment group
+    Value: !Ref MLCodeDeployDeploymentGroup

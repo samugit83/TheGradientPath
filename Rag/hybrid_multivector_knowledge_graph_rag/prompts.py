@@ -14,7 +14,7 @@ We have already retrieved these initial documents through vector similarity sear
 {initial_documents}
 
 GRAPH STRUCTURE & AVAILABLE RESOURCES:
-{schema}
+{schema} 
 
 CRITICAL: PROPERTY NAMING CONVENTIONS
 - ALL entities use 'id' property as their name/identifier (NOT 'name')
