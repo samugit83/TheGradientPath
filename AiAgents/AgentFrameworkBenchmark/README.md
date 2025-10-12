@@ -1,7 +1,4 @@
 # AI Agent Framework Benchmark
-
-![Multi-Agent Workflow](workflow.png)
-
 ## 🎯 Purpose
 
 This repository provides a comprehensive, production-grade comparison of **7 major AI agent frameworks** by implementing the **exact same multi-agent system** across all of them. Rather than toy examples or superficial comparisons, this benchmark evaluates each framework through a real-world application: an intelligent conversational AI system with agent routing, tool integration, MCP server support, memory management, and state handling.
@@ -26,6 +23,8 @@ This benchmark accompanies a full-length video tutorial where we:
 - Provide production deployment insights
 
 **👉 [Watch the full tutorial on YouTube](https://youtu.be/ZIflDkdvOSA)**
+
+![Multi-Agent Workflow](workflow.png)
 
 ---
 
