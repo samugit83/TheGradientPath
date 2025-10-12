@@ -1,0 +1,4 @@
+python-dotenv>=1.0.0
+crewai==0.165.1
+pydantic>=2.0.0
+#crewai-tools[mcp]   GENERA PROBLEMI CON CHROMA DB
