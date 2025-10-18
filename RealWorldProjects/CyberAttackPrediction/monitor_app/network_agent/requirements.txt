@@ -1,0 +1,5 @@
+requests==2.32.4
+pandas==2.3.1
+psutil==7.0.0
+scapy==2.6.1
+cicflowmeter==0.2.0

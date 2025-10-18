@@ -1,0 +1,77 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /opt/ml-attack-predictor
+    overwrite: yes
+    file_exists_behavior: OVERWRITE
+permissions:
+  - object: /opt/ml-attack-predictor
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - directory
+  - object: /opt/ml-attack-predictor/code-deploy-scripts
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    pattern: "*.sh"
+    type:
+      - file
+  - object: /opt/ml-attack-predictor/deploy
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    pattern: "*.sh"
+    type:
+      - file
+  - object: /opt/ml-attack-predictor
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    pattern: "*.py"
+    type:
+      - file
+  - object: /opt/ml-attack-predictor
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    pattern: "*.txt"
+    type:
+      - file
+  - object: /opt/ml-attack-predictor
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    pattern: "*.yml"
+    type:
+      - file
+  - object: /opt/ml-attack-predictor
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    pattern: "*.md"
+    type:
+      - file
+hooks:
+  BeforeInstall:
+    - location: code-deploy-scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: code-deploy-scripts/after_install.sh
+      timeout: 1800
+      runas: ubuntu
+  ApplicationStop:
+    - location: code-deploy-scripts/stop_app.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: code-deploy-scripts/start_app.sh
+      timeout: 300
+      runas: ubuntu
+  ValidateService:
+    - location: code-deploy-scripts/validate_service.sh
+      timeout: 300
+      runas: ubuntu

@@ -1,0 +1,78 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/DevergoLabs
+    exclude-paths:
+      - .git/**/*
+      - node_modules/**/*
+      - .env*
+      - '*.md'
+      - '.gitignore'
+      - '.eslintrc*'
+      - '.prettierrc*'
+
+permissions:
+  - object: /home/ubuntu/DevergoLabs
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - directory
+  - object: /home/ubuntu/DevergoLabs
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    type:
+      - file
+  - object: /home/ubuntu/DevergoLabs/code-deploy-scripts
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - directory
+  - object: /home/ubuntu/DevergoLabs/code-deploy-scripts/*.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+  - object: /home/ubuntu/DevergoLabs/network_agent
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - directory
+  - object: /home/ubuntu/DevergoLabs/network_agent/*.py
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+
+hooks:
+  BeforeInstall:
+    - location: code-deploy-scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+
+  AfterInstall:
+    - location: code-deploy-scripts/install.sh
+      timeout: 600
+      runas: ubuntu
+    - location: code-deploy-scripts/after_install.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStop:
+    - location: code-deploy-scripts/stop_app.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStart:
+    - location: code-deploy-scripts/start_app.sh
+      timeout: 300
+      runas: ubuntu
+
+  ValidateService:
+    - location: code-deploy-scripts/validate_service.sh
+      timeout: 300
+      runas: ubuntu

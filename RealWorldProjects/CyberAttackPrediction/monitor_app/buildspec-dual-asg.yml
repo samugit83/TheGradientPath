@@ -1,0 +1,48 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - echo Entered the install phase...
+      - echo Installing all dependencies including dev dependencies...
+      - npm ci
+
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - echo Logging in to Amazon ECR...
+      - echo Build started on `date`
+
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - npm run build 
+
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+      - echo Installing only production dependencies for deployment...
+      - rm -rf node_modules
+      - npm ci --production --silent
+
+artifacts:
+  files:
+    - '**/*'
+    - 'appspec.yml'
+    - 'code-deploy-scripts/**/*'
+  exclude-paths:
+    - .git/**/*
+    - .env*
+    - '*.md'
+    - '.gitignore'
+    - '.eslintrc*'
+    - '.prettierrc*'
+    - 'tsconfig.json'
+    - 'next.config.js'
+    - 'yarn.lock'
+    - '.next/cache/**/*'
+  name: DevergoLabs-$(date +%Y-%m-%d)
