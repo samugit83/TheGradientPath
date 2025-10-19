@@ -132,3 +132,6 @@ logs/
 # Node.js (if using any frontend tools)
 node_modules/
 npm-debug.log*
+
+# Project specific
+Futureintegrations/
