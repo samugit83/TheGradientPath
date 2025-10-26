@@ -1,0 +1,62 @@
+flowchart TD
+    A["🌍 USER QUESTION<br>Natural Language - Any Language"] --> B["🧠 STEP 1: SQL GENERATION<br>LLM with Specialized Prompt"]
+    B --> B1["📊 Analyze User Intent"]
+    B1 --> B2{"🔍 Strategy Decision"}
+    B2 -- Exact Data --> C1["📈 SQL FILTERS<br>WHERE price &gt; 20<br>WHERE date = 2020<br>WHERE category = Sci-Fi<br>Numeric/Date comparisons<br>Boolean logic"]
+    B2 -- Text with Typos --> C2["🔤 FUZZY MATCHING<br>levenshtein function<br>LOWER normalization<br>Typo tolerance 1-3 chars<br>Similarity ranking"]
+    B2 -- Concepts/Themes --> C3["🎯 VECTOR EMBEDDINGS<br>Semantic understanding<br>Meaning-based search<br>Cross-language support<br>Conceptual similarity"]
+    B2 -- Complex Query --> C4["🔄 COMBINED APPROACH<br>SQL + Fuzzy + Embeddings<br>Multiple strategies<br>Optimized performance<br>Comprehensive results"]
+    C1 --> D["📝 Generate SQL Query<br>with placeholders"]
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    D --> E{"🤔 Need Embeddings?"}
+    E -- Yes --> F["🔮 STEP 3: EMBEDDING GENERATION<br>OpenAI text-embedding-3-small"]
+    E -- No --> G["🛡️ STEP 2: VALIDATION<br>sqlglot Security Checks"]
+    F --> F1["📤 Extract Search Terms<br>from embedding_params"]
+    F1 --> F2["🌐 Call OpenAI API<br>1536-dimensional vectors"]
+    F2 --> F3["🔄 Format for PostgreSQL<br>vector format"]
+    F3 --> F4["🔗 Substitute Placeholders<br>vector placeholders"]
+    F4 --> G
+    G --> G1["🔒 Security Validation"]
+    G1 --> G2["✓ Only SELECT queries<br>✓ No write operations<br>✓ No SQL injection<br>✓ No dangerous keywords"]
+    G2 --> G3["📐 Structural Validation"]
+    G3 --> G4["✓ Parseable SQL syntax<br>✓ No vector columns in GROUP BY<br>✓ Proper aggregate usage"]
+    G4 --> H{"✅ Validation Result"}
+    H -- PASS --> I["🗄️ STEP 4: QUERY EXECUTION<br>PostgreSQL Database"]
+    H -- FAIL --> J{"🚨 Error Type"}
+    J -- Security Issue --> K["❌ ABORT<br>No retry allowed"]
+    J -- Fixable Error --> L["🔄 RETRY MECHANISM<br>Feed error back to LLM"]
+    L --> M["📚 Error History Analysis<br>Previous attempts<br>Error messages<br>Context preservation"]
+    M --> N["🔄 Regenerate SQL<br>with comprehensive feedback"]
+    N --> O{"🔄 Retry Count"}
+    O -- &lt; 4 attempts --> B
+    O -- "&gt;= 4 attempts" --> P["❌ MAX RETRIES EXCEEDED<br>Return failure with history"]
+    I --> I1["🔌 Connect to Database<br>psycopg2 connection"]
+    I1 --> I2["⚙️ Parameter Substitution<br>Manual replacement for complex queries"]
+    I2 --> I3["▶️ Execute Query<br>cursor.execute"]
+    I3 --> I4{"📊 Execution Result"}
+    I4 -- SUCCESS --> Q["📋 Fetch Results<br>Rows as dictionaries<br>Column metadata<br>Row count"]
+    I4 -- FAIL --> R["📝 Capture Error Details<br>PostgreSQL error message<br>Query context<br>Parameter info"]
+    R --> S["🔄 Add to Attempt History<br>for retry mechanism"]
+    S --> L
+    Q --> T["🤖 STEP 5: ANSWER GENERATION<br>LLM Natural Language Response"]
+    T --> T1["📝 Format Results<br>Skip embedding columns<br>Limit to 20 rows<br>Human-readable format"]
+    T1 --> T2["🧠 Generate Answer<br>Original question context<br>Query results analysis<br>Natural language response"]
+    T2 --> U["💬 FINAL ANSWER<br>Natural Language Response"]
+    P --> V["❌ ERROR RESPONSE<br>with detailed failure info"]
+
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C1 fill:#e8f5e8
+    style C2 fill:#fff3e0
+    style C3 fill:#fce4ec
+    style C4 fill:#f1f8e9
+    style F fill:#e3f2fd
+    style G fill:#fff8e1
+    style I fill:#e8f5e8
+    style K fill:#ffebee
+    style P fill:#ffebee
+    style T fill:#f3e5f5
+    style U fill:#e1f5fe
+    style V fill:#ffebee

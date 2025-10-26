@@ -1,0 +1,238 @@
+DATABASE SCHEMA EXTRACTION
+==================================================
+Generated on: 2025-10-25 16:40:47
+Total Tables: 5
+
+================================================================================
+DATABASE SCHEMA: AUTHORS
+================================================================================
+
+Table: authors
+--------------------------------------------------
+
+COLUMNS:
+  • author_id (integer) [PRIMARY KEY] [NOT NULL] [DEFAULT: nextval('authors_author_id_seq'::regclass)]
+  • first_name (character varying(100)) [NOT NULL]
+  • last_name (character varying(100)) [NOT NULL]
+  • pen_name (character varying(150))
+  • email (character varying(255))
+  • phone (character varying(20))
+  • date_of_birth (date)
+  • date_of_death (date)
+  • nationality (character varying(100))
+  • biography (text)
+  • literary_style_description (text)
+  • awards_received (text)
+  • website_url (character varying(500))
+  • created_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • updated_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • is_active (boolean) [DEFAULT: true]
+
+PRIMARY KEY: author_id
+
+UNIQUE COLUMNS: email
+
+CHECK CONSTRAINTS:
+  • 2200_16725_1_not_null: author_id IS NOT NULL
+  • 2200_16725_2_not_null: first_name IS NOT NULL
+  • 2200_16725_3_not_null: last_name IS NOT NULL
+
+
+================================================================================
+DATABASE SCHEMA: BOOKS
+================================================================================
+
+Table: books
+--------------------------------------------------
+
+COLUMNS:
+  • book_id (integer) [PRIMARY KEY] [NOT NULL] [DEFAULT: nextval('books_book_id_seq'::regclass)]
+  • isbn_10 (character varying(10))
+  • isbn_13 (character varying(13))
+  • title (character varying(500)) [NOT NULL]
+  • subtitle (character varying(500))
+  • author_id (integer) [NOT NULL]
+  • publisher_id (integer) [NOT NULL]
+  • category_id (integer) [NOT NULL]
+  • publication_date (date)
+  • edition (character varying(50))
+  • language (character varying(50)) [DEFAULT: 'English'::character varying]
+  • page_count (integer)
+  • dimensions (character varying(100))
+  • weight_grams (numeric)
+  • book_description (text)
+  • book_description_embed (USER-DEFINED)
+  • detailed_summary (text)
+  • detailed_summary_embed (USER-DEFINED)
+  • retail_price (numeric)
+  • cost_price (numeric)
+  • discount_percentage (numeric) [DEFAULT: 0.00]
+  • table_of_contents (text)
+  • table_of_contents_embed (USER-DEFINED)
+  • total_sales (integer) [DEFAULT: 0]
+  • created_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • updated_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • is_active (boolean) [DEFAULT: true]
+  • is_bestseller (boolean) [DEFAULT: false]
+
+PRIMARY KEY: book_id
+
+FOREIGN KEYS:
+  • author_id → authors.author_id
+  • publisher_id → publishers.publisher_id
+  • category_id → categories.category_id
+
+UNIQUE COLUMNS: isbn_10, isbn_13
+
+CHECK CONSTRAINTS:
+  • chk_positive_price: ((retail_price >= (0)::numeric))
+  • chk_valid_discount: (((discount_percentage >= (0)::numeric) AND (discount_percentage <= (100)::numeric)))
+  • 2200_16776_1_not_null: book_id IS NOT NULL
+  • 2200_16776_4_not_null: title IS NOT NULL
+  • 2200_16776_6_not_null: author_id IS NOT NULL
+  • 2200_16776_7_not_null: publisher_id IS NOT NULL
+  • 2200_16776_8_not_null: category_id IS NOT NULL
+
+
+================================================================================
+DATABASE SCHEMA: CATEGORIES
+================================================================================
+
+Table: categories
+--------------------------------------------------
+
+COLUMNS:
+  • category_id (integer) [PRIMARY KEY] [NOT NULL] [DEFAULT: nextval('categories_category_id_seq'::regclass)]
+  • category_name (character varying(150)) [NOT NULL]
+  • category_code (character varying(20))
+  • category_description (text)
+  • category_description_embed (USER-DEFINED)
+  • typical_content_description (text)
+  • typical_content_description_embed (USER-DEFINED)
+  • age_group (character varying(50))
+  • reading_level (character varying(50))
+  • popularity_score (numeric) [DEFAULT: 0.00]
+  • display_order (integer) [DEFAULT: 0]
+  • icon_url (character varying(500))
+  • banner_image_url (character varying(500))
+  • color_code (character varying(7))
+  • created_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • updated_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • is_active (boolean) [DEFAULT: true]
+
+PRIMARY KEY: category_id
+
+UNIQUE COLUMNS: category_name, category_code
+
+CHECK CONSTRAINTS:
+  • 2200_16757_1_not_null: category_id IS NOT NULL
+  • 2200_16757_2_not_null: category_name IS NOT NULL
+
+
+================================================================================
+DATABASE SCHEMA: PUBLISHERS
+================================================================================
+
+Table: publishers
+--------------------------------------------------
+
+COLUMNS:
+  • publisher_id (integer) [PRIMARY KEY] [NOT NULL] [DEFAULT: nextval('publishers_publisher_id_seq'::regclass)]
+  • publisher_name (character varying(200)) [NOT NULL]
+  • legal_name (character varying(250))
+  • registration_number (character varying(50))
+  • tax_id (character varying(50))
+  • email (character varying(255))
+  • phone (character varying(20))
+  • website_url (character varying(500))
+  • address_line1 (character varying(255))
+  • address_line2 (character varying(255))
+  • city (character varying(100))
+  • state_province (character varying(100))
+  • postal_code (character varying(20))
+  • country (character varying(100))
+  • company_description (text)
+  • company_description_embed (USER-DEFINED)
+  • publishing_focus_description (text)
+  • publishing_focus_description_embed (USER-DEFINED)
+  • year_founded (integer)
+  • created_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • updated_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • is_active (boolean) [DEFAULT: true]
+
+PRIMARY KEY: publisher_id
+
+UNIQUE COLUMNS: publisher_name
+
+CHECK CONSTRAINTS:
+  • 2200_16741_1_not_null: publisher_id IS NOT NULL
+  • 2200_16741_2_not_null: publisher_name IS NOT NULL
+
+
+================================================================================
+DATABASE SCHEMA: REVIEWS
+================================================================================
+
+Table: reviews
+--------------------------------------------------
+
+COLUMNS:
+  • review_id (integer) [PRIMARY KEY] [NOT NULL] [DEFAULT: nextval('reviews_review_id_seq'::regclass)]
+  • book_id (integer) [NOT NULL]
+  • reviewer_name (character varying(150)) [NOT NULL]
+  • reviewer_email (character varying(255))
+  • verified_purchase (boolean) [DEFAULT: false]
+  • rating (integer) [NOT NULL]
+  • review_title (character varying(255))
+  • review_text (text) [NOT NULL]
+  • review_text_embed (USER-DEFINED)
+  • detailed_feedback (text)
+  • detailed_feedback_embed (USER-DEFINED)
+  • review_date (date) [DEFAULT: CURRENT_DATE]
+  • helpful_count (integer) [DEFAULT: 0]
+  • not_helpful_count (integer) [DEFAULT: 0]
+  • is_verified (boolean) [DEFAULT: false]
+  • is_published (boolean) [DEFAULT: true]
+  • moderation_notes (text)
+  • moderation_notes_embed (USER-DEFINED)
+  • moderator_id (integer)
+  • reading_duration_days (integer)
+  • would_recommend (boolean)
+  • reader_age_group (character varying(50))
+  • created_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+  • updated_at (timestamp without time zone) [DEFAULT: CURRENT_TIMESTAMP]
+
+PRIMARY KEY: review_id
+
+FOREIGN KEYS:
+  • book_id → books.book_id
+
+CHECK CONSTRAINTS:
+  • chk_valid_review_rating: (((rating >= 1) AND (rating <= 5)))
+  • 2200_16817_1_not_null: review_id IS NOT NULL
+  • 2200_16817_2_not_null: book_id IS NOT NULL
+  • 2200_16817_3_not_null: reviewer_name IS NOT NULL
+  • 2200_16817_6_not_null: rating IS NOT NULL
+  • 2200_16817_8_not_null: review_text IS NOT NULL
+
+
+================================================================================
+TABLE RELATIONSHIPS SUMMARY
+================================================================================
+
+AUTHORS:
+  Referenced by: books
+
+BOOKS:
+  References: authors, publishers, categories
+  Referenced by: reviews
+
+CATEGORIES:
+  Referenced by: books
+
+PUBLISHERS:
+  Referenced by: books
+
+REVIEWS:
+  References: books
+

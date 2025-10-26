@@ -1,0 +1,9 @@
+# Database connectivity
+psycopg2-binary==2.9.9
+
+# OpenAI and environment management
+openai==2.6.1
+python-dotenv==1.0.0
+
+# SQL validation and security
+sqlglot==20.9.0

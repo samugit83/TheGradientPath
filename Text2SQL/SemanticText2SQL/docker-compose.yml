@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg15
+    container_name: books_database
+    restart: always
+    environment:
+      # Database credentials
+      POSTGRES_USER: bookadmin
+      POSTGRES_PASSWORD: bookpass123
+      POSTGRES_DB: books_db
+    ports:
+      # Expose PostgreSQL on port 5432
+      - "5432:5432"
+    volumes:
+      # Mount initialization script
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      # Persist data
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookadmin -d books_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+
