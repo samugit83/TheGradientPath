@@ -734,10 +734,10 @@ flowchart TD
     Injection --> Execution
     Execution --> Output
 
-    style Setup fill:#ffffff,stroke:#333,stroke-width:2px
-    style Injection fill:#ffffff,stroke:#333,stroke-width:2px
-    style Execution fill:#ffffff,stroke:#333,stroke-width:2px
-    style Output fill:#ffffff,stroke:#333,stroke-width:2px
+    style Setup fill:#ffffff10,stroke:#333,stroke-width:2px
+    style Injection fill:#ffffff10,stroke:#333,stroke-width:2px
+    style Execution fill:#ffffff10,stroke:#333,stroke-width:2px
+    style Output fill:#ffffff10,stroke:#333,stroke-width:2px
 ```
 
 ### AI Approach
@@ -798,10 +798,10 @@ flowchart TD
     Analysis --> Generation
     Generation --> Validation
 
-    style Input fill:#ffffff,stroke:#800080,stroke-width:2px
-    style Analysis fill:#ffffff,stroke:#800080,stroke-width:2px
-    style Generation fill:#ffffff,stroke:#800080,stroke-width:2px
-    style Validation fill:#ffffff,stroke:#800080,stroke-width:2px
+    style Input fill:#ffffff10,stroke:#800080,stroke-width:2px
+    style Analysis fill:#ffffff10,stroke:#800080,stroke-width:2px
+    style Generation fill:#ffffff10,stroke:#800080,stroke-width:2px
+    style Validation fill:#ffffff10,stroke:#800080,stroke-width:2px
 ```
 
 ---
