@@ -2008,11 +2008,16 @@ def detect_security_header_weakness(response: 'requests.Response') -> dict:
 # Each function uses specialized detection techniques for its injection type
 # =============================================================================
 
+
 def test_form_xss(target_url: str, form_data: dict, payload: str, 
                   session: requests.Session, baseline_time: float = None) -> dict:
     """
     Category 1: Form-based XSS testing.
     Tests form submissions for reflected and stored XSS.
+    
+    TESTING MODE: DIRECT - This function sends actual HTTP requests and analyzes
+    the response for payload reflection. No manual browser testing required for
+    initial detection, though browser verification is recommended for confirmation.
     """
     result = {
         'category': 'form',
@@ -2066,6 +2071,10 @@ def test_url_param_xss(target_url: str, param_data: dict, payload: str,
     """
     Category 2: URL parameter XSS testing.
     Tests query string parameters for reflected XSS.
+    
+    TESTING MODE: DIRECT - This function sends actual HTTP requests with payloads
+    in URL parameters and analyzes the response for reflection. Automated detection
+    via HTTP response analysis, no manual browser interaction needed for detection.
     """
     from urllib.parse import urlparse, urlencode, urlunparse, parse_qs
     
@@ -2127,6 +2136,10 @@ def test_header_xss(target_url: str, header_data: dict, payload: str,
     """
     Category 3: HTTP header injection XSS testing.
     Tests if headers are reflected in responses.
+    
+    TESTING MODE: DIRECT - This function sends HTTP requests with payloads in
+    custom headers and checks if they are reflected in the response body or headers.
+    Automated detection via HTTP response analysis.
     """
     result = {
         'category': 'header',
@@ -2176,6 +2189,10 @@ def test_api_xss(target_url: str, api_data: dict, payload: str,
     """
     Category 9: API endpoint XSS testing.
     Tests JSON APIs for reflected content in responses.
+    
+    TESTING MODE: DIRECT - This function sends actual HTTP requests to API endpoints
+    with payloads in JSON body and analyzes the response for reflection. Automated
+    detection, though DOM rendering of API responses may need browser verification.
     """
     import json as json_lib
     from urllib.parse import urljoin
@@ -2241,6 +2258,11 @@ def test_file_upload_xss(target_url: str, upload_data: dict, payload: str,
     """
     Category 6: File upload XSS testing.
     Tests file upload for XSS via filename and SVG/HTML content.
+    
+    TESTING MODE: MANUAL REQUIRED - This function DOES NOT actually upload files.
+    It analyzes the file input fields and generates malicious payloads (SVG with
+    onload, HTML with script, malicious filenames) that you must manually upload
+    and verify if they execute in the browser when viewed/rendered.
     """
     result = {
         'category': 'file_upload',
@@ -2313,6 +2335,11 @@ def test_websocket_xss(target_url: str, ws_data: dict, payload: str,
     """
     Category 5: WebSocket XSS testing.
     Analyzes WebSocket configuration for potential XSS via message injection.
+    
+    TESTING MODE: MANUAL REQUIRED - This function analyzes WebSocket configuration
+    but does NOT establish actual WebSocket connections. It identifies insecure
+    ws:// endpoints and message handlers. Manual browser testing with DevTools or
+    a WebSocket client is needed to inject payloads and verify execution.
     """
     result = {
         'category': 'websocket',
@@ -2366,6 +2393,11 @@ def test_postmessage_xss(target_url: str, pm_data: dict, payload: str,
     """
     Category 7: postMessage XSS testing.
     Tests for DOM XSS via window.postMessage without origin validation.
+    
+    TESTING MODE: MANUAL REQUIRED - This function analyzes JavaScript code for
+    postMessage listeners without origin validation. It generates an exploit HTML
+    page (in result['exploit_html']) that you must host and open in a browser.
+    The exploit sends a malicious postMessage to the target iframe.
     """
     result = {
         'category': 'postmessage',
@@ -2414,6 +2446,11 @@ def test_template_xss(target_url: str, template_data: dict, payload: str,
     """
     Category 8: Template injection XSS testing.
     Tests for client-side and server-side template injection.
+    
+    TESTING MODE: HYBRID - This function sends HTTP requests with template payloads
+    (like {{7*7}}) and checks if they evaluate (49 appears). SSTI detection is
+    automated. However, CSTI (client-side) in frameworks like Angular/Vue requires
+    browser testing to see if template expressions execute in the DOM.
     """
     result = {
         'category': 'template',
@@ -2478,6 +2515,11 @@ def test_fragment_xss(target_url: str, fragment_data: dict, payload: str,
     """
     Category 10: URL fragment/hash XSS testing.
     Tests for DOM XSS via location.hash.
+    
+    TESTING MODE: MANUAL REQUIRED - This function analyzes JavaScript code for
+    location.hash usage and dangerous sinks, but does NOT execute in a browser.
+    It generates a test URL (result['test_url']) with the payload in the hash.
+    You must open this URL in a browser to verify if XSS executes.
     """
     result = {
         'category': 'fragment',
@@ -2524,6 +2566,11 @@ def test_storage_xss(target_url: str, storage_data: dict, payload: str,
     """
     Category 11: Browser storage XSS testing.
     Tests for DOM XSS via localStorage/sessionStorage data rendering.
+    
+    TESTING MODE: MANUAL REQUIRED - This function analyzes code for unsafe
+    rendering of storage data but cannot inject into browser storage remotely.
+    It generates exploit code (result['exploit_code']) to run in browser console.
+    You must manually execute this in DevTools and reload the page to test.
     """
     result = {
         'category': 'storage',
@@ -2576,6 +2623,11 @@ def test_event_handler_xss(target_url: str, event_data: dict, payload: str,
     """
     Category 4: Event handler XSS testing.
     Analyzes inline event handlers for potential exploitation.
+    
+    TESTING MODE: MANUAL REQUIRED - This function statically analyzes inline
+    event handler code (onclick, onerror, etc.) for dangerous patterns like
+    eval() or innerHTML. It does NOT trigger these handlers. Manual browser
+    interaction is needed to trigger events and verify if XSS executes.
     """
     result = {
         'category': 'event_handler',
