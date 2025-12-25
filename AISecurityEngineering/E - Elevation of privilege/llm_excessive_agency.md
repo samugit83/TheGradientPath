@@ -1,5 +1,8 @@
 # LLM06:2025 Excessive Agency
 
+> [!CAUTION]
+> **Legal Disclaimer**: This document is for strictly educational and professional security research purposes. Unauthorized access to computer systems is illegal. The scripts provided are Proof-of-Concept (PoC) intended for use in controlled, lab environments. The author assumes no liability for misuse of this information.
+
 Excessive Agency is a vulnerability where an LLM-based system is granted too much autonomy, functionality, or permission, leading to unintended or damaging actions when the model processes malicious or ambiguous inputs.
 
 ## Table of Contents

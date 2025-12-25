@@ -1,5 +1,8 @@
 # LLM Prompt Injection
 
+> [!CAUTION]
+> **Legal Disclaimer**: This document is for strictly educational and professional security research purposes. Unauthorized access to computer systems is illegal. The scripts provided are Proof-of-Concept (PoC) intended for use in controlled, lab environments. The author assumes no liability for misuse of this information.
+
 A Prompt Injection Vulnerability occurs when user-supplied inputs manipulate a Large Language Model (LLM) into executing unintended actions, overriding its original instructions, or leaking sensitive information. Unlike traditional injection attacks (e.g., SQLi) that target structured data parsers, prompt injection exploits the model’s inherent nature of treating instructions and data as a single stream of information.
 
 ---

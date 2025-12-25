@@ -8,18 +8,19 @@ This repository is a complete educational resource that bridges theory with prac
 
 ## 📚 Table of Contents
 
-- [🤖 AI Agents](#-ai-agents)
-- [🧠 Deep Learning with Keras](#-deep-learning-with-keras)
-- [🔥 PyTorch Projects](#-pytorch-projects)
-- [🎯 LLM Fine-Tuning](#-llm-fine-tuning)
-- [📖 RAG Systems](#-rag-systems-retrieval-augmented-generation)
-- [🌐 Real-World Production Projects](#-real-world-production-projects)
-- [🔌 MCP Protocol](#-mcp-protocol-from-scratch)
-- [🚀 Getting Started](#-getting-started)
+- [AI Agents](#ai-agents)
+- [Deep Learning with Keras](#deep-learning-with-keras)
+- [PyTorch Projects](#pytorch-projects)
+- [LLM Fine-Tuning](#llm-fine-tuning)
+- [RAG Systems](#rag-systems-retrieval-augmented-generation)
+- [Real-World Production Projects](#real-world-production-projects)
+- [MCP Protocol](#mcp-protocol-from-scratch)
+- [AI Security Engineering](#ai-security-engineering)
+- [Getting Started](#getting-started)
 
 ---
 
-## 🤖 AI Agents
+## AI Agents
 
 ### **Comprehensive AI Agent Framework Benchmark**
 
@@ -27,7 +28,7 @@ This repository is a complete educational resource that bridges theory with prac
 
 A production-grade comparison of **7 major AI agent frameworks** implementing identical multi-agent systems to provide objective, real-world benchmarks.
 
-#### 🎥 Video Tutorial
+#### Video Tutorial
 **[Watch on YouTube](https://youtu.be/ZIflDkdvOSA)** - Complete framework comparison and implementation guide
 
 #### Frameworks Compared
@@ -55,11 +56,11 @@ Each implementation includes:
 - **Tools** - Weather API, calculator, web search
 - **MCP Integration** - Extended capabilities via Model Context Protocol
 
-**[📖 Full Documentation](AiAgents/AgentFrameworkBenchmark/README.md)**
+**[Full Documentation](AiAgents/AgentFrameworkBenchmark/README.md)**
 
 ---
 
-## 🧠 Deep Learning with Keras
+## Deep Learning with Keras
 
 ### **Modern Neural Network Implementations**
 
@@ -108,13 +109,13 @@ Production-ready deep learning implementations using TensorFlow and Keras, from 
 
 ---
 
-## 🔥 PyTorch Projects
+## PyTorch Projects
 
 ### **CNN Image Classification**
 
 **Location:** `Pytotch/CnnImageClassification/`
 
-**[📖 Full README](Pytotch/CnnImageClassification/README.md)**
+**[Full README](Pytotch/CnnImageClassification/README.md)**
 
 #### Fashion-MNIST CNN Classifier
 - **Dataset:** 70,000 images of 10 clothing categories
@@ -138,7 +139,7 @@ Production-ready deep learning implementations using TensorFlow and Keras, from 
 
 ---
 
-## 🎯 LLM Fine-Tuning
+## LLM Fine-Tuning
 
 ### **Advanced Parameter-Efficient Fine-Tuning Techniques**
 
@@ -196,7 +197,7 @@ Complete implementation of Parameter-Efficient Fine-Tuning methods:
 
 ---
 
-## 📖 RAG Systems (Retrieval-Augmented Generation)
+## RAG Systems (Retrieval-Augmented Generation)
 
 ### **Advanced RAG Architectures**
 
@@ -207,7 +208,7 @@ Production-ready Retrieval-Augmented Generation systems that enhance LLM respons
 ### 1. **Dartboard RAG**
 **Path:** `Rag/dartboard/`
 
-**[📖 Full README](Rag/dartboard/README.md)**
+**[Full README](Rag/dartboard/README.md)**
 
 **Balanced Relevance and Diversity Retrieval**
 
@@ -237,7 +238,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 ### 2. **Hybrid Multivector Knowledge Graph RAG**
 **Path:** `Rag/hybrid_multivector_knowledge_graph_rag/`
 
-**[📖 Full README](Rag/hybrid_multivector_knowledge_graph_rag/README.md)**
+**[Full README](Rag/hybrid_multivector_knowledge_graph_rag/README.md)**
 
 **The Most Advanced RAG System - 11+ Graph Traversal Algorithms**
 
@@ -300,17 +301,17 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 
 ---
 
-## 🌐 Real-World Production Projects
+## Real-World Production Projects
 
 ### **ML Cyber Attack Prediction System**
 
 **Location:** `RealWorldProjects/CyberAttackPrediction/`
 
-**[📖 Full README](RealWorldProjects/CyberAttackPrediction/README.md)** | **[🎥 Video Tutorial](https://youtu.be/3-mH1ynRf7U)**
+**[Full README](RealWorldProjects/CyberAttackPrediction/README.md)** | **[Video Tutorial](https://youtu.be/3-mH1ynRf7U)**
 
 **Enterprise-grade cloud-native ML system for real-time network threat detection.**
 
-### 🏗️ Complete Production Stack
+### Complete Production Stack
 
 #### Infrastructure (AWS CloudFormation)
 - **Application Load Balancer** - HTTPS/HTTP traffic distribution
@@ -327,7 +328,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 - **S3 Artifact Storage** - Build artifact management
 - **GitHub Integration** - Source control via CodeStar
 
-### 🧠 ML Architecture
+### ML Architecture
 
 **Multi-Stage Pipeline:**
 1. **Data Preprocessing** - Mixed numerical/categorical feature handling
@@ -341,7 +342,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 - High accuracy on network attack detection
 - Scalable to high traffic volumes
 
-### 🖥️ System Components
+### System Components
 
 #### 1. Monitor App (Next.js + Python)
 - **Web Dashboard** - Real-time monitoring UI
@@ -355,7 +356,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 - **Batch Training** - Scheduled model updates
 - **Metrics Tracking** - Performance monitoring
 
-### 🚀 One-Click Deployment
+### One-Click Deployment
 
 **CloudFormation Template Features:**
 - Complete infrastructure as code
@@ -386,17 +387,17 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 
 ---
 
-## 🔌 MCP Protocol From Scratch
+## MCP Protocol From Scratch
 
 ### **Building Model Context Protocol Systems**
 
 **Location:** `MCPFromScratch/`
 
-**[📖 Full README](MCPFromScratch/README.md)** | **[🎥 Video Tutorial](https://youtu.be/5KYZUtmQW_U)**
+**[Full README](MCPFromScratch/README.md)** | **[🎥 Video Tutorial](https://youtu.be/5KYZUtmQW_U)**
 
 **Learn to build intelligent client-server AI systems from the ground up.**
 
-### 🎯 What You'll Build
+### What You'll Build
 
 #### Server Component (FastAPI)
 - **Tools** - Calculator, database queries, text-to-SQL conversion
@@ -412,7 +413,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 - **Conversational Interface** - Friendly user interactions
 - **OpenAI Integration** - LLM-powered intelligence
 
-### 🏗️ Architecture Patterns
+### Architecture Patterns
 
 **Protocol Flow:**
 ```
@@ -430,7 +431,7 @@ Client                    Server
   │◄─── Template ────────────┤
 ```
 
-### 📚 Key Concepts
+### Key Concepts
 
 - **Model Context Protocol** - Custom AI communication protocol
 - **WebSocket Sessions** - Persistent connections for real-time interaction
@@ -438,7 +439,7 @@ Client                    Server
 - **Async Programming** - Modern Python concurrency with asyncio
 - **API Design** - RESTful and WebSocket patterns
 
-### 🎓 Learning Path
+### Learning Path
 
 1. **Understand the Protocol** - How clients and servers communicate
 2. **Build the Server** - Implement tools, prompts, and resources
@@ -454,7 +455,71 @@ Client                    Server
 
 ---
 
-## 🚀 Getting Started
+## AI Security Engineering
+
+### **STRIDE-Based Security Documentation**
+
+**Location:** `AISecurityEngineering/`
+
+**[Full README](AISecurityEngineering/README.md)**
+
+**Comprehensive security engineering documentation using the STRIDE threat modeling framework, covering traditional web security and AI/LLM-specific attack vectors.**
+
+### What is STRIDE?
+
+STRIDE is a threat modeling framework developed by Microsoft:
+
+| Category | Description |
+|----------|-------------|
+| **S - Spoofing** | Identity falsification attacks |
+| **T - Tampering** | Unauthorized data modification |
+| **R - Repudiation** | Denying performed actions |
+| **I - Information Disclosure** | Exposing sensitive data |
+| **D - Denial of Service** | Making systems unavailable |
+| **E - Elevation of Privilege** | Gaining unauthorized access |
+
+### Coverage (25 Documents)
+
+#### Spoofing (12 documents)
+- Brute Force Attacks, Credential Stuffing, Session Hijacking
+- JWT Token Theft, Replay Attacks, Phishing
+- Email/IP Spoofing, Clickjacking, SSRF
+- Subdomain Takeover, **LLM Prompt Injection (LLM01:2025)**
+
+#### Tampering (9 documents)
+- SQL Injection, XSS, CSRF, Parameter Tampering
+- Supply Chain Attacks
+- **LLM Data Poisoning (LLM04:2025)**, **Improper Output Handling (LLM05:2025)**
+- **Misinformation (LLM09:2025)**, **LLM Supply Chain (LLM03:2025)**
+
+#### Information Disclosure (2 documents)
+- **Sensitive Information Disclosure (LLM06:2025)**
+- **Vector/Embedding Weaknesses (LLM08:2025)**
+
+#### Denial of Service (1 document)
+- **Unbounded Consumption (LLM10:2025)**
+
+#### Elevation of Privilege (1 document)
+- **Excessive Agency (LLM08:2025)**
+
+### Document Structure
+
+Each document includes:
+- **Overview Mermaid Diagrams** - Visual attack flows
+- **4 Real-World Attack Scenarios** - Step-by-step attack chains
+- **Python PoC Scripts** - Proof-of-concept code for lab testing
+- **AI/ML-Enhanced Attack Techniques** - How adversaries leverage AI
+- **Mitigation Strategies** - Defensive countermeasures
+
+**Who It's For:**
+- Security researchers and penetration testers
+- Developers learning secure coding practices
+- AI/ML engineers understanding LLM vulnerabilities
+- Security teams building threat models
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
@@ -487,14 +552,14 @@ pip install -r requirements.txt
 ### Project-Specific Setup
 
 Each project includes:
-- **📄 requirements.txt** - Python dependencies
-- **📖 README.md** - Detailed documentation
-- **🎥 Video Tutorial** - Step-by-step guide (where available)
-- **📓 Jupyter Notebooks** - Interactive exploration
+- **requirements.txt** - Python dependencies
+- **README.md** - Detailed documentation
+- **Video Tutorial** - Step-by-step guide (where available)
+- **Jupyter Notebooks** - Interactive exploration
 
 ---
 
-## 🎓 Learning Philosophy
+## Learning Philosophy
 
 **TheGradientPath** is designed around these principles:
 
@@ -515,7 +580,7 @@ All code uses open-source libraries and can run on consumer hardware.
 
 ---
 
-## 📊 Skill Progression Map
+## Skill Progression Map
 
 ```
 Beginner
@@ -543,7 +608,7 @@ Expert
 
 ---
 
-## 🤝 Community & Contributing
+## Community & Contributing
 
 ### Getting Help
 - **GitHub Issues** - Report bugs or request features
@@ -552,10 +617,10 @@ Expert
 
 ### Contributing
 Contributions are welcome! Whether it's:
-- 🐛 Bug fixes
-- 📝 Documentation improvements
-- ✨ New features or projects
-- 🎨 Code quality enhancements
+- Bug fixes
+- Documentation improvements
+- New features or projects
+- Code quality enhancements
 
 **To contribute:**
 1. Fork the repository
@@ -565,7 +630,7 @@ Contributions are welcome! Whether it's:
 
 ---
 
-## 📺 Video Tutorials
+## Video Tutorials
 
 Many projects include companion video tutorials:
 
@@ -577,22 +642,22 @@ Many projects include companion video tutorials:
 
 ---
 
-## 👨‍💻 About the Author
+## About the Author
 
 **Samuele Giampieri**  
 *AI Engineer specializing in Knowledge Graphs, NLP, and AI-Driven Systems*
 
 Passionate about bridging cutting-edge research with practical applications. Expertise spans:
-- 🔗 Knowledge graphs and graph neural networks
-- 🤖 Multi-agent systems and orchestration
-- 📚 RAG architectures and information retrieval
-- 🚀 Production ML deployment and MLOps
+- Knowledge graphs and graph neural networks
+- Multi-agent systems and orchestration
+- RAG architectures and information retrieval
+- Production ML deployment and MLOps
 
 ### Connect
-- 🐙 **GitHub:** [github.com/samugit83](https://github.com/samugit83)
-- 💼 **LinkedIn:** AI/ML discussions and networking
-- 🎥 **YouTube:** Weekly AI and ML tutorials
-- 📧 **Email:** Consulting and collaboration inquiries
+- **GitHub:** [github.com/samugit83](https://github.com/samugit83)
+- **LinkedIn:** AI/ML discussions and networking
+- **YouTube:** Weekly AI and ML tutorials
+- **Email:** Consulting and collaboration inquiries
 
 ### Support This Project
 - ⭐ **Star this repository** if you find it helpful
@@ -603,13 +668,13 @@ Passionate about bridging cutting-edge research with practical applications. Exp
 
 ---
 
-## 📜 License
+## License
 
 This project is part of TheGradientPath educational initiative. Free to use for learning, research, and commercial applications.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Special thanks to:
 - The open-source community for incredible tools and libraries

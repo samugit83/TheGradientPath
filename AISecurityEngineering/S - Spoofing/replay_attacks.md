@@ -1,5 +1,8 @@
 # Replay Attacks
 
+> [!CAUTION]
+> **Legal Disclaimer**: This document is for strictly educational and professional security research purposes. Unauthorized access to computer systems is illegal. The scripts provided are Proof-of-Concept (PoC) intended for use in controlled, lab environments. The author assumes no liability for misuse of this information.
+
 ## Table of Contents
 
 1. [Overview Diagram](#overview-diagram)

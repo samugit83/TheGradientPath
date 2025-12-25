@@ -1,5 +1,8 @@
 # LLM Supply Chain Vulnerabilities
 
+> [!CAUTION]
+> **Legal Disclaimer**: This document is for strictly educational and professional security research purposes. Unauthorized access to computer systems is illegal. The scripts provided are Proof-of-Concept (PoC) intended for use in controlled, lab environments. The author assumes no liability for misuse of this information.
+
 LLM supply chains are susceptible to various vulnerabilities that can affect the integrity of training data, models, and deployment platforms. Unlike traditional software vulnerabilities that focus primarily on code flaws and dependencies, Machine Learning (ML) risks extend to third-party pre-trained models, datasets, and specialized fine-tuning adapters (e.g., LoRA). These external elements can be manipulated through tampering or poisoning attacks, leading to biased outputs, security breaches, or complete system failures.
 
 ---

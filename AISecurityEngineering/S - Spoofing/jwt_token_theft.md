@@ -1,5 +1,8 @@
 # JWT Token Theft
 
+> [!CAUTION]
+> **Legal Disclaimer**: This document is for strictly educational and professional security research purposes. Unauthorized access to computer systems is illegal. The scripts provided are Proof-of-Concept (PoC) intended for use in controlled, lab environments. The author assumes no liability for misuse of this information.
+
 ## Table of Contents
 
 1. [Overview Diagram](#overview-diagram)
@@ -29,6 +32,16 @@
    - [What Happens When Refresh Token Expires](#what-happens-when-refresh-token-expires)
 
 ---
+
+## 🎬 Video Tutorial
+
+This document accompanies a full-length video tutorial where we:
+- Explain how JWT authentication works and why tokens are valuable targets
+- Walk through each real-world attack scenario with detailed diagrams
+- Demonstrate XSS-based theft, MITM attacks, and token interception techniques
+- Cover defense principles and practical mitigation strategies
+
+**👉 [Watch the full tutorial on YouTube](https://youtu.be/TRDuK_tZwK8)**
 
 
 ## Overview Diagram
