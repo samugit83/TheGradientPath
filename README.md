@@ -387,6 +387,12 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 
 ---
 
+### **RedAmon**
+
+**Location:** `RealWorldProjects/RedAmon/`
+
+---
+
 ## MCP Protocol From Scratch
 
 ### **Building Model Context Protocol Systems**
