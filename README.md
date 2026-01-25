@@ -387,9 +387,33 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 
 ---
 
-### **RedAmon**
+### **RedAmon - AI-Powered Red Team Framework**
 
 **Location:** `RealWorldProjects/RedAmon/`
+
+**[Full README](RealWorldProjects/RedAmon/README.md)** | **[Full Disclaimer](RealWorldProjects/RedAmon/DISCLAIMER.md)**
+
+**An AI-powered agentic red team framework that automates offensive security operations — from reconnaissance to exploitation to post-exploitation — with zero human intervention.**
+
+> **DISCLAIMER**: This tool is intended for **authorized security testing**, **educational purposes**, and **research only**. Unauthorized access to computer systems is **illegal**. By using this tool, you accept **full responsibility** for your actions.
+
+#### Core Components
+
+| Component | Purpose |
+|-----------|---------|
+| **Automated Reconnaissance** | Subdomain discovery, port scanning, HTTP probing, technology fingerprinting, vulnerability scanning |
+| **Graph Database** | Neo4j-powered attack surface visualization and relationship mapping |
+| **AI Agent Orchestration** | LangGraph-based autonomous decision making with ReAct pattern |
+| **MCP Tool Integration** | Security tools (Naabu, Nuclei, Metasploit) exposed via Model Context Protocol |
+| **Web Interface** | Next.js dashboard for visualization and AI chat interaction |
+| **Test Environments** | Intentionally vulnerable systems (guinea pigs) for safe testing |
+
+#### Key Features
+- **End-to-end automation**: From domain input to exploitation
+- **9000+ Nuclei vulnerability templates**
+- **Metasploit integration** for exploitation and post-exploitation
+- **Human-in-the-loop approval** for dangerous operations
+- **Multi-tenant support** with user/project isolation
 
 ---
 
