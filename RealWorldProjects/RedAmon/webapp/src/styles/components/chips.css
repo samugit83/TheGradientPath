@@ -1,0 +1,171 @@
+/**
+ * Chips, Tags, and Badge Styles
+ */
+
+/* =============================================================================
+   CHIP / TAG
+   Small labeled element for categories, filters, or status
+   ============================================================================= */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-0-5) var(--space-2);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Chip with remove button */
+.chipRemovable {
+  padding-right: var(--space-1);
+}
+
+.chipRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.chipRemove:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Clickable/selectable chip */
+.chipClickable {
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.chipClickable:hover {
+  background: var(--bg-hover);
+  border-color: var(--text-tertiary);
+}
+
+.chipSelected {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  color: var(--text-on-accent);
+}
+
+/* =============================================================================
+   CHIP VARIANTS (by color)
+   ============================================================================= */
+
+.chipPrimary {
+  background: rgba(229, 57, 53, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.chipSecondary {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+
+.chipSuccess {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: var(--status-success);
+  color: var(--status-success);
+}
+
+.chipWarning {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: var(--status-warning);
+  color: var(--status-warning);
+}
+
+.chipError {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: var(--status-error);
+  color: var(--status-error);
+}
+
+.chipInfo {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--status-info);
+  color: var(--status-info);
+}
+
+/* =============================================================================
+   CHIP GROUP
+   Container for multiple chips
+   ============================================================================= */
+
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* =============================================================================
+   TAG (Alternative style - no border)
+   ============================================================================= */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0-5);
+  padding: var(--space-0-5) var(--space-1-5);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.tagPrimary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+}
+
+.tagSecondary {
+  background: var(--accent-secondary);
+  color: var(--text-on-accent);
+}
+
+/* =============================================================================
+   COUNT BADGE
+   Numeric indicator (different from notification badge)
+   ============================================================================= */
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--space-1);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  color: var(--text-secondary);
+}
+
+.countBadgePrimary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+}
+
+.countBadgeSecondary {
+  background: var(--accent-secondary);
+  color: var(--text-on-accent);
+}

@@ -1,0 +1,18 @@
+/**
+ * Main Styles Entry Point
+ * Import this file in your root layout
+ */
+
+/* Design Tokens (CSS Variables) */
+@import './tokens/index.css';
+
+/* Theme Overrides */
+@import './themes/dark.css';
+@import './themes/light.css';
+
+/* Base Styles */
+@import './base/reset.css';
+@import './base/global.css';
+
+/* Shared Component Styles */
+@import './components/index.css';

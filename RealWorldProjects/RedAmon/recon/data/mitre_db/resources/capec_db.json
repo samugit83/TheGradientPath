@@ -1,0 +1,2238 @@
+{
+    "1": {
+        "name": "Accessing Functionality Not Properly Constrained by ACLs",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.010:ENTRY NAME:Hijack Execution Flow: ServicesFile Permissions Weakness::"
+    },
+    "10": {
+        "name": "Buffer Overflow via Environment Variables",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Buffer Overflow via Environment Variables::"
+    },
+    "100": {
+        "name": "Overflow Buffers",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:07:ENTRY NAME:Buffer Overflow::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Buffer overflow attack::"
+    },
+    "101": {
+        "name": "Server Side Include (SSI) Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:36:ENTRY NAME:SSI Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Server-Side Includes (SSI) Injection::"
+    },
+    "102": {
+        "name": "Session Sidejacking",
+        "techniques": ""
+    },
+    "103": {
+        "name": "Clickjacking",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Clickjacking::"
+    },
+    "104": {
+        "name": "Cross Zone Scripting",
+        "techniques": ""
+    },
+    "105": {
+        "name": "HTTP Request Splitting",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:24:ENTRY NAME:HTTP Request Splitting::"
+    },
+    "107": {
+        "name": "Cross Site Tracing",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cross Site Tracing::"
+    },
+    "108": {
+        "name": "Command Line Execution through SQL Injection",
+        "techniques": ""
+    },
+    "109": {
+        "name": "Object Relational Mapping Injection",
+        "techniques": ""
+    },
+    "11": {
+        "name": "Cause Web Server Misclassification",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.006:ENTRY NAME:Masquerading: Space after Filename::"
+    },
+    "110": {
+        "name": "SQL Injection through SOAP Parameter Tampering",
+        "techniques": ""
+    },
+    "111": {
+        "name": "JSON Hijacking (aka JavaScript Hijacking)",
+        "techniques": ""
+    },
+    "112": {
+        "name": "Brute Force",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1110:ENTRY NAME:Brute Force::::TAXONOMY NAME:WASC:ENTRY ID:11:ENTRY NAME:Brute Force::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Brute force attack::"
+    },
+    "113": {
+        "name": "Interface Manipulation",
+        "techniques": ""
+    },
+    "114": {
+        "name": "Authentication Abuse",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1548:ENTRY NAME:Abuse Elevation Control Mechanism::"
+    },
+    "115": {
+        "name": "Authentication Bypass",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1548:ENTRY NAME:Abuse Elevation Control Mechanism::"
+    },
+    "116": {
+        "name": "Excavation",
+        "techniques": ""
+    },
+    "117": {
+        "name": "Interception",
+        "techniques": ""
+    },
+    "12": {
+        "name": "Choosing Message Identifier",
+        "techniques": ""
+    },
+    "120": {
+        "name": "Double Encoding",
+        "techniques": ""
+    },
+    "121": {
+        "name": "Exploit Non-Production Interfaces",
+        "techniques": ""
+    },
+    "122": {
+        "name": "Privilege Abuse",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1548:ENTRY NAME:Abuse Elevation Control Mechanism::"
+    },
+    "123": {
+        "name": "Buffer Manipulation",
+        "techniques": ""
+    },
+    "124": {
+        "name": "Shared Resource Manipulation",
+        "techniques": ""
+    },
+    "125": {
+        "name": "Flooding",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1498.001:ENTRY NAME:Network Denial of Service: Direct Network Flood::::TAXONOMY NAME:ATTACK:ENTRY ID:1499:ENTRY NAME:Endpoint Denial of Service::::TAXONOMY NAME:WASC:ENTRY ID:10:ENTRY NAME:Denial of Service::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Traffic flood::"
+    },
+    "126": {
+        "name": "Path Traversal",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:33:ENTRY NAME:Path Traversal::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Path Traversal::"
+    },
+    "127": {
+        "name": "Directory Indexing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1083:ENTRY NAME:File and Directory Discovery::"
+    },
+    "128": {
+        "name": "Integer Attacks",
+        "techniques": ""
+    },
+    "129": {
+        "name": "Pointer Manipulation",
+        "techniques": ""
+    },
+    "13": {
+        "name": "Subverting Environment Variable Values",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1562.003:ENTRY NAME:Impair Defenses:Impair Command History Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.006:ENTRY NAME:Hijack Execution Flow:Dynamic Linker Hijacking::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.007:ENTRY NAME:Hijack Execution Flow:Path Interception by PATH Environment Variable::"
+    },
+    "130": {
+        "name": "Excessive Allocation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.003:ENTRY NAME:Endpoint Denial of Service:Application Exhaustion Flood::::TAXONOMY NAME:WASC:ENTRY ID:10:ENTRY NAME:Denial of Service::"
+    },
+    "131": {
+        "name": "Resource Leak Exposure",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499:ENTRY NAME:Endpoint Denial of Service::::TAXONOMY NAME:WASC:ENTRY ID:10:ENTRY NAME:Denial of Service::"
+    },
+    "132": {
+        "name": "Symlink Attack",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1547.009:ENTRY NAME:Boot or Logon Autostart Execution:Shortcut Modification::"
+    },
+    "133": {
+        "name": "Try All Common Switches",
+        "techniques": ""
+    },
+    "134": {
+        "name": "Email Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:30:ENTRY NAME:Mail Command Injection::"
+    },
+    "135": {
+        "name": "Format String Injection",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Format string attack::"
+    },
+    "136": {
+        "name": "LDAP Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:29:ENTRY NAME:LDAP Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:LDAP Injection::"
+    },
+    "137": {
+        "name": "Parameter Injection",
+        "techniques": ""
+    },
+    "138": {
+        "name": "Reflection Injection",
+        "techniques": ""
+    },
+    "139": {
+        "name": "Relative Path Traversal",
+        "techniques": ""
+    },
+    "14": {
+        "name": "Client-side Injection-induced Buffer Overflow",
+        "techniques": ""
+    },
+    "140": {
+        "name": "Bypassing of Intermediate Forms in Multiple-Form Sets",
+        "techniques": ""
+    },
+    "141": {
+        "name": "Cache Poisoning",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1557.002:ENTRY NAME:Adversary-in-the-Middle: ARP Cache Poisoning::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cache Poisoning::"
+    },
+    "142": {
+        "name": "DNS Cache Poisoning",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1584.002:ENTRY NAME:Compromise Infrastructure: DNS Server::"
+    },
+    "143": {
+        "name": "Detect Unpublicized Web Pages",
+        "techniques": ""
+    },
+    "144": {
+        "name": "Detect Unpublicized Web Services",
+        "techniques": ""
+    },
+    "145": {
+        "name": "Checksum Spoofing",
+        "techniques": ""
+    },
+    "146": {
+        "name": "XML Schema Poisoning",
+        "techniques": ""
+    },
+    "147": {
+        "name": "XML Ping of the Death",
+        "techniques": ""
+    },
+    "148": {
+        "name": "Content Spoofing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1491:ENTRY NAME:Defacement::::TAXONOMY NAME:WASC:ENTRY ID:12:ENTRY NAME:Content Spoofing::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Content Spoofing::"
+    },
+    "149": {
+        "name": "Explore for Predictable Temporary File Names",
+        "techniques": ""
+    },
+    "15": {
+        "name": "Command Delimiters",
+        "techniques": ""
+    },
+    "150": {
+        "name": "Collect Data from Common Resource Locations",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1003:ENTRY NAME:OS Credential Dumping::::TAXONOMY NAME:ATTACK:ENTRY ID:1119:ENTRY NAME:Automated Collection::::TAXONOMY NAME:ATTACK:ENTRY ID:1213:ENTRY NAME:Data from Information Repositories::::TAXONOMY NAME:ATTACK:ENTRY ID:1530:ENTRY NAME:Data from Cloud Storage Object::::TAXONOMY NAME:ATTACK:ENTRY ID:1555:ENTRY NAME:Credentials from Password Stores::::TAXONOMY NAME:ATTACK:ENTRY ID:1602:ENTRY NAME:Data from Configuration Repository::"
+    },
+    "151": {
+        "name": "Identity Spoofing",
+        "techniques": ""
+    },
+    "153": {
+        "name": "Input Data Manipulation",
+        "techniques": ""
+    },
+    "154": {
+        "name": "Resource Location Spoofing",
+        "techniques": ""
+    },
+    "155": {
+        "name": "Screen Temporary Files for Sensitive Information",
+        "techniques": ""
+    },
+    "157": {
+        "name": "Sniffing Attacks",
+        "techniques": ""
+    },
+    "158": {
+        "name": "Sniffing Network Traffic",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1040:ENTRY NAME:Network Sniffing::::TAXONOMY NAME:ATTACK:ENTRY ID:1111:ENTRY NAME:Multi-Factor Authentication Interception::"
+    },
+    "159": {
+        "name": "Redirect Access to Libraries",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.008:ENTRY NAME:Hijack Execution Flow:Path Interception by Search Order Hijacking::"
+    },
+    "16": {
+        "name": "Dictionary-based Password Attack",
+        "techniques": ""
+    },
+    "160": {
+        "name": "Exploit Script-Based APIs",
+        "techniques": ""
+    },
+    "161": {
+        "name": "Infrastructure Manipulation",
+        "techniques": ""
+    },
+    "162": {
+        "name": "Manipulating Hidden Fields",
+        "techniques": ""
+    },
+    "163": {
+        "name": "Spear Phishing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1534:ENTRY NAME:Internal Spearfishing::::TAXONOMY NAME:ATTACK:ENTRY ID:1566.001:ENTRY NAME:Phishing: Spearfishing Attachment::::TAXONOMY NAME:ATTACK:ENTRY ID:1566.002:ENTRY NAME:Phishing: Spearfishing Link::::TAXONOMY NAME:ATTACK:ENTRY ID:1566.003:ENTRY NAME:Phishing: Spearfishing via Service::::TAXONOMY NAME:ATTACK:ENTRY ID:1598.001:ENTRY NAME:Phishing for Information: Spearfishing Service::::TAXONOMY NAME:ATTACK:ENTRY ID:1598.002:ENTRY NAME:Phishing for Information: Spearfishing Attachment::::TAXONOMY NAME:ATTACK:ENTRY ID:1598.003:ENTRY NAME:Phishing for Information: Spearfishing Link::"
+    },
+    "164": {
+        "name": "Mobile Phishing",
+        "techniques": ""
+    },
+    "165": {
+        "name": "File Manipulation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.003:ENTRY NAME:Masquerading: Rename System Utilities::"
+    },
+    "166": {
+        "name": "Force the System to Reset Values",
+        "techniques": ""
+    },
+    "167": {
+        "name": "White Box Reverse Engineering",
+        "techniques": ""
+    },
+    "168": {
+        "name": "Windows ::DATA Alternate Data Stream",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Windows alternate data stream::"
+    },
+    "169": {
+        "name": "Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1217:ENTRY NAME:Browser Bookmark Discovery::::TAXONOMY NAME:ATTACK:ENTRY ID:1592:ENTRY NAME:Gather Victim Host Information::::TAXONOMY NAME:ATTACK:ENTRY ID:1595:ENTRY NAME:Active Scanning::"
+    },
+    "17": {
+        "name": "Using Malicious Files",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.005:ENTRY NAME:Hijack Execution Flow: Executable Installer File Permissions Weakness::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.010:ENTRY NAME:Hijack Execution Flow: Services File Permissions Weakness::"
+    },
+    "170": {
+        "name": "Web Application Fingerprinting",
+        "techniques": ""
+    },
+    "173": {
+        "name": "Action Spoofing",
+        "techniques": ""
+    },
+    "174": {
+        "name": "Flash Parameter Injection",
+        "techniques": ""
+    },
+    "175": {
+        "name": "Code Inclusion",
+        "techniques": ""
+    },
+    "176": {
+        "name": "Configuration/Environment Manipulation",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Setting Manipulation::"
+    },
+    "177": {
+        "name": "Create files with the same name as files protected with a higher classification",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036:ENTRY NAME:Masquerading::"
+    },
+    "178": {
+        "name": "Cross-Site Flashing",
+        "techniques": ""
+    },
+    "179": {
+        "name": "Calling Micro-Services Directly",
+        "techniques": ""
+    },
+    "18": {
+        "name": "XSS Targeting Non-Script Elements",
+        "techniques": ""
+    },
+    "180": {
+        "name": "Exploiting Incorrectly Configured Access Control Security Levels",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.010:ENTRY NAME:Hijack Execution Flow: Services File Permissions Weaknesses::"
+    },
+    "181": {
+        "name": "Flash File Overlay",
+        "techniques": ""
+    },
+    "182": {
+        "name": "Flash Injection",
+        "techniques": ""
+    },
+    "183": {
+        "name": "IMAP/SMTP Command Injection",
+        "techniques": ""
+    },
+    "184": {
+        "name": "Software Integrity Attack",
+        "techniques": ""
+    },
+    "185": {
+        "name": "Malicious Software Download",
+        "techniques": ""
+    },
+    "186": {
+        "name": "Malicious Software Update",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "187": {
+        "name": "Malicious Automated Software Update via Redirection",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1072:ENTRY NAME:Software Deployment Tools::"
+    },
+    "188": {
+        "name": "Reverse Engineering",
+        "techniques": ""
+    },
+    "189": {
+        "name": "Black Box Reverse Engineering",
+        "techniques": ""
+    },
+    "19": {
+        "name": "Embedding Scripts within Scripts",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027.009:ENTRY NAME:Obfuscated Files or Information:\u00a0Embedded Payloads::::TAXONOMY NAME:ATTACK:ENTRY ID:1546.004:ENTRY NAME:Event Triggered Execution:.bash_profile and .bashrc::::TAXONOMY NAME:ATTACK:ENTRY ID:1546.016:ENTRY NAME:Event Triggered Execution:\u00a0Installer Packages::"
+    },
+    "190": {
+        "name": "Reverse Engineer an Executable to Expose Assumed Hidden Functionality",
+        "techniques": ""
+    },
+    "191": {
+        "name": "Read Sensitive Constants Within an Executable",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1552.001:ENTRY NAME:Unsecured Credentials:Credentials in files::"
+    },
+    "192": {
+        "name": "Protocol Analysis",
+        "techniques": ""
+    },
+    "193": {
+        "name": "PHP Remote File Inclusion",
+        "techniques": ""
+    },
+    "194": {
+        "name": "Fake the Source of Data",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:38:ENTRY NAME:URL Redirector Abuse::"
+    },
+    "195": {
+        "name": "Principal Spoof",
+        "techniques": ""
+    },
+    "196": {
+        "name": "Session Credential Falsification through Forging",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1134.002:ENTRY NAME:Access Token Manipulation: Create Process with Token::::TAXONOMY NAME:ATTACK:ENTRY ID:1134.003:ENTRY NAME:Access Token Manipulation: Make and Impersonate Token::::TAXONOMY NAME:ATTACK:ENTRY ID:1606:ENTRY NAME:Forge Web Credentials::"
+    },
+    "197": {
+        "name": "Exponential Data Expansion",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:44:ENTRY NAME:XML Entity Expansion::"
+    },
+    "198": {
+        "name": "XSS Targeting Error Pages",
+        "techniques": ""
+    },
+    "199": {
+        "name": "XSS Using Alternate Syntax",
+        "techniques": ""
+    },
+    "2": {
+        "name": "Inducing Account Lockout",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1531:ENTRY NAME:Account Access Removal::"
+    },
+    "20": {
+        "name": "Encryption Brute Forcing",
+        "techniques": ""
+    },
+    "200": {
+        "name": "Removal of filters: Input filters, output filters, data masking",
+        "techniques": ""
+    },
+    "201": {
+        "name": "Serialized Data External Linking",
+        "techniques": ""
+    },
+    "202": {
+        "name": "Create Malicious Client",
+        "techniques": ""
+    },
+    "203": {
+        "name": "Manipulate Registry Information",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1112:ENTRY NAME:Modify Registry::::TAXONOMY NAME:ATTACK:ENTRY ID:1647:ENTRY NAME:Plist Modification::"
+    },
+    "204": {
+        "name": "Lifting Sensitive Data Embedded in Cache",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1005:ENTRY NAME:Data from Local System::"
+    },
+    "206": {
+        "name": "Signing Malicious Code",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1553.002:ENTRY NAME:Subvert Trust Controls:Code Signing::"
+    },
+    "207": {
+        "name": "Removing Important Client Functionality",
+        "techniques": ""
+    },
+    "208": {
+        "name": "Removing/short-circuiting 'Purse' logic: removing/mutating 'cash' decrements",
+        "techniques": ""
+    },
+    "209": {
+        "name": "XSS Using MIME Type Mismatch",
+        "techniques": ""
+    },
+    "21": {
+        "name": "Exploitation of Trusted Identifiers",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1134:ENTRY NAME:Access Token Manipulation::::TAXONOMY NAME:ATTACK:ENTRY ID:1528:ENTRY NAME:Steal Application Access Token::::TAXONOMY NAME:ATTACK:ENTRY ID:1539:ENTRY NAME:Steal Web Session Cookie::"
+    },
+    "212": {
+        "name": "Functionality Misuse",
+        "techniques": ""
+    },
+    "215": {
+        "name": "Fuzzing for application mapping",
+        "techniques": ""
+    },
+    "216": {
+        "name": "Communication Channel Manipulation",
+        "techniques": ""
+    },
+    "217": {
+        "name": "Exploiting Incorrectly Configured SSL/TLS",
+        "techniques": ""
+    },
+    "218": {
+        "name": "Spoofing of UDDI/ebXML Messages",
+        "techniques": ""
+    },
+    "219": {
+        "name": "XML Routing Detour Attacks",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:32:ENTRY NAME:Routing Detour::::TAXONOMY NAME:WASC:ENTRY ID:44:ENTRY NAME:XML Entity Expansion::"
+    },
+    "22": {
+        "name": "Exploiting Trust in Client",
+        "techniques": ""
+    },
+    "220": {
+        "name": "Client-Server Protocol Manipulation",
+        "techniques": ""
+    },
+    "221": {
+        "name": "Data Serialization External Entities Blowup",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:43:ENTRY NAME:XML External Entities::"
+    },
+    "222": {
+        "name": "iFrame Overlay",
+        "techniques": ""
+    },
+    "224": {
+        "name": "Fingerprinting",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:45:ENTRY NAME:Fingerprinting::"
+    },
+    "226": {
+        "name": "Session Credential Falsification through Manipulation",
+        "techniques": ""
+    },
+    "227": {
+        "name": "Sustained Client Engagement",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499:ENTRY NAME:Endpoint Denial of Service::::TAXONOMY NAME:WASC:ENTRY ID:10:ENTRY NAME:Denial of Service::"
+    },
+    "228": {
+        "name": "DTD Injection",
+        "techniques": ""
+    },
+    "229": {
+        "name": "Serialized Data Parameter Blowup",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:41:ENTRY NAME:XML Attribute Blowup::"
+    },
+    "23": {
+        "name": "File Content Injection",
+        "techniques": ""
+    },
+    "230": {
+        "name": "Serialized Data with Nested Payloads",
+        "techniques": ""
+    },
+    "231": {
+        "name": "Oversized Serialized Data Payloads",
+        "techniques": ""
+    },
+    "233": {
+        "name": "Privilege Escalation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1548:ENTRY NAME:Abuse Elevation Control Mechanism::"
+    },
+    "234": {
+        "name": "Hijacking a privileged process",
+        "techniques": ""
+    },
+    "237": {
+        "name": "Escaping a Sandbox by Calling Code in Another Language",
+        "techniques": ""
+    },
+    "24": {
+        "name": "Filter Failure through Buffer Overflow",
+        "techniques": ""
+    },
+    "240": {
+        "name": "Resource Injection",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Resource Injection::"
+    },
+    "242": {
+        "name": "Code Injection",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Code Injection::"
+    },
+    "243": {
+        "name": "XSS Targeting HTML Attributes",
+        "techniques": ""
+    },
+    "244": {
+        "name": "XSS Targeting URI Placeholders",
+        "techniques": ""
+    },
+    "245": {
+        "name": "XSS Using Doubled Characters",
+        "techniques": ""
+    },
+    "247": {
+        "name": "XSS Using Invalid Characters",
+        "techniques": ""
+    },
+    "248": {
+        "name": "Command Injection",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Command Injection::"
+    },
+    "25": {
+        "name": "Forced Deadlock",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.004:ENTRY NAME:Endpoint Denial of Service: Application or System Exploitation::"
+    },
+    "250": {
+        "name": "XML Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:23:ENTRY NAME:XML Injection::"
+    },
+    "251": {
+        "name": "Local Code Inclusion",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1055:ENTRY NAME:Process Injection::"
+    },
+    "252": {
+        "name": "PHP Local File Inclusion",
+        "techniques": ""
+    },
+    "253": {
+        "name": "Remote Code Inclusion",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:05:ENTRY NAME:Remote File Inclusion::"
+    },
+    "256": {
+        "name": "SOAP Array Overflow",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:35:ENTRY NAME:SOAP Array Abuse::"
+    },
+    "26": {
+        "name": "Leveraging Race Conditions",
+        "techniques": ""
+    },
+    "261": {
+        "name": "Fuzzing for garnering other adjacent user/sensitive data",
+        "techniques": ""
+    },
+    "263": {
+        "name": "Force Use of Corrupted Files",
+        "techniques": ""
+    },
+    "267": {
+        "name": "Leverage Alternate Encoding",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027:ENTRY NAME:Obfuscated Files or Information::"
+    },
+    "268": {
+        "name": "Audit Log Manipulation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1070:ENTRY NAME:Indicator Removal on Host::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.002:ENTRY NAME:Impair Defenses: Disable Windows Event Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.003:ENTRY NAME:Impair Defenses: Impair Command History Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.008:ENTRY NAME:Impair Defenses: Disable Cloud Logs::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Log Injection::"
+    },
+    "27": {
+        "name": "Leveraging Race Conditions via Symbolic Links",
+        "techniques": ""
+    },
+    "270": {
+        "name": "Modification of Registry Run Keys",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1547.001:ENTRY NAME:Boot or Logon Autostart Execution: Registry Run Keys / Start Folder::::TAXONOMY NAME:ATTACK:ENTRY ID:1547.014:ENTRY NAME:Boot or Logon Autostart Execution: Active::"
+    },
+    "271": {
+        "name": "Schema Poisoning",
+        "techniques": ""
+    },
+    "272": {
+        "name": "Protocol Manipulation",
+        "techniques": ""
+    },
+    "273": {
+        "name": "HTTP Response Smuggling",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:27:ENTRY NAME:HTTP Response Smuggling::"
+    },
+    "274": {
+        "name": "HTTP Verb Tampering",
+        "techniques": ""
+    },
+    "275": {
+        "name": "DNS Rebinding",
+        "techniques": ""
+    },
+    "276": {
+        "name": "Inter-component Protocol Manipulation",
+        "techniques": ""
+    },
+    "277": {
+        "name": "Data Interchange Protocol Manipulation",
+        "techniques": ""
+    },
+    "278": {
+        "name": "Web Services Protocol Manipulation",
+        "techniques": ""
+    },
+    "279": {
+        "name": "SOAP Manipulation",
+        "techniques": ""
+    },
+    "28": {
+        "name": "Fuzzing",
+        "techniques": ""
+    },
+    "285": {
+        "name": "ICMP Echo Request Ping",
+        "techniques": ""
+    },
+    "287": {
+        "name": "TCP SYN Scan",
+        "techniques": ""
+    },
+    "29": {
+        "name": "Leveraging Time-of-Check and Time-of-Use (TOCTOU) Race Conditions",
+        "techniques": ""
+    },
+    "290": {
+        "name": "Enumerate Mail Exchange (MX) Records",
+        "techniques": ""
+    },
+    "291": {
+        "name": "DNS Zone Transfers",
+        "techniques": ""
+    },
+    "292": {
+        "name": "Host Discovery",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1018:ENTRY NAME:Remote System Discovery::"
+    },
+    "293": {
+        "name": "Traceroute Route Enumeration",
+        "techniques": ""
+    },
+    "294": {
+        "name": "ICMP Address Mask Request",
+        "techniques": ""
+    },
+    "295": {
+        "name": "Timestamp Request",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1124:ENTRY NAME:System Time Discovery::"
+    },
+    "296": {
+        "name": "ICMP Information Request",
+        "techniques": ""
+    },
+    "297": {
+        "name": "TCP ACK Ping",
+        "techniques": ""
+    },
+    "298": {
+        "name": "UDP Ping",
+        "techniques": ""
+    },
+    "299": {
+        "name": "TCP SYN Ping",
+        "techniques": ""
+    },
+    "3": {
+        "name": "Using Leading 'Ghost' Character Sequences to Bypass Input Filters",
+        "techniques": ""
+    },
+    "30": {
+        "name": "Hijacking a Privileged Thread of Execution",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1055.003:ENTRY NAME:Process Injection: Thread Execution Hijacking::"
+    },
+    "300": {
+        "name": "Port Scanning",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1046:ENTRY NAME:Network Service Scanning::"
+    },
+    "301": {
+        "name": "TCP Connect Scan",
+        "techniques": ""
+    },
+    "302": {
+        "name": "TCP FIN Scan",
+        "techniques": ""
+    },
+    "303": {
+        "name": "TCP Xmas Scan",
+        "techniques": ""
+    },
+    "304": {
+        "name": "TCP Null Scan",
+        "techniques": ""
+    },
+    "305": {
+        "name": "TCP ACK Scan",
+        "techniques": ""
+    },
+    "306": {
+        "name": "TCP Window Scan",
+        "techniques": ""
+    },
+    "307": {
+        "name": "TCP RPC Scan",
+        "techniques": ""
+    },
+    "308": {
+        "name": "UDP Scan",
+        "techniques": ""
+    },
+    "309": {
+        "name": "Network Topology Mapping",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1016:ENTRY NAME:System Network Configuration Discovery::::TAXONOMY NAME:ATTACK:ENTRY ID:1049:ENTRY NAME:System Network Connections Discovery::::TAXONOMY NAME:ATTACK:ENTRY ID:1590:ENTRY NAME:Gather Victim Network Information::"
+    },
+    "31": {
+        "name": "Accessing/Intercepting/Modifying HTTP Cookies",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1539:ENTRY NAME:Steal Web Session Cookie::"
+    },
+    "310": {
+        "name": "Scanning for Vulnerable Software",
+        "techniques": ""
+    },
+    "312": {
+        "name": "Active OS Fingerprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1082:ENTRY NAME:System Information Discovery::"
+    },
+    "313": {
+        "name": "Passive OS Fingerprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1082:ENTRY NAME:System Information Discovery::"
+    },
+    "317": {
+        "name": "IP ID Sequencing Probe",
+        "techniques": ""
+    },
+    "318": {
+        "name": "IP 'ID' Echoed Byte-Order Probe",
+        "techniques": ""
+    },
+    "319": {
+        "name": "IP (DF) 'Don't Fragment Bit' Echoing Probe",
+        "techniques": ""
+    },
+    "32": {
+        "name": "XSS Through HTTP Query Strings",
+        "techniques": ""
+    },
+    "320": {
+        "name": "TCP Timestamp Probe",
+        "techniques": ""
+    },
+    "321": {
+        "name": "TCP Sequence Number Probe",
+        "techniques": ""
+    },
+    "322": {
+        "name": "TCP (ISN) Greatest Common Divisor Probe",
+        "techniques": ""
+    },
+    "323": {
+        "name": "TCP (ISN) Counter Rate Probe",
+        "techniques": ""
+    },
+    "324": {
+        "name": "TCP (ISN) Sequence Predictability Probe",
+        "techniques": ""
+    },
+    "325": {
+        "name": "TCP Congestion Control Flag (ECN) Probe",
+        "techniques": ""
+    },
+    "326": {
+        "name": "TCP Initial Window Size Probe",
+        "techniques": ""
+    },
+    "327": {
+        "name": "TCP Options Probe",
+        "techniques": ""
+    },
+    "328": {
+        "name": "TCP 'RST' Flag Checksum Probe",
+        "techniques": ""
+    },
+    "329": {
+        "name": "ICMP Error Message Quoting Probe",
+        "techniques": ""
+    },
+    "33": {
+        "name": "HTTP Request Smuggling",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:26:ENTRY NAME:HTTP Request Smuggling::"
+    },
+    "330": {
+        "name": "ICMP Error Message Echoing Integrity Probe",
+        "techniques": ""
+    },
+    "331": {
+        "name": "ICMP IP Total Length Field Probe",
+        "techniques": ""
+    },
+    "332": {
+        "name": "ICMP IP 'ID' Field Error Message Probe",
+        "techniques": ""
+    },
+    "34": {
+        "name": "HTTP Response Splitting",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:25:ENTRY NAME:HTTP Response Splitting::"
+    },
+    "35": {
+        "name": "Leverage Executable Code in Non-Executable Files",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027.006:ENTRY NAME:Obfuscated Files or Information: HTML Smuggling::::TAXONOMY NAME:ATTACK:ENTRY ID:1027.009:ENTRY NAME:Obfuscated Files or Information:\u00a0Embedded Payloads::::TAXONOMY NAME:ATTACK:ENTRY ID:1564.009:ENTRY NAME:Hide Artifacts: Resource Forking::"
+    },
+    "36": {
+        "name": "Using Unpublished Interfaces or Functionality",
+        "techniques": ""
+    },
+    "37": {
+        "name": "Retrieve Embedded Sensitive Data",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1005:ENTRY NAME:Data from Local System::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.004:ENTRY NAME:Unsecured Credentials: Private Keys::"
+    },
+    "38": {
+        "name": "Leveraging/Manipulating Configuration File Search Paths",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.007:ENTRY NAME:Hijack Execution Flow: Path Interception by PATH Environment Variable::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.009:ENTRY NAME:Hijack Execution Flow: Path Interception by Unquoted Path::"
+    },
+    "383": {
+        "name": "Harvesting Information via API Event Monitoring",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1056.004:ENTRY NAME:Input Capture: Credential API Hooking::"
+    },
+    "384": {
+        "name": "Application API Message Manipulation via Man-in-the-Middle",
+        "techniques": ""
+    },
+    "385": {
+        "name": "Transaction or Event Tampering via Application API Manipulation",
+        "techniques": ""
+    },
+    "386": {
+        "name": "Application API Navigation Remapping",
+        "techniques": ""
+    },
+    "387": {
+        "name": "Navigation Remapping To Propagate Malicious Content",
+        "techniques": ""
+    },
+    "388": {
+        "name": "Application API Button Hijacking",
+        "techniques": ""
+    },
+    "389": {
+        "name": "Content Spoofing Via Application API Manipulation",
+        "techniques": ""
+    },
+    "39": {
+        "name": "Manipulating Opaque Client-based Data Tokens",
+        "techniques": ""
+    },
+    "390": {
+        "name": "Bypassing Physical Security",
+        "techniques": ""
+    },
+    "391": {
+        "name": "Bypassing Physical Locks",
+        "techniques": ""
+    },
+    "392": {
+        "name": "Lock Bumping",
+        "techniques": ""
+    },
+    "393": {
+        "name": "Lock Picking",
+        "techniques": ""
+    },
+    "394": {
+        "name": "Using a Snap Gun Lock to Force a Lock",
+        "techniques": ""
+    },
+    "395": {
+        "name": "Bypassing Electronic Locks and Access Controls",
+        "techniques": ""
+    },
+    "397": {
+        "name": "Cloning Magnetic Strip Cards",
+        "techniques": ""
+    },
+    "398": {
+        "name": "Magnetic Strip Card Brute Force Attacks",
+        "techniques": ""
+    },
+    "399": {
+        "name": "Cloning RFID Cards or Chips",
+        "techniques": ""
+    },
+    "4": {
+        "name": "Using Alternative IP Address Encodings",
+        "techniques": ""
+    },
+    "40": {
+        "name": "Manipulating Writeable Terminal Devices",
+        "techniques": ""
+    },
+    "400": {
+        "name": "RFID Chip Deactivation or Destruction",
+        "techniques": ""
+    },
+    "401": {
+        "name": "Physically Hacking Hardware",
+        "techniques": ""
+    },
+    "402": {
+        "name": "Bypassing ATA Password Security",
+        "techniques": ""
+    },
+    "406": {
+        "name": "Dumpster Diving",
+        "techniques": ""
+    },
+    "407": {
+        "name": "Pretexting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1589:ENTRY NAME:Gather Victim Identity Information::"
+    },
+    "41": {
+        "name": "Using Meta-characters in E-mail Headers to Inject Malicious Payloads",
+        "techniques": ""
+    },
+    "410": {
+        "name": "Information Elicitation",
+        "techniques": ""
+    },
+    "412": {
+        "name": "Pretexting via Customer Service",
+        "techniques": ""
+    },
+    "413": {
+        "name": "Pretexting via Tech Support",
+        "techniques": ""
+    },
+    "414": {
+        "name": "Pretexting via Delivery Person",
+        "techniques": ""
+    },
+    "415": {
+        "name": "Pretexting via Phone",
+        "techniques": ""
+    },
+    "416": {
+        "name": "Manipulate Human Behavior",
+        "techniques": ""
+    },
+    "417": {
+        "name": "Influence Perception",
+        "techniques": ""
+    },
+    "418": {
+        "name": "Influence Perception of Reciprocation",
+        "techniques": ""
+    },
+    "42": {
+        "name": "MIME Conversion",
+        "techniques": ""
+    },
+    "420": {
+        "name": "Influence Perception of Scarcity",
+        "techniques": ""
+    },
+    "421": {
+        "name": "Influence Perception of Authority",
+        "techniques": ""
+    },
+    "422": {
+        "name": "Influence Perception of Commitment and Consistency",
+        "techniques": ""
+    },
+    "423": {
+        "name": "Influence Perception of Liking",
+        "techniques": ""
+    },
+    "424": {
+        "name": "Influence Perception of Consensus or Social Proof",
+        "techniques": ""
+    },
+    "425": {
+        "name": "Target Influence via Framing",
+        "techniques": ""
+    },
+    "426": {
+        "name": "Influence via Incentives",
+        "techniques": ""
+    },
+    "427": {
+        "name": "Influence via Psychological Principles",
+        "techniques": ""
+    },
+    "428": {
+        "name": "Influence via Modes of Thinking",
+        "techniques": ""
+    },
+    "429": {
+        "name": "Target Influence via Eye Cues",
+        "techniques": ""
+    },
+    "43": {
+        "name": "Exploiting Multiple Input Interpretation Layers",
+        "techniques": ""
+    },
+    "433": {
+        "name": "Target Influence via The Human Buffer Overflow",
+        "techniques": ""
+    },
+    "434": {
+        "name": "Target Influence via Interview and Interrogation",
+        "techniques": ""
+    },
+    "435": {
+        "name": "Target Influence via Instant Rapport",
+        "techniques": ""
+    },
+    "438": {
+        "name": "Modification During Manufacture",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195:ENTRY NAME:Supply Chain Compromise::"
+    },
+    "439": {
+        "name": "Manipulation During Distribution",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195:ENTRY NAME:Supply Chain Compromise::"
+    },
+    "44": {
+        "name": "Overflow Binary Resource File",
+        "techniques": ""
+    },
+    "440": {
+        "name": "Hardware Integrity Attack",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::::TAXONOMY NAME:ATTACK:ENTRY ID:1200:ENTRY NAME:Hardware Additions::"
+    },
+    "441": {
+        "name": "Malicious Logic Insertion",
+        "techniques": ""
+    },
+    "442": {
+        "name": "Infected Software",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::::TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "443": {
+        "name": "Malicious Logic Inserted Into Product by Authorized Developer",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::::TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "444": {
+        "name": "Development Alteration",
+        "techniques": ""
+    },
+    "445": {
+        "name": "Malicious Logic Insertion into Product Software via Configuration Management Manipulation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::"
+    },
+    "446": {
+        "name": "Malicious Logic Insertion into Product via Inclusion of Third-Party Component",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195:ENTRY NAME:Supply Chain Compromise::"
+    },
+    "447": {
+        "name": "Design Alteration",
+        "techniques": ""
+    },
+    "448": {
+        "name": "Embed Virus into DLL",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027.009:ENTRY NAME:Obfuscated Files or Information:\u00a0Embedded Payloads::"
+    },
+    "45": {
+        "name": "Buffer Overflow via Symbolic Links",
+        "techniques": ""
+    },
+    "452": {
+        "name": "Infected Hardware",
+        "techniques": ""
+    },
+    "456": {
+        "name": "Infected Memory",
+        "techniques": ""
+    },
+    "457": {
+        "name": "USB Memory Attacks",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1091:ENTRY NAME:Replication Through Removable Media::::TAXONOMY NAME:ATTACK:ENTRY ID:1092:ENTRY NAME:Communication Through Removable Media::"
+    },
+    "458": {
+        "name": "Flash Memory Attacks",
+        "techniques": ""
+    },
+    "459": {
+        "name": "Creating a Rogue Certification Authority Certificate",
+        "techniques": ""
+    },
+    "46": {
+        "name": "Overflow Variables and Tags",
+        "techniques": ""
+    },
+    "460": {
+        "name": "HTTP Parameter Pollution (HPP)",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Web Parameter Tampering::"
+    },
+    "461": {
+        "name": "Web Services API Signature Forgery Leveraging Hash Function Extension Weakness",
+        "techniques": ""
+    },
+    "462": {
+        "name": "Cross-Domain Search Timing",
+        "techniques": ""
+    },
+    "463": {
+        "name": "Padding Oracle Crypto Attack",
+        "techniques": ""
+    },
+    "464": {
+        "name": "Evercookie",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1606.001:ENTRY NAME:Forge Web Credentials: Web Cookies::"
+    },
+    "465": {
+        "name": "Transparent Proxy Abuse",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1090.001:ENTRY NAME:Proxy: Internal Proxy::"
+    },
+    "466": {
+        "name": "Leveraging Active Adversary in the Middle Attacks to Bypass Same Origin Policy",
+        "techniques": ""
+    },
+    "467": {
+        "name": "Cross Site Identification",
+        "techniques": ""
+    },
+    "468": {
+        "name": "Generic Cross-Browser Cross-Domain Theft",
+        "techniques": ""
+    },
+    "469": {
+        "name": "HTTP DoS",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.002:ENTRY NAME:Endpoint Denial of Service: Service Exhaustion Flood::"
+    },
+    "47": {
+        "name": "Buffer Overflow via Parameter Expansion",
+        "techniques": ""
+    },
+    "470": {
+        "name": "Expanding Control over the Operating System from the Database",
+        "techniques": ""
+    },
+    "471": {
+        "name": "Search Order Hijacking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.001:ENTRY NAME:Hijack Execution Flow:DLL search order hijacking::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.004:ENTRY NAME:Hijack Execution Flow: Dylib Hijacking::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.008:ENTRY NAME:Hijack Execution Flow: Path Interception by Search Order Hijacking::"
+    },
+    "472": {
+        "name": "Browser Fingerprinting",
+        "techniques": ""
+    },
+    "473": {
+        "name": "Signature Spoof",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.001:ENTRY NAME:Masquerading: Invalid Code Signature::::TAXONOMY NAME:ATTACK:ENTRY ID:1553.002:ENTRY NAME:Subvert Trust Controls: Code Signing::"
+    },
+    "474": {
+        "name": "Signature Spoofing by Key Theft",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1552.004:ENTRY NAME:Unsecured Credentials: Private Keys::"
+    },
+    "475": {
+        "name": "Signature Spoofing by Improper Validation",
+        "techniques": ""
+    },
+    "476": {
+        "name": "Signature Spoofing by Misrepresentation",
+        "techniques": ""
+    },
+    "477": {
+        "name": "Signature Spoofing by Mixing Signed and Unsigned Content",
+        "techniques": ""
+    },
+    "478": {
+        "name": "Modification of Windows Service Configuration",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.011:ENTRY NAME:Hijack Execution Flow:Service Registry Permissions Weakness::::TAXONOMY NAME:ATTACK:ENTRY ID:1543.003:ENTRY NAME:Create or Modify System Process:Windows Service::"
+    },
+    "479": {
+        "name": "Malicious Root Certificate",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1553.004:ENTRY NAME:Subvert Trust Controls:Install Root Certificate::"
+    },
+    "48": {
+        "name": "Passing Local Filenames to Functions That Expect a URL",
+        "techniques": ""
+    },
+    "480": {
+        "name": "Escaping Virtualization",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1611:ENTRY NAME:Escape to Host::"
+    },
+    "481": {
+        "name": "Contradictory Destinations in Traffic Routing Schemes",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1090.004:ENTRY NAME:Proxy:Domain Fronting::"
+    },
+    "482": {
+        "name": "TCP Flood",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1498.001:ENTRY NAME:Network Denial of Service: Direct Network Flood::::TAXONOMY NAME:ATTACK:ENTRY ID:1499.001:ENTRY NAME:Endpoint Denial of Service: OS Exhaustion Flood::::TAXONOMY NAME:ATTACK:ENTRY ID:1499.002:ENTRY NAME:Endpoint Denial of Service: Service Exhaustion Flood::"
+    },
+    "485": {
+        "name": "Signature Spoofing by Key Recreation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1552.004:ENTRY NAME:Unsecure Credentials: Private Keys::"
+    },
+    "486": {
+        "name": "UDP Flood",
+        "techniques": ""
+    },
+    "487": {
+        "name": "ICMP Flood",
+        "techniques": ""
+    },
+    "488": {
+        "name": "HTTP Flood",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.002:ENTRY NAME:Endpoint Denial of Service:Service Exhaustion Flood::"
+    },
+    "489": {
+        "name": "SSL Flood",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.002:ENTRY NAME:Endpoint Denial of Service:Service Exhaustion Flood::"
+    },
+    "49": {
+        "name": "Password Brute Forcing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1110.001:ENTRY NAME:Brute Force:Password Guessing::"
+    },
+    "490": {
+        "name": "Amplification",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1498.002:ENTRY NAME:Network Denial of Service:Reflection Amplification::"
+    },
+    "491": {
+        "name": "Quadratic Data Expansion",
+        "techniques": ""
+    },
+    "492": {
+        "name": "Regular Expression Exponential Blowup",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Regular expression Denial of Service - ReDoS::"
+    },
+    "493": {
+        "name": "SOAP Array Blowup",
+        "techniques": ""
+    },
+    "494": {
+        "name": "TCP Fragmentation",
+        "techniques": ""
+    },
+    "495": {
+        "name": "UDP Fragmentation",
+        "techniques": ""
+    },
+    "496": {
+        "name": "ICMP Fragmentation",
+        "techniques": ""
+    },
+    "497": {
+        "name": "File Discovery",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1083:ENTRY NAME:File and Directory Discovery::"
+    },
+    "498": {
+        "name": "Probe iOS Screenshots",
+        "techniques": ""
+    },
+    "499": {
+        "name": "Android Intent Intercept",
+        "techniques": ""
+    },
+    "5": {
+        "name": "Blue Boxing",
+        "techniques": ""
+    },
+    "50": {
+        "name": "Password Recovery Exploitation",
+        "techniques": ""
+    },
+    "500": {
+        "name": "WebView Injection",
+        "techniques": ""
+    },
+    "501": {
+        "name": "Android Activity Hijack",
+        "techniques": ""
+    },
+    "502": {
+        "name": "Intent Spoof",
+        "techniques": ""
+    },
+    "503": {
+        "name": "WebView Exposure",
+        "techniques": ""
+    },
+    "504": {
+        "name": "Task Impersonation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.004:ENTRY NAME:Masquerading: Masquerade Task or Service::"
+    },
+    "505": {
+        "name": "Scheme Squatting",
+        "techniques": ""
+    },
+    "506": {
+        "name": "Tapjacking",
+        "techniques": ""
+    },
+    "507": {
+        "name": "Physical Theft",
+        "techniques": ""
+    },
+    "508": {
+        "name": "Shoulder Surfing",
+        "techniques": ""
+    },
+    "509": {
+        "name": "Kerberoasting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1558.003:ENTRY NAME:Steal or Forge Kerberos Tickets:Kerberoasting::"
+    },
+    "51": {
+        "name": "Poison Web Service Registry",
+        "techniques": ""
+    },
+    "510": {
+        "name": "SaaS User Request Forgery",
+        "techniques": ""
+    },
+    "511": {
+        "name": "Infiltration of Software Development Environment",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::"
+    },
+    "516": {
+        "name": "Hardware Component Substitution During Baselining",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "517": {
+        "name": "Documentation Alteration to Circumvent Dial-down",
+        "techniques": ""
+    },
+    "518": {
+        "name": "Documentation Alteration to Produce Under-performing Systems",
+        "techniques": ""
+    },
+    "519": {
+        "name": "Documentation Alteration to Cause Errors in System Design",
+        "techniques": ""
+    },
+    "52": {
+        "name": "Embedding NULL Bytes",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:28:ENTRY NAME:Null Byte Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Embedding Null Code::"
+    },
+    "520": {
+        "name": "Counterfeit Hardware Component Inserted During Product Assembly",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "521": {
+        "name": "Hardware Design Specifications Are Altered",
+        "techniques": ""
+    },
+    "522": {
+        "name": "Malicious Hardware Component Replacement",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "523": {
+        "name": "Malicious Software Implanted",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "524": {
+        "name": "Rogue Integration Procedures",
+        "techniques": ""
+    },
+    "528": {
+        "name": "XML Flood",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1499.002:ENTRY NAME:Endpoint Denial of Service:Service Exhaustion Flood::::TAXONOMY NAME:ATTACK:ENTRY ID:1498.001:ENTRY NAME:Network Denial of Service:Direct Network Flood::"
+    },
+    "529": {
+        "name": "Malware-Directed Internal Reconnaissance",
+        "techniques": ""
+    },
+    "53": {
+        "name": "Postfix, Null Terminate, and Backslash",
+        "techniques": ""
+    },
+    "530": {
+        "name": "Provide Counterfeit Component",
+        "techniques": ""
+    },
+    "531": {
+        "name": "Hardware Component Substitution",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "532": {
+        "name": "Altered Installed BIOS",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1495:ENTRY NAME:Firmware Corruption::::TAXONOMY NAME:ATTACK:ENTRY ID:1542.001:ENTRY NAME:Pre-OS Boot:System Firmware::"
+    },
+    "533": {
+        "name": "Malicious Manual Software Update",
+        "techniques": ""
+    },
+    "534": {
+        "name": "Malicious Hardware Update",
+        "techniques": ""
+    },
+    "535": {
+        "name": "Malicious Gray Market Hardware",
+        "techniques": ""
+    },
+    "536": {
+        "name": "Data Injected During Configuration",
+        "techniques": ""
+    },
+    "537": {
+        "name": "Infiltration of Hardware Development Environment",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "538": {
+        "name": "Open-Source Library Manipulation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Software Dependencies and Development Tools::"
+    },
+    "539": {
+        "name": "ASIC With Malicious Functionality",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "54": {
+        "name": "Query System for Information",
+        "techniques": ""
+    },
+    "540": {
+        "name": "Overread Buffers",
+        "techniques": ""
+    },
+    "541": {
+        "name": "Application Fingerprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1592.002:ENTRY NAME:Gather Victim Host Information: Software::"
+    },
+    "542": {
+        "name": "Targeted Malware",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1587.001:ENTRY NAME:Develop Capabilities: Malware::::TAXONOMY NAME:ATTACK:ENTRY ID:1027:ENTRY NAME:Obfuscated Files or Information::"
+    },
+    "543": {
+        "name": "Counterfeit Websites",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.005:ENTRY NAME:Masquerading: Match Legitimate Name or Location::"
+    },
+    "544": {
+        "name": "Counterfeit Organizations",
+        "techniques": ""
+    },
+    "545": {
+        "name": "Pull Data from System Resources",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1005:ENTRY NAME:Data from Local System::::TAXONOMY NAME:ATTACK:ENTRY ID:1555.001:ENTRY NAME:Credentials from Password Stores:Keychain::"
+    },
+    "546": {
+        "name": "Incomplete Data Deletion in a Multi-Tenant Environment",
+        "techniques": ""
+    },
+    "547": {
+        "name": "Physical Destruction of Device or Component",
+        "techniques": ""
+    },
+    "548": {
+        "name": "Contaminate Resource",
+        "techniques": ""
+    },
+    "549": {
+        "name": "Local Execution of Code",
+        "techniques": ""
+    },
+    "55": {
+        "name": "Rainbow Table Password Cracking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1110.002:ENTRY NAME:Brute Force:Password Cracking::"
+    },
+    "550": {
+        "name": "Install New Service",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1543:ENTRY NAME:Create or Modify System Process::"
+    },
+    "551": {
+        "name": "Modify Existing Service",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1543:ENTRY NAME:Create or Modify System Process::"
+    },
+    "552": {
+        "name": "Install Rootkit ",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1014:ENTRY NAME:Rootkit::::TAXONOMY NAME:ATTACK:ENTRY ID:1542.003:ENTRY NAME:Pre-OS Boot:Bootkit::::TAXONOMY NAME:ATTACK:ENTRY ID:1547.006:ENTRY NAME:Boot or Logon Autostart Execution:Kernel Modules and Extensions::"
+    },
+    "554": {
+        "name": "Functionality Bypass",
+        "techniques": ""
+    },
+    "555": {
+        "name": "Remote Services with Stolen Credentials",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1021:ENTRY NAME:Remote Services::::TAXONOMY NAME:ATTACK:ENTRY ID:1114.002:ENTRY NAME:Email Collection:Remote Email Collection::::TAXONOMY NAME:ATTACK:ENTRY ID:1133:ENTRY NAME:External Remote Services::"
+    },
+    "556": {
+        "name": "Replace File Extension Handlers",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1546.001:ENTRY NAME:Event Triggered Execution:Change Default File Association::"
+    },
+    "558": {
+        "name": "Replace Trusted Executable",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1505.005:ENTRY NAME:Server Software Component: Terminal Services DLL::::TAXONOMY NAME:ATTACK:ENTRY ID:1546.008:ENTRY NAME:Event Triggered Execution: Accessibility Features::"
+    },
+    "559": {
+        "name": "Orbital Jamming",
+        "techniques": ""
+    },
+    "560": {
+        "name": "Use of Known Domain Credentials",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1078:ENTRY NAME:Valid Accounts::"
+    },
+    "561": {
+        "name": "Windows Admin Shares with Stolen Credentials",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1021.002:ENTRY NAME:Remote Services:SMB/Windows Admin Shares::"
+    },
+    "562": {
+        "name": "Modify Shared File",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1080:ENTRY NAME:Taint shared content::"
+    },
+    "563": {
+        "name": "Add Malicious File to Shared Webroot",
+        "techniques": ""
+    },
+    "564": {
+        "name": "Run Software at Logon",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1037:ENTRY NAME:Boot or Logon Initialization Scripts::::TAXONOMY NAME:ATTACK:ENTRY ID:1543.001:ENTRY NAME:Create or Modify System Process: Launch Agent::::TAXONOMY NAME:ATTACK:ENTRY ID:1543.004:ENTRY NAME:Create or Modify System Process: Launch Daemon::::TAXONOMY NAME:ATTACK:ENTRY ID:1547:ENTRY NAME:Boot or Logon Autostart Execution::"
+    },
+    "565": {
+        "name": "Password Spraying",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1110.003:ENTRY NAME:Brute Force:Password Spraying::"
+    },
+    "568": {
+        "name": "Capture Credentials via Keylogger",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1056.001:ENTRY NAME:Input Capture:Keylogging::"
+    },
+    "569": {
+        "name": "Collect Data as Provided by Users",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1056:ENTRY NAME:Input Capture::"
+    },
+    "57": {
+        "name": "Utilizing REST's Trust in the System Resource to Obtain Sensitive Data",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1040:ENTRY NAME:Network Sniffing::"
+    },
+    "571": {
+        "name": "Block Logging to Central Repository",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1562.002:ENTRY NAME:Impair Defenses: Disable Windows Event Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.002:ENTRY NAME:Impair Defenses: Impair Command History Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.006:ENTRY NAME:Impair Defenses: Indicator Blocking::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.008:ENTRY NAME:Impair Defenses: Disable Cloud Logs::"
+    },
+    "572": {
+        "name": "Artificially Inflate File Sizes",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027.001:ENTRY NAME:Obfuscated Files or Information:Binary Padding::"
+    },
+    "573": {
+        "name": "Process Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1057:ENTRY NAME:Process Discovery::"
+    },
+    "574": {
+        "name": "Services Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1007:ENTRY NAME:System Service Discovery::"
+    },
+    "575": {
+        "name": "Account Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1087:ENTRY NAME:Account Discovery::"
+    },
+    "576": {
+        "name": "Group Permission Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1069:ENTRY NAME:Permission Groups Discovery::::TAXONOMY NAME:ATTACK:ENTRY ID:1615:ENTRY NAME:Group Policy Discovery::"
+    },
+    "577": {
+        "name": "Owner Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1033:ENTRY NAME:System Owner/User Discovery::"
+    },
+    "578": {
+        "name": "Disable Security Software",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1556.006:ENTRY NAME:Modify Authentication Process:\u00a0Multi-Factor Authentication::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.001:ENTRY NAME:Impair Defenses: Disable or Modify Tools::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.002:ENTRY NAME:Impair Defenses: Disable Windows Event Logging::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.004:ENTRY NAME:Impair Defenses: Disable or Modify System Firewall::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.007:ENTRY NAME:Impair Defenses: Disable or Modify Cloud Firewall::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.008:ENTRY NAME:Impair Defenses: Disable Cloud Logs::::TAXONOMY NAME:ATTACK:ENTRY ID:1562.009:ENTRY NAME:Impair Defenses: Safe Mode Boot::"
+    },
+    "579": {
+        "name": "Replace Winlogon Helper DLL",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1547.004:ENTRY NAME:Boot or Logon Autostart Execution: Winlogon helper DLL::"
+    },
+    "58": {
+        "name": "Restful Privilege Elevation",
+        "techniques": ""
+    },
+    "580": {
+        "name": "System Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1082:ENTRY NAME:System Information Discovery::"
+    },
+    "581": {
+        "name": "Security Software Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1518.001:ENTRY NAME:Software Discovery:Security Software Discovery::"
+    },
+    "582": {
+        "name": "Route Disabling",
+        "techniques": ""
+    },
+    "583": {
+        "name": "Disabling Network Hardware",
+        "techniques": ""
+    },
+    "584": {
+        "name": "BGP Route Disabling",
+        "techniques": ""
+    },
+    "585": {
+        "name": "DNS Domain Seizure",
+        "techniques": ""
+    },
+    "586": {
+        "name": "Object Injection",
+        "techniques": ""
+    },
+    "587": {
+        "name": "Cross Frame Scripting (XFS)",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cross Frame Scripting::"
+    },
+    "588": {
+        "name": "DOM-Based XSS",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Reflected DOM Injection::"
+    },
+    "589": {
+        "name": "DNS Blocking",
+        "techniques": ""
+    },
+    "59": {
+        "name": "Session Credential Falsification through Prediction",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:18:ENTRY NAME:Credential/Session Prediction::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Session Prediction::"
+    },
+    "590": {
+        "name": "IP Address Blocking",
+        "techniques": ""
+    },
+    "591": {
+        "name": "Reflected XSS",
+        "techniques": ""
+    },
+    "592": {
+        "name": "Stored XSS",
+        "techniques": ""
+    },
+    "593": {
+        "name": "Session Hijacking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1185:ENTRY NAME:Browser Session Hijacking::::TAXONOMY NAME:ATTACK:ENTRY ID:1550.001:ENTRY NAME:Use Alternate Authentication Material:Application Access Token::::TAXONOMY NAME:ATTACK:ENTRY ID:1563:ENTRY NAME:Remote Service Session Hijacking::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Session hijacking attack::"
+    },
+    "594": {
+        "name": "Traffic Injection",
+        "techniques": ""
+    },
+    "595": {
+        "name": "Connection Reset",
+        "techniques": ""
+    },
+    "596": {
+        "name": "TCP RST Injection",
+        "techniques": ""
+    },
+    "597": {
+        "name": "Absolute Path Traversal",
+        "techniques": ""
+    },
+    "598": {
+        "name": "DNS Spoofing",
+        "techniques": ""
+    },
+    "599": {
+        "name": "Terrestrial Jamming",
+        "techniques": ""
+    },
+    "6": {
+        "name": "Argument Injection",
+        "techniques": ""
+    },
+    "60": {
+        "name": "Reusing Session IDs (aka Session Replay)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1134.001:ENTRY NAME:Access Token Manipulation:Token Impersonation/Theft::::TAXONOMY NAME:ATTACK:ENTRY ID:1550.004:ENTRY NAME:Use Alternate Authentication Material:Web Session Cookie::"
+    },
+    "600": {
+        "name": "Credential Stuffing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1110.004:ENTRY NAME:Brute Force:Credential Stuffing::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Credential stuffing::"
+    },
+    "601": {
+        "name": "Jamming",
+        "techniques": ""
+    },
+    "603": {
+        "name": "Blockage",
+        "techniques": ""
+    },
+    "604": {
+        "name": "Wi-Fi Jamming",
+        "techniques": ""
+    },
+    "605": {
+        "name": "Cellular Jamming",
+        "techniques": ""
+    },
+    "606": {
+        "name": "Weakening of Cellular Encryption",
+        "techniques": ""
+    },
+    "607": {
+        "name": "Obstruction",
+        "techniques": ""
+    },
+    "608": {
+        "name": "Cryptanalysis of Cellular Encryption",
+        "techniques": ""
+    },
+    "609": {
+        "name": "Cellular Traffic Intercept",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1111:ENTRY NAME:Multi-Factor Authentication Interception::"
+    },
+    "61": {
+        "name": "Session Fixation",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:37:ENTRY NAME:Session Fixation::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Session fixation::"
+    },
+    "610": {
+        "name": "Cellular Data Injection",
+        "techniques": ""
+    },
+    "611": {
+        "name": "BitSquatting",
+        "techniques": ""
+    },
+    "612": {
+        "name": "WiFi MAC Address Tracking",
+        "techniques": ""
+    },
+    "613": {
+        "name": "WiFi SSID Tracking",
+        "techniques": ""
+    },
+    "614": {
+        "name": "Rooting SIM Cards",
+        "techniques": ""
+    },
+    "615": {
+        "name": "Evil Twin Wi-Fi Attack",
+        "techniques": ""
+    },
+    "616": {
+        "name": "Establish Rogue Location",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.005:ENTRY NAME:Masquerading: Match Legitimate Name or Location::"
+    },
+    "617": {
+        "name": "Cellular Rogue Base Station",
+        "techniques": ""
+    },
+    "618": {
+        "name": "Cellular Broadcast Message Request",
+        "techniques": ""
+    },
+    "619": {
+        "name": "Signal Strength Tracking",
+        "techniques": ""
+    },
+    "62": {
+        "name": "Cross Site Request Forgery",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:09:ENTRY NAME:Cross-Site Request Forgery::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cross Site Request Forgery (CSRF)::"
+    },
+    "620": {
+        "name": "Drop Encryption Level",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1600:ENTRY NAME:Weaken Encryption::"
+    },
+    "621": {
+        "name": "Analysis of Packet Timing and Sizes",
+        "techniques": ""
+    },
+    "622": {
+        "name": "Electromagnetic Side-Channel Attack",
+        "techniques": ""
+    },
+    "623": {
+        "name": "Compromising Emanations Attack",
+        "techniques": ""
+    },
+    "624": {
+        "name": "Hardware Fault Injection",
+        "techniques": ""
+    },
+    "625": {
+        "name": "Mobile Device Fault Injection",
+        "techniques": ""
+    },
+    "626": {
+        "name": "Smudge Attack",
+        "techniques": ""
+    },
+    "627": {
+        "name": "Counterfeit GPS Signals",
+        "techniques": ""
+    },
+    "628": {
+        "name": "Carry-Off GPS Attack",
+        "techniques": ""
+    },
+    "63": {
+        "name": "Cross-Site Scripting (XSS)",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:08:ENTRY NAME:Cross-Site Scripting::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cross Site Scripting (XSS)::"
+    },
+    "630": {
+        "name": "TypoSquatting",
+        "techniques": ""
+    },
+    "631": {
+        "name": "SoundSquatting",
+        "techniques": ""
+    },
+    "632": {
+        "name": "Homograph Attack via Homoglyphs",
+        "techniques": ""
+    },
+    "633": {
+        "name": "Token Impersonation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1134:ENTRY NAME:Access Token Manipulation::"
+    },
+    "634": {
+        "name": "Probe Audio and Video Peripherals",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1123:ENTRY NAME:Audio Capture::::TAXONOMY NAME:ATTACK:ENTRY ID:1125:ENTRY NAME:Video Capture::"
+    },
+    "635": {
+        "name": "Alternative Execution Due to Deceptive Filenames",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.007:ENTRY NAME:Masquerading: Double File Extension::"
+    },
+    "636": {
+        "name": "Hiding Malicious Data or Code within Files",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1001.002:ENTRY NAME:Data Obfuscation: Steganography::::TAXONOMY NAME:ATTACK:ENTRY ID:1027.003:ENTRY NAME:Obfuscated Files or Information: Steganography::::TAXONOMY NAME:ATTACK:ENTRY ID:1027.004:ENTRY NAME:Obfuscated Files or Information: Compile After Delivery::::TAXONOMY NAME:ATTACK:ENTRY ID:1218.001:ENTRY NAME:Signed Binary Proxy Execution: Compiled HTML File::::TAXONOMY NAME:ATTACK:ENTRY ID:1221:ENTRY NAME:Template Injection::"
+    },
+    "637": {
+        "name": "Collect Data from Clipboard",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1115:ENTRY NAME:Clipboard Data::"
+    },
+    "638": {
+        "name": "Altered Component Firmware",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1542.002:ENTRY NAME:Pre-OS Boot:Component Firmware::"
+    },
+    "639": {
+        "name": "Probe System Files",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1039:ENTRY NAME:Data from Network Shared Drive::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.001:ENTRY NAME:Unsecured Credentials: Credentials in Files::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.003:ENTRY NAME:Unsecured Credentials: Bash History::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.004:ENTRY NAME:Unsecured Credentials: Private Keys::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.006:ENTRY NAME:Unsecured Credentials: Group Policy Preferences::"
+    },
+    "64": {
+        "name": "Using Slashes and URL Encoding Combined to Bypass Validation Logic",
+        "techniques": ""
+    },
+    "640": {
+        "name": "Inclusion of Code in Existing Process",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1505.005:ENTRY NAME:Server Software Component: Terminal Services DLL::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.006:ENTRY NAME:Hijack Execution Flow: Dynamic Linker Hijacking::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.013:ENTRY NAME:Hijack Execution Flow: KernelCallbackTable::::TAXONOMY NAME:ATTACK:ENTRY ID:1620:ENTRY NAME:Reflective Code Loading::"
+    },
+    "641": {
+        "name": "DLL Side-Loading",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1574.002:ENTRY NAME:Hijack Execution Flow:DLL Side-Loading::"
+    },
+    "642": {
+        "name": "Replace Binaries",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1505.005:ENTRY NAME:Server Software Component: Terminal Services DLL::::TAXONOMY NAME:ATTACK:ENTRY ID:1554:ENTRY NAME:Compromise Client Software Binary::::TAXONOMY NAME:ATTACK:ENTRY ID:1574.005:ENTRY NAME:Hijack Execution Flow:Executable Installer File Permissions Weakness::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Binary planting::"
+    },
+    "643": {
+        "name": "Identify Shared Files/Directories on System",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1135:ENTRY NAME:Network Share Discovery::"
+    },
+    "644": {
+        "name": "Use of Captured Hashes (Pass The Hash)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1550.002:ENTRY NAME:Use Alternate Authentication Material:Pass The Hash::"
+    },
+    "645": {
+        "name": "Use of Captured Tickets (Pass The Ticket)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1550.003:ENTRY NAME:Use Alternate Authentication Material:Pass The Ticket::"
+    },
+    "646": {
+        "name": "Peripheral Footprinting",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1120:ENTRY NAME:Peripheral Device Discovery::"
+    },
+    "647": {
+        "name": "Collect Data from Registries",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1005:ENTRY NAME:Data from Local System::::TAXONOMY NAME:ATTACK:ENTRY ID:1012:ENTRY NAME:Query Registry::::TAXONOMY NAME:ATTACK:ENTRY ID:1552.002:ENTRY NAME:Unsecured Credentials: Credentials in Registry::"
+    },
+    "648": {
+        "name": "Collect Data from Screen Capture",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1113:ENTRY NAME:Screen Capture::::TAXONOMY NAME:ATTACK:ENTRY ID:1513:ENTRY NAME:Screen Capture::"
+    },
+    "649": {
+        "name": "Adding a Space to a File Extension",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1036.006:ENTRY NAME:Masquerading:Space after Filename::"
+    },
+    "65": {
+        "name": "Sniff Application Code",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1040:ENTRY NAME:Network Sniffing::"
+    },
+    "650": {
+        "name": "Upload a Web Shell to a Web Server",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1505.003:ENTRY NAME:Server Software Component:Web Shell::"
+    },
+    "651": {
+        "name": "Eavesdropping",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1111:ENTRY NAME:Multi-Factor Authentication Interception::"
+    },
+    "652": {
+        "name": "Use of Known Kerberos Credentials",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1558:ENTRY NAME:Steal or Forge Kerberos Tickets::"
+    },
+    "653": {
+        "name": "Use of Known Operating System Credentials",
+        "techniques": ""
+    },
+    "654": {
+        "name": "Credential Prompt Impersonation",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1056:ENTRY NAME:Input Capture::::TAXONOMY NAME:ATTACK:ENTRY ID:1548.004:ENTRY NAME:Abuse Elevation Control Mechanism: Elevated Execution with Prompt::"
+    },
+    "655": {
+        "name": "Avoid Security Tool Identification by Adding Data",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1027.001:ENTRY NAME:Obfuscated Files or Information:Binary padding::"
+    },
+    "656": {
+        "name": "Voice Phishing",
+        "techniques": ""
+    },
+    "657": {
+        "name": "Malicious Automated Software Update via Spoofing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1072:ENTRY NAME:Software Deployment Tools::"
+    },
+    "66": {
+        "name": "SQL Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:19:ENTRY NAME:SQL Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:SQL Injection::"
+    },
+    "660": {
+        "name": "Root/Jailbreak Detection Evasion via Hooking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1055:ENTRY NAME:Process Injection::"
+    },
+    "661": {
+        "name": "Root/Jailbreak Detection Evasion via Debugging",
+        "techniques": ""
+    },
+    "662": {
+        "name": "Adversary in the Browser (AiTB)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1185:ENTRY NAME:Man in the Browser::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Man-in-the-browser attack::"
+    },
+    "663": {
+        "name": "Exploitation of Transient Instruction Execution",
+        "techniques": ""
+    },
+    "664": {
+        "name": "Server Side Request Forgery",
+        "techniques": ""
+    },
+    "665": {
+        "name": "Exploitation of Thunderbolt Protection Flaws",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1211:ENTRY NAME:Exploitation for Defensive Evasion::::TAXONOMY NAME:ATTACK:ENTRY ID:1542.002:ENTRY NAME:Pre-OS Boot: Component Firmware::::TAXONOMY NAME:ATTACK:ENTRY ID:1556:ENTRY NAME:Modify Authentication Process::"
+    },
+    "666": {
+        "name": "BlueSmacking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1498.001:ENTRY NAME:Network Denial of Service: Direct Network Flood::::TAXONOMY NAME:ATTACK:ENTRY ID:1499.001:ENTRY NAME:Endpoint Denial of Service: OS Exhaustion Flood::"
+    },
+    "667": {
+        "name": "Bluetooth Impersonation AttackS (BIAS)",
+        "techniques": ""
+    },
+    "668": {
+        "name": "Key Negotiation of Bluetooth Attack (KNOB)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1565.002:ENTRY NAME:Data Manipulation: Transmitted Data Manipulation::"
+    },
+    "669": {
+        "name": "Alteration of a Software Update",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "67": {
+        "name": "String Format Overflow in syslog()",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:06:ENTRY NAME:Format String::"
+    },
+    "670": {
+        "name": "Software Development Tools Maliciously Altered",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1127:ENTRY NAME:Trusted Developer Utilities Proxy Execution::::TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::"
+    },
+    "671": {
+        "name": "Requirements for ASIC Functionality Maliciously Altered",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "672": {
+        "name": "Malicious Code Implanted During Chip Programming",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "673": {
+        "name": "Developer Signing Maliciously Altered Software",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "674": {
+        "name": "Design for FPGA Maliciously Altered",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "675": {
+        "name": "Retrieve Data from Decommissioned Devices",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1052:ENTRY NAME:Exfiltration Over Physical Medium::"
+    },
+    "676": {
+        "name": "NoSQL Injection",
+        "techniques": ""
+    },
+    "677": {
+        "name": "Server Motherboard Compromise",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.003:ENTRY NAME:Supply Chain Compromise: Compromise Hardware Supply Chain::"
+    },
+    "678": {
+        "name": "System Build Data Maliciously Altered",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "679": {
+        "name": "Exploitation of Improperly Configured or Implemented Memory Protections",
+        "techniques": ""
+    },
+    "68": {
+        "name": "Subvert Code-signing Facilities",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1553.002:ENTRY NAME:Subvert Trust Controls: Code Signing::"
+    },
+    "680": {
+        "name": "Exploitation of Improperly Controlled Registers",
+        "techniques": ""
+    },
+    "681": {
+        "name": "Exploitation of Improperly Controlled Hardware Security Identifiers",
+        "techniques": ""
+    },
+    "682": {
+        "name": "Exploitation of Firmware or ROM Code with Unpatchable Vulnerabilities",
+        "techniques": ""
+    },
+    "69": {
+        "name": "Target Programs with Elevated Privileges",
+        "techniques": ""
+    },
+    "690": {
+        "name": "Metadata Spoofing",
+        "techniques": ""
+    },
+    "691": {
+        "name": "Spoof Open-Source Software Metadata",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::::TAXONOMY NAME:ATTACK:ENTRY ID:1195.002:ENTRY NAME:Supply Chain Compromise: Compromise Software Supply Chain::"
+    },
+    "692": {
+        "name": "Spoof Version Control System Commit Metadata",
+        "techniques": ""
+    },
+    "693": {
+        "name": "StarJacking",
+        "techniques": ""
+    },
+    "694": {
+        "name": "System Location Discovery",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1614:ENTRY NAME:System Language Discovery::"
+    },
+    "695": {
+        "name": "Repo Jacking",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1195.001:ENTRY NAME:Supply Chain Compromise: Compromise Software Dependencies and Development Tools::"
+    },
+    "696": {
+        "name": "Load Value Injection",
+        "techniques": ""
+    },
+    "697": {
+        "name": "DHCP Spoofing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1557.003:ENTRY NAME:Adversary-in-the-Middle: DHCP Spoofing::"
+    },
+    "698": {
+        "name": "Install Malicious Extension",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1176:ENTRY NAME:Browser Extensions::::TAXONOMY NAME:ATTACK:ENTRY ID:1505.004:ENTRY NAME:Server Software Component: IIS Components::"
+    },
+    "699": {
+        "name": "Eavesdropping on a Monitor",
+        "techniques": ""
+    },
+    "7": {
+        "name": "Blind SQL Injection",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Blind SQL Injection::"
+    },
+    "70": {
+        "name": "Try Common or Default Usernames and Passwords",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1078.001:ENTRY NAME:Valid Accounts:Default Accounts::"
+    },
+    "700": {
+        "name": "Network Boundary Bridging",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1599:ENTRY NAME:Network Boundary Bridging::"
+    },
+    "701": {
+        "name": "Browser in the Middle (BiTM)",
+        "techniques": ""
+    },
+    "702": {
+        "name": "Exploiting Incorrect Chaining or Granularity of Hardware Debug Components",
+        "techniques": ""
+    },
+    "71": {
+        "name": "Using Unicode Encoding to Bypass Validation Logic",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Unicode Encoding::"
+    },
+    "72": {
+        "name": "URL Encoding",
+        "techniques": ""
+    },
+    "73": {
+        "name": "User-Controlled Filename",
+        "techniques": ""
+    },
+    "74": {
+        "name": "Manipulating State",
+        "techniques": ""
+    },
+    "75": {
+        "name": "Manipulating Writeable Configuration Files",
+        "techniques": ""
+    },
+    "76": {
+        "name": "Manipulating Web Input to File System Calls",
+        "techniques": ""
+    },
+    "77": {
+        "name": "Manipulating User-Controlled Variables",
+        "techniques": ""
+    },
+    "78": {
+        "name": "Using Escaped Slashes in Alternate Encoding",
+        "techniques": ""
+    },
+    "79": {
+        "name": "Using Slashes in Alternate Encoding",
+        "techniques": ""
+    },
+    "8": {
+        "name": "Buffer Overflow in an API Call",
+        "techniques": ""
+    },
+    "80": {
+        "name": "Using UTF-8 Encoding to Bypass Validation Logic",
+        "techniques": ""
+    },
+    "81": {
+        "name": "Web Server Logs Tampering",
+        "techniques": ""
+    },
+    "83": {
+        "name": "XPath Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:39:ENTRY NAME:XPath Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Blind XPath Injection::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:XPATH Injection::"
+    },
+    "84": {
+        "name": "XQuery Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:46:ENTRY NAME:XQuery Injection::"
+    },
+    "85": {
+        "name": "AJAX Footprinting",
+        "techniques": ""
+    },
+    "86": {
+        "name": "XSS Through HTTP Headers",
+        "techniques": ""
+    },
+    "87": {
+        "name": "Forceful Browsing",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:34:ENTRY NAME:Predictable Resource Location::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Forced browsing::"
+    },
+    "88": {
+        "name": "OS Command Injection",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:31:ENTRY NAME:OS Commanding::"
+    },
+    "89": {
+        "name": "Pharming",
+        "techniques": ""
+    },
+    "9": {
+        "name": "Buffer Overflow in Local Command-Line Utilities",
+        "techniques": ""
+    },
+    "90": {
+        "name": "Reflection Attack in Authentication Protocol",
+        "techniques": ""
+    },
+    "92": {
+        "name": "Forced Integer Overflow",
+        "techniques": "TAXONOMY NAME:WASC:ENTRY ID:03:ENTRY NAME:Integer Overflows::"
+    },
+    "93": {
+        "name": "Log Injection-Tampering-Forging",
+        "techniques": ""
+    },
+    "94": {
+        "name": "Adversary in the Middle (AiTM)",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1557:ENTRY NAME:Adversary-in-the-Middle::::TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Man-in-the-middle attack::"
+    },
+    "95": {
+        "name": "WSDL Scanning",
+        "techniques": ""
+    },
+    "96": {
+        "name": "Block Access to Libraries",
+        "techniques": ""
+    },
+    "97": {
+        "name": "Cryptanalysis",
+        "techniques": "TAXONOMY NAME:OWASP Attacks:ENTRY NAME:Cryptanalysis::"
+    },
+    "98": {
+        "name": "Phishing",
+        "techniques": "TAXONOMY NAME:ATTACK:ENTRY ID:1566:ENTRY NAME:Phishing::::TAXONOMY NAME:ATTACK:ENTRY ID:1598:ENTRY NAME:Phishing for Information::"
+    }
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guinea Pig - Vulnerable Test Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #eee;
+        }
+        .header {
+            background: rgba(0,0,0,0.3);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        .logo-icon {
+            font-size: 32px;
+            margin-right: 10px;
+        }
+        .nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #ff6b6b;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .warning-box {
+            background: rgba(255, 0, 0, 0.15);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px 30px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .warning-box h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .warning-box p {
+            font-size: 14px;
+            color: #ccc;
+            margin: 5px 0;
+        }
+        .server-info {
+            background: rgba(255,107,107,0.2);
+            border: 1px solid rgba(255,107,107,0.5);
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #ff6b6b;
+            display: inline-block;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,107,107,0.2);
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,107,107,0.5);
+        }
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+        .disclaimer {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            margin: 40px;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        .disclaimer h3 {
+            color: #ffa500;
+            margin-bottom: 15px;
+        }
+        .disclaimer p {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><span class="logo-icon">&#128056;</span> Guinea Pig</div>
+        <nav class="nav">
+            <a href="/">Home</a>
+            <a href="/cgi-bin/status.sh">System Status</a>
+            <a href="/health">Health Check</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Vulnerable Test Server</h1>
+        <p>This is an intentionally vulnerable Apache server designed for security testing and penetration testing practice with RedAmon.</p>
+
+        <div class="warning-box">
+            <h3>&#9888; WARNING - INTENTIONALLY VULNERABLE</h3>
+            <p><strong>Apache Version:</strong> 2.4.49</p>
+            <p><strong>Vulnerabilities:</strong> CVE-2021-41773, CVE-2021-42013 (Path Traversal + RCE)</p>
+            <p><strong>Purpose:</strong> Security testing and RedAmon software validation only</p>
+        </div>
+
+        <div class="server-info">
+            Server: Apache/2.4.49 (Unix) | Status: Vulnerable | CVE-2021-41773
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon">&#128270;</div>
+            <h3>Path Traversal</h3>
+            <p>CVE-2021-41773 - URL encoding bypass allows reading files outside document root.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">&#128187;</div>
+            <h3>Remote Code Execution</h3>
+            <p>CVE-2021-42013 - Double encoding bypass enables command execution via CGI.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">&#128736;</div>
+            <h3>Test with RedAmon</h3>
+            <p>Use this server to validate vulnerability scanning and exploitation capabilities.</p>
+        </div>
+    </section>
+
+    <div class="disclaimer">
+        <h3>&#128274; Legal Disclaimer</h3>
+        <p>This vulnerable server is provided by <strong>Devergolabs</strong> exclusively for testing the <strong>RedAmon</strong> security assessment software. Any penetration testing, vulnerability scanning, or exploitation attempts on this server or any other Devergolabs infrastructure must be explicitly authorized in writing by Devergolabs.</p>
+        <p style="margin-top: 10px;">Unauthorized access attempts are prohibited and may be subject to legal action. By accessing this server, you acknowledge that you have proper authorization from Devergolabs to perform security testing activities.</p>
+        <p style="margin-top: 10px; color: #ff6b6b;"><strong>For authorization requests: security@devergolabs.com</strong></p>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 <a href="https://devergolabs.com">Devergolabs</a> - Guinea Pig Test Environment</p>
+        <p style="margin-top: 10px; font-size: 12px;">Apache/2.4.49 | Intentionally Vulnerable</p>
+    </footer>
+</body>
+</html>

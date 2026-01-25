@@ -1,0 +1,10 @@
+/**
+ * Design Tokens Index
+ * Combines all token files in the correct order
+ */
+
+@import './colors.css';
+@import './semantic.css';
+@import './typography.css';
+@import './spacing.css';
+@import './shadows.css';

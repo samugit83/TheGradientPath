@@ -1,0 +1,280 @@
+/**
+ * Shared Button & Interactive Component Styles
+ *
+ * These classes define the standard look and feel for all interactive elements.
+ * Import specific classes in CSS Modules using :global() or compose.
+ *
+ * Usage in CSS Modules:
+ *   .myButton { composes: iconButton from global; }
+ *
+ * Or apply directly:
+ *   <button className="iconButton">...</button>
+ */
+
+/* =============================================================================
+   ICON BUTTON
+   Small square button for icons (close, settings, actions)
+   ============================================================================= */
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.iconButton:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.iconButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Icon button with border (for close buttons, drawer close, etc.) */
+.iconButtonBordered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.iconButtonBordered:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.iconButtonBordered:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.iconButtonBordered:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   TOGGLE SWITCH
+   Binary on/off toggle control
+   ============================================================================= */
+
+.toggleSwitch {
+  position: relative;
+  width: 32px;
+  height: 16px;
+  padding: 0;
+  background: var(--toggle-bg);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-all);
+  flex-shrink: 0;
+}
+
+.toggleSwitch:hover {
+  border-color: var(--accent-secondary);
+}
+
+.toggleSwitch:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.toggleSwitch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  background: var(--toggle-knob);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-default), background-color var(--transition-default);
+  pointer-events: none;
+}
+
+.toggleKnobActive {
+  transform: translateX(16px);
+  background: var(--toggle-knob-active);
+}
+
+/* Toggle labels */
+.toggleLabel {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  transition: var(--transition-colors);
+}
+
+.toggleLabelActive {
+  color: var(--accent-secondary);
+  font-weight: var(--font-semibold);
+}
+
+/* =============================================================================
+   TEXT BUTTON
+   Button with text, no background
+   ============================================================================= */
+
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.textButton:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.textButton:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.textButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   PRIMARY BUTTON
+   Solid background button for primary actions
+   ============================================================================= */
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  padding: var(--space-1-5) var(--space-3);
+  background: var(--accent-primary);
+  border: none;
+  border-radius: var(--radius-default);
+  color: var(--text-on-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.primaryButton:hover {
+  filter: brightness(1.1);
+}
+
+.primaryButton:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   SECONDARY BUTTON
+   Outlined button for secondary actions
+   ============================================================================= */
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  padding: var(--space-1-5) var(--space-3);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-default);
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.secondaryButton:hover {
+  background: var(--bg-hover);
+  border-color: var(--text-tertiary);
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.secondaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   BADGE
+   Small indicator/counter on buttons
+   ============================================================================= */
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 var(--space-0-5);
+  background: var(--status-error);
+  color: var(--text-on-accent);
+  font-size: 9px;
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-full);
+}
+
+/* =============================================================================
+   DIVIDER
+   Vertical separator between button groups
+   ============================================================================= */
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border-default);
+  flex-shrink: 0;
+}
+
+.dividerTall {
+  height: 24px;
+}

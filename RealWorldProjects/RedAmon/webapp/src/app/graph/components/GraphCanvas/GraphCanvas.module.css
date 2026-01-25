@@ -1,0 +1,30 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.loading,
+.error,
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-lg);
+}
+
+.loading {
+  color: var(--accent-primary);
+}
+
+.error {
+  color: var(--status-error);
+}
+
+.empty {
+  color: var(--text-secondary);
+}

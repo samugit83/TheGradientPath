@@ -1,0 +1,31 @@
+# RedAmon Reconnaissance Module - Python Dependencies
+# ====================================================
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+python-whois==0.9.6          # WHOIS lookups
+dnspython==2.8.0             # DNS resolution
+requests>=2.31.0             # HTTP requests
+urllib3>=2.0.0               # HTTP library
+
+# Tor/Anonymity support
+PySocks>=1.7.1               # SOCKS proxy support for Tor
+
+# GitHub secret hunting
+PyGithub>=2.1.1              # GitHub API client
+
+# Subdomain discovery
+knock-subdomains @ git+https://github.com/guelfoweb/knock.git
+
+# Environment configuration
+python-dotenv>=1.0.0         # Load .env files
+
+# Technology detection (Wappalyzer enhancement)
+python-Wappalyzer>=0.3.0     # Technology fingerprinting
+setuptools>=65.0.0           # Required for python-Wappalyzer (pkg_resources)
+
+# Graph database integration (optional - for Neo4j updates)
+neo4j>=5.0.0                 # Neo4j graph database driver
+
+# MITRE enrichment
+# (uses requests - already included above)

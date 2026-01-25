@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Kali Linux sandbox with all penetration testing tools and MCP servers
+  kali-sandbox:
+    build:
+      context: .
+      dockerfile: kali-sandbox/Dockerfile
+      network: host
+    container_name: redamon-kali
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    hostname: kali-sandbox
+    networks:
+      - pentest-net
+    # Required capabilities for network scanning
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_PTRACE
+    # Security options for Metasploit
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "8000:8000"  # naabu MCP server
+      - "8001:8001"  # curl MCP server
+      - "8002:8002"  # nuclei MCP server
+      - "8003:8003"  # metasploit MCP server
+      - "4444:4444"  # Metasploit reverse shell listener
+    volumes:
+      # Mount servers directory for development (hot reload)
+      - ./servers:/opt/mcp_servers
+      # Output directory for scan results
+      - ./output:/opt/output
+      # Nuclei templates (optional, for custom templates)
+      - ./nuclei-templates:/opt/nuclei-templates:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      # MCP settings
+      - MCP_TRANSPORT=sse
+      - MCP_HOST=0.0.0.0
+      # Server ports
+      - NAABU_PORT=8000
+      - CURL_PORT=8001
+      - NUCLEI_PORT=8002
+      - METASPLOIT_PORT=8003
+    restart: unless-stopped
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import socket; s=socket.socket(); s.connect(('localhost', 8000)); s.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  pentest-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

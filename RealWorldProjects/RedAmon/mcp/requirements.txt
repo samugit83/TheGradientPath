@@ -1,0 +1,19 @@
+# RedAmon MCP Servers - Python Dependencies
+
+# FastMCP - Fast Python MCP server framework
+fastmcp>=2.0.0
+
+# MCP SDK (core protocol implementation)
+mcp>=1.0.0
+
+# Async support
+anyio>=4.0.0
+httpx>=0.25.0
+
+# SSE transport support
+sse-starlette>=1.6.0
+starlette>=0.27.0
+uvicorn>=0.24.0
+
+# Utility libraries
+pydantic>=2.0.0

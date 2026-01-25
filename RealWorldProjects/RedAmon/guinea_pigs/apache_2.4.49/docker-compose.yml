@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  vulnerable-apache:
+    build: .
+    container_name: vulnerable-apache-2.4.49
+    ports:
+      - "8080:80"
+      - "4444:4444"  # Bind shell port for Metasploit
+    restart: unless-stopped
+    # Run as root to allow path traversal to system files
+    # This is intentionally insecure for testing purposes
