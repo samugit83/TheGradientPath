@@ -391,7 +391,7 @@ combined_score = diversity_weight * diversity + relevance_weight * relevance
 
 **Location:** `RealWorldProjects/RedAmon/`
 
-**[Full README](RealWorldProjects/RedAmon/README.md)** | **[Full Disclaimer](RealWorldProjects/RedAmon/DISCLAIMER.md)**
+**[Full README](RealWorldProjects/RedAmon/README.md)** | **[Full Disclaimer](RealWorldProjects/RedAmon/DISCLAIMER.md)** | **[Video Tutorial](https://youtu.be/mO5CCkYlY94)**
 
 **An AI-powered agentic red team framework that automates offensive security operations — from reconnaissance to exploitation to post-exploitation — with zero human intervention.**
 

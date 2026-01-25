@@ -9,6 +9,8 @@
 
 # RedAmon
 
+**[Video Tutorial](https://youtu.be/mO5CCkYlY94)**
+
 **Unmask the hidden before the world does.**
 
 An AI-powered agentic red team framework that automates offensive security operations — from reconnaissance to exploitation to post-exploitation — with zero human intervention.
