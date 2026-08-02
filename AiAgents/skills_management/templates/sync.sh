@@ -1,0 +1,1 @@
+../../../skills/skill-sync/assets/sync.sh
