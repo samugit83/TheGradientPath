@@ -1,0 +1,169 @@
+<title>Running Multiple AI Coding Agents on One Repository</title>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0 }
+:root {
+  --T: 9s;
+  --ink: #E8EEF9;
+  --mute: rgba(232,238,249,.66);
+  --faint: rgba(232,238,249,.36);
+  --bg: #070B16;
+  --card: rgba(255,255,255,.038);
+  --edge: rgba(255,255,255,.10);
+  --font: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box }
+html, body { margin: 0; background: #05070E }
+body { display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: var(--font) }
+
+.page { position: relative; width: 794px; height: 1123px; overflow: hidden; color: var(--ink);
+  background: radial-gradient(120% 90% at 50% -10%, #16203C 0%, #0A1024 45%, var(--bg) 100%);
+  padding: 28px 30px 26px; display: flex; flex-direction: column }
+.aurora { position: absolute; inset: -12%; pointer-events: none; opacity: .5; filter: blur(6px);
+  animation: drift var(--T) ease-in-out infinite;
+  background:
+    radial-gradient(38% 30% at 12% 12%, rgba(34,211,238,.30), transparent 70%),
+    radial-gradient(34% 28% at 88% 14%, rgba(167,139,250,.28), transparent 70%),
+    radial-gradient(36% 30% at 10% 62%, rgba(52,211,153,.22), transparent 70%),
+    radial-gradient(34% 28% at 90% 66%, rgba(251,146,60,.20), transparent 70%),
+    radial-gradient(40% 30% at 50% 104%, rgba(96,165,250,.26), transparent 70%) }
+@keyframes drift { 0%,100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(-1.6%,1.4%,0) scale(1.05) } }
+.page > * { position: relative; z-index: 1 }
+
+h1 { margin: 0; font-size: 35px; line-height: 1.06; font-weight: 800; letter-spacing: -.022em }
+h1 span { background: linear-gradient(96deg, #22D3EE, #A78BFA 34%, #FBBF24 64%, #FB7185 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent }
+.legend { display: flex; flex-wrap: nowrap; align-items: center; gap: 14px; margin-top: 12px;
+  font-size: 12px; color: var(--faint); font-weight: 500; white-space: nowrap }
+.legend b { color: var(--mute); font-weight: 600 }
+.legend svg { vertical-align: -2px; margin-right: 6px }
+
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 12px; margin-top: 15px }
+.card { position: relative; min-height: 0; overflow: hidden; border: 1px solid var(--edge); border-radius: 16px;
+  background: var(--card); padding: 11px 13px 8px; display: flex; flex-direction: column }
+.card::before { content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+  background: radial-gradient(90% 70% at 50% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 72%) }
+.card::after { content: ""; position: absolute; top: 0; left: 14%; right: 14%; height: 1.5px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--c), transparent);
+  animation: sheen var(--T) ease-in-out infinite; animation-delay: calc(var(--i) * -1.125s) }
+@keyframes sheen { 0%,100% { opacity: .28 } 50% { opacity: 1 } }
+.ch { display: flex; align-items: baseline; gap: 8px }
+.badge { font-size: 10.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--c);
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); border-radius: 999px; padding: 3px 8px;
+  background: color-mix(in srgb, var(--c) 12%, transparent); white-space: nowrap }
+.ch h2 { margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -.015em; white-space: nowrap }
+.chip { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: .03em; color: var(--faint); white-space: nowrap }
+.viz { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; margin: 4px 0 0 }
+.viz svg { width: 100%; height: 100%; display: block }
+
+/* shared svg grammar */
+.box { fill: rgba(255,255,255,.045); stroke: var(--c); stroke-opacity: .5; stroke-width: 1.2 }
+.box.rail { stroke-opacity: .28 }
+.pill { fill: color-mix(in srgb, var(--c) 20%, transparent); stroke: var(--c); stroke-width: 1.3 }
+.glow { fill: color-mix(in srgb, var(--c) 24%, transparent); stroke: var(--c); stroke-width: 1.6;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--c) 65%, transparent)) }
+.t { font: 700 11.5px var(--font); fill: var(--ink) }
+.ts { font: 600 10px var(--font); fill: var(--mute) }
+.ln { fill: none; stroke: var(--c); stroke-opacity: .32; stroke-width: 1.4 }
+.ln.rail { stroke-opacity: .16; stroke-width: 3; stroke-linecap: round }
+.ln.cut { stroke-dasharray: 3 5; stroke-opacity: .45 }
+.flow { fill: none; stroke: var(--c); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 6 30;
+  animation: dashflow 1.5s linear infinite; filter: drop-shadow(0 0 4px var(--c)) }
+.flow.dashed { stroke-width: 2; stroke-dasharray: 4 12; opacity: .85; animation: dashflow2 1.125s linear infinite }
+.flow.tight { stroke-dasharray: 5 13; animation: dashflow3 .75s linear infinite }
+@keyframes dashflow { from { stroke-dashoffset: 36 } to { stroke-dashoffset: 0 } }
+@keyframes dashflow2 { from { stroke-dashoffset: 16 } to { stroke-dashoffset: 0 } }
+@keyframes dashflow3 { from { stroke-dashoffset: 18 } to { stroke-dashoffset: 0 } }
+.grow { fill: none; stroke: var(--c); stroke-width: 3; stroke-linecap: round; stroke-dasharray: var(--L);
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--c) 60%, transparent)) }
+.dot { fill: var(--c); filter: drop-shadow(0 0 6px var(--c)); transform-box: fill-box; transform-origin: center }
+.dot.sm { fill: color-mix(in srgb, var(--c) 85%, white) }
+.track { fill: rgba(255,255,255,.10) }
+.bar { fill: var(--c); transform-box: fill-box; transform-origin: 0 50%; filter: drop-shadow(0 0 4px var(--c)) }
+.chk { fill: color-mix(in srgb, var(--c) 22%, transparent); stroke: var(--c); stroke-width: 1.6;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--c) 60%, transparent)) }
+.tick { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round }
+.loser { animation: dim var(--T) ease-in-out infinite }
+@keyframes dim { 0%,58% { opacity: 1 } 68%,94% { opacity: .15 } 100% { opacity: 1 } }
+.winner { animation: rise var(--T) ease-in-out infinite }
+@keyframes rise { 0%,58% { filter: none } 68%,94% { filter: drop-shadow(0 0 7px var(--c)) } 100% { filter: none } }
+.lockmove { animation: lockmove var(--T) cubic-bezier(.6,0,.2,1) infinite }
+@keyframes lockmove { 0%,42% { transform: translateX(0) } 50%,92% { transform: translateX(162px) } 100% { transform: translateX(0) } }
+
+/* transient pulses */
+.gt { animation-duration: var(--T); animation-iteration-count: infinite; animation-timing-function: linear }
+.winS { animation-name: winS } .winM { animation-name: winM } .winL { animation-name: winL }
+@keyframes winS { 0% { opacity: 0 } 3% { opacity: 1 } 19% { opacity: 1 } 24% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes winM { 0% { opacity: 0 } 3% { opacity: 1 } 36% { opacity: 1 } 42% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes winL { 0% { opacity: 0 } 3% { opacity: 1 } 50% { opacity: 1 } 56% { opacity: 0 } 100% { opacity: 0 } }
+
+/* persistent reveals, one keyframe per beat */
+
+.up6,.up8,.up12,.up18,.up20,.up22,.up28,.up32,.up34,.up46,.up50,.up64,.up74,.pop12,.pop14,.pop15,.pop18,.pop21,.pop24,.pop27,.pop30,.pop32,.pop33,.pop36,.pop38,.pop40,.pop46,.pop48,.pop58,.pop80,.draw6,.draw9,.draw12,.draw24,.bar4,.bar7,.bar10{animation-duration:var(--T);animation-iteration-count:infinite;animation-timing-function:linear}
+.up6{animation-name:up6}.up8{animation-name:up8}.up12{animation-name:up12}.up18{animation-name:up18}.up20{animation-name:up20}.up22{animation-name:up22}.up28{animation-name:up28}.up32{animation-name:up32}.up34{animation-name:up34}.up46{animation-name:up46}.up50{animation-name:up50}.up64{animation-name:up64}.up74{animation-name:up74}.pop12{animation-name:pop12}.pop14{animation-name:pop14}.pop15{animation-name:pop15}.pop18{animation-name:pop18}.pop21{animation-name:pop21}.pop24{animation-name:pop24}.pop27{animation-name:pop27}.pop30{animation-name:pop30}.pop32{animation-name:pop32}.pop33{animation-name:pop33}.pop36{animation-name:pop36}.pop38{animation-name:pop38}.pop40{animation-name:pop40}.pop46{animation-name:pop46}.pop48{animation-name:pop48}.pop58{animation-name:pop58}.pop80{animation-name:pop80}.draw6{animation-name:draw6}.draw9{animation-name:draw9}.draw12{animation-name:draw12}.draw24{animation-name:draw24}.bar4{animation-name:bar4}.bar7{animation-name:bar7}.bar10{animation-name:bar10}
+@keyframes up6{0%,4%{opacity:0}9%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up8{0%,6%{opacity:0}11%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up12{0%,10%{opacity:0}15%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up18{0%,16%{opacity:0}21%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up20{0%,18%{opacity:0}23%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up22{0%,20%{opacity:0}25%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up28{0%,26%{opacity:0}31%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up32{0%,30%{opacity:0}35%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up34{0%,32%{opacity:0}37%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up46{0%,44%{opacity:0}49%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up50{0%,48%{opacity:0}53%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up64{0%,62%{opacity:0}67%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes up74{0%,72%{opacity:0}77%,94%{opacity:1}99%,100%{opacity:0}}
+@keyframes pop12{0%,11%{opacity:0;transform:scale(.2)}14%{opacity:1;transform:scale(1.5)}17%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop14{0%,13%{opacity:0;transform:scale(.2)}16%{opacity:1;transform:scale(1.5)}19%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop15{0%,14%{opacity:0;transform:scale(.2)}17%{opacity:1;transform:scale(1.5)}20%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop18{0%,17%{opacity:0;transform:scale(.2)}20%{opacity:1;transform:scale(1.5)}23%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop21{0%,20%{opacity:0;transform:scale(.2)}23%{opacity:1;transform:scale(1.5)}26%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop24{0%,23%{opacity:0;transform:scale(.2)}26%{opacity:1;transform:scale(1.5)}29%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop27{0%,26%{opacity:0;transform:scale(.2)}29%{opacity:1;transform:scale(1.5)}32%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop30{0%,29%{opacity:0;transform:scale(.2)}32%{opacity:1;transform:scale(1.5)}35%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop32{0%,31%{opacity:0;transform:scale(.2)}34%{opacity:1;transform:scale(1.5)}37%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop33{0%,32%{opacity:0;transform:scale(.2)}35%{opacity:1;transform:scale(1.5)}38%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop36{0%,35%{opacity:0;transform:scale(.2)}38%{opacity:1;transform:scale(1.5)}41%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop38{0%,37%{opacity:0;transform:scale(.2)}40%{opacity:1;transform:scale(1.5)}43%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop40{0%,39%{opacity:0;transform:scale(.2)}42%{opacity:1;transform:scale(1.5)}45%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop46{0%,45%{opacity:0;transform:scale(.2)}48%{opacity:1;transform:scale(1.5)}51%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop48{0%,47%{opacity:0;transform:scale(.2)}50%{opacity:1;transform:scale(1.5)}53%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop58{0%,57%{opacity:0;transform:scale(.2)}60%{opacity:1;transform:scale(1.5)}63%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes pop80{0%,79%{opacity:0;transform:scale(.2)}82%{opacity:1;transform:scale(1.5)}85%,94%{opacity:1;transform:scale(1)}99%,100%{opacity:0;transform:scale(1)}}
+@keyframes draw6{0%,6%{stroke-dashoffset:var(--L);opacity:0}7%{opacity:1}23%,94%{stroke-dashoffset:0;opacity:1}99%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes draw9{0%,9%{stroke-dashoffset:var(--L);opacity:0}10%{opacity:1}26%,94%{stroke-dashoffset:0;opacity:1}99%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes draw12{0%,12%{stroke-dashoffset:var(--L);opacity:0}13%{opacity:1}29%,94%{stroke-dashoffset:0;opacity:1}99%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes draw24{0%,24%{stroke-dashoffset:var(--L);opacity:0}25%{opacity:1}41%,94%{stroke-dashoffset:0;opacity:1}99%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes bar4{0%,4%{transform:scaleX(0)}34%,94%{transform:scaleX(1)}99%,100%{transform:scaleX(0)}}
+@keyframes bar7{0%,7%{transform:scaleX(0)}37%,94%{transform:scaleX(1)}99%,100%{transform:scaleX(0)}}
+@keyframes bar10{0%,10%{transform:scaleX(0)}40%,94%{transform:scaleX(1)}99%,100%{transform:scaleX(0)}}
+</style>
+
+<div class="page">
+  <div class="aurora"></div>
+
+  <h1>Running Multiple AI Coding Agents<br><span>on One Repository</span></h1>
+
+  <div class="legend">
+    <span><svg width="28" height="8"><line x1="1" y1="4" x2="27" y2="4" stroke="rgba(232,238,249,.55)" stroke-width="2.2" stroke-dasharray="3 4" stroke-linecap="round"/></svg><b>dashed</b> reads only</span>
+    <span><svg width="28" height="8"><line x1="1" y1="4" x2="27" y2="4" stroke="rgba(232,238,249,.7)" stroke-width="2.6" stroke-linecap="round"/></svg><b>solid</b> writes</span>
+    <span><svg width="28" height="11"><rect x="1" y="1" width="26" height="9" rx="4.5" fill="none" stroke="rgba(232,238,249,.55)" stroke-width="1.4"/></svg><b>pill</b> agent or tree</span>
+    <span><svg width="15" height="11"><circle cx="7" cy="5.5" r="4.5" fill="rgba(232,238,249,.65)"/></svg><b>dot</b> a commit</span>
+    <span style="margin-left:auto;color:rgba(232,238,249,.28)">8 of 15 modes · loops every 9s</span>
+  </div>
+
+  <div class="grid">
+<article class="card" style="--c:#22D3EE;--i:0"><header class="ch"><span class="badge">Mode 1</span><h2>Read-only fan-out</h2><span class="chip">5-8 agents</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Read-only fan-out workflow"><rect class="box" x="16" y="4" width="298" height="34" rx="12"/><rect class="gt winM glow" style="animation-delay:0s" x="16" y="4" width="298" height="34" rx="12"/><text class="t" x="165" y="26" text-anchor="middle">one working directory · zero writers</text><rect class="box" x="14" y="72" width="90" height="38" rx="17"/><text class="t" x="59" y="89" text-anchor="middle">agent 1</text><text class="ts" x="59" y="103" text-anchor="middle">reads api/</text><g class="gt winM" style="animation-delay:0s"><path class="flow dashed" d="M59,38 L59,72"/></g><g class="gt winM" style="animation-delay:-5.04s"><path class="flow tight" d="M59,110 L59,130"/></g><rect class="box" x="120" y="72" width="90" height="38" rx="17"/><text class="t" x="165" y="89" text-anchor="middle">agent 2</text><text class="ts" x="165" y="103" text-anchor="middle">reads db/</text><g class="gt winM" style="animation-delay:-8.64s"><path class="flow dashed" d="M165,38 L165,72"/></g><g class="gt winM" style="animation-delay:-4.68s"><path class="flow tight" d="M165,110 L165,130"/></g><rect class="box" x="226" y="72" width="90" height="38" rx="17"/><text class="t" x="271" y="89" text-anchor="middle">agent 3</text><text class="ts" x="271" y="103" text-anchor="middle">reads web/</text><g class="gt winM" style="animation-delay:-8.28s"><path class="flow dashed" d="M271,38 L271,72"/></g><g class="gt winM" style="animation-delay:-4.32s"><path class="flow tight" d="M271,110 L271,130"/></g><rect class="box" x="16" y="130" width="298" height="34" rx="12"/><rect class="gt winM glow" style="animation-delay:-3.78s" x="16" y="130" width="298" height="34" rx="12"/><text class="t" x="165" y="152" text-anchor="middle">you synthesise · one answer</text></svg></div></article>
+<article class="card" style="--c:#A78BFA;--i:1"><header class="ch"><span class="badge">Mode 2</span><h2>Relay pipeline</h2><span class="chip">4-6 stages</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Relay pipeline workflow"><path class="ln rail" d="M20,116 L310,116"/><rect class="box" x="6" y="34" width="66" height="38" rx="10"/><rect class="gt winS glow" style="animation-delay:0s" x="6" y="34" width="66" height="38" rx="10"/><text class="t" x="39" y="58" text-anchor="middle">PLAN</text><path class="ln" d="M39,72 L39,110"/><circle class="pop14 dot" cx="39" cy="116" r="6"/><g class="gt winS" style="animation-delay:-7.56s"><path class="flow tight" d="M72,53 L90,53"/></g><text class="gt winS ts" style="animation-delay:-7.56s" x="81" y="25" text-anchor="middle">commit</text><rect class="box" x="90" y="34" width="66" height="38" rx="10"/><rect class="gt winS glow" style="animation-delay:-7.02s" x="90" y="34" width="66" height="38" rx="10"/><text class="t" x="123" y="58" text-anchor="middle">BUILD</text><path class="ln" d="M123,72 L123,110"/><circle class="pop36 dot" cx="123" cy="116" r="6"/><g class="gt winS" style="animation-delay:-5.58s"><path class="flow tight" d="M156,53 L174,53"/></g><text class="gt winS ts" style="animation-delay:-5.58s" x="165" y="25" text-anchor="middle">commit</text><rect class="box" x="174" y="34" width="66" height="38" rx="10"/><rect class="gt winS glow" style="animation-delay:-5.04s" x="174" y="34" width="66" height="38" rx="10"/><text class="t" x="207" y="58" text-anchor="middle">TEST</text><path class="ln" d="M207,72 L207,110"/><circle class="pop58 dot" cx="207" cy="116" r="6"/><g class="gt winS" style="animation-delay:-3.6s"><path class="flow tight" d="M240,53 L258,53"/></g><text class="gt winS ts" style="animation-delay:-3.6s" x="249" y="25" text-anchor="middle">commit</text><rect class="box" x="258" y="34" width="66" height="38" rx="10"/><rect class="gt winS glow" style="animation-delay:-3.06s" x="258" y="34" width="66" height="38" rx="10"/><text class="t" x="291" y="58" text-anchor="middle">REVIEW</text><path class="ln" d="M291,72 L291,110"/><circle class="pop80 dot" cx="291" cy="116" r="6"/><text class="ts" x="165" y="140" text-anchor="middle">one branch · every stage starts from an empty context</text><g class="gt winS" style="animation-delay:-1.98s"><path class="flow dashed" d="M291,32 C 250,4 165,4 125,32"/><text class="ts" x="208" y="15" text-anchor="middle">findings loop back</text></g></svg></div></article>
+<article class="card" style="--c:#34D399;--i:2"><header class="ch"><span class="badge">Mode 4</span><h2>Clone fan-out</h2><span class="chip">3-4 agents</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Clone fan-out workflow"><rect class="box" x="4" y="56" width="60" height="56" rx="10"/><text class="t" x="34" y="80" text-anchor="middle">your</text><text class="t" x="34" y="95" text-anchor="middle">repo</text><path class="ln" d="M64,84 C 74,84 74,16 84,16"/><rect class="box" x="84" y="0" width="80" height="32" rx="9"/><text class="t" x="124" y="13" text-anchor="middle">clone 1</text><text class="ts" x="124" y="26" text-anchor="middle">own .git</text><path class="ln rail" d="M164,16 L244,16"/><path class="draw6 grow" style="--L:80" d="M164,16 L244,16"/><circle class="pop12 dot sm" cx="188" cy="16" r="5"/><circle class="pop21 dot sm" cx="214" cy="16" r="5"/><circle class="pop30 dot sm" cx="238" cy="16" r="5"/><g class="gt winS" style="animation-delay:-3.78s"><path class="flow" d="M244,16 C 264,16 264,84 274,84"/></g><path class="ln" d="M64,84 C 74,84 74,70 84,70"/><rect class="box" x="84" y="54" width="80" height="32" rx="9"/><text class="t" x="124" y="67" text-anchor="middle">clone 2</text><text class="ts" x="124" y="80" text-anchor="middle">own .git</text><path class="ln rail" d="M164,70 L244,70"/><path class="draw9 grow" style="--L:80" d="M164,70 L244,70"/><circle class="pop15 dot sm" cx="188" cy="70" r="5"/><circle class="pop24 dot sm" cx="214" cy="70" r="5"/><circle class="pop33 dot sm" cx="238" cy="70" r="5"/><g class="gt winS" style="animation-delay:-2.7s"><path class="flow" d="M244,70 C 264,70 264,84 274,84"/></g><path class="ln" d="M64,84 C 74,84 74,124 84,124"/><rect class="box" x="84" y="108" width="80" height="32" rx="9"/><text class="t" x="124" y="121" text-anchor="middle">clone 3</text><text class="ts" x="124" y="134" text-anchor="middle">own .git</text><path class="ln rail" d="M164,124 L244,124"/><path class="draw12 grow" style="--L:80" d="M164,124 L244,124"/><circle class="pop18 dot sm" cx="188" cy="124" r="5"/><circle class="pop27 dot sm" cx="214" cy="124" r="5"/><circle class="pop36 dot sm" cx="238" cy="124" r="5"/><g class="gt winS" style="animation-delay:-1.62s"><path class="flow" d="M244,124 C 264,124 264,84 274,84"/></g><rect class="box" x="274" y="56" width="52" height="56" rx="10"/><rect class="gt winM glow" style="animation-delay:-3.78s" x="274" y="56" width="52" height="56" rx="10"/><text class="t" x="300" y="88" text-anchor="middle">master</text><text class="ts" x="165" y="162" text-anchor="middle">all three at once · merged one at a time</text></svg></div></article>
+<article class="card" style="--c:#FBBF24;--i:3"><header class="ch"><span class="badge">Mode 5</span><h2>Converging fan-out</h2><span class="chip">2-3 agents</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Converging fan-out workflow"><rect class="box" x="4" y="62" width="86" height="46" rx="10"/><rect class="gt winS glow" style="animation-delay:0s" x="4" y="62" width="86" height="46" rx="10"/><text class="t" x="47" y="82" text-anchor="middle">CONTRACT</text><text class="ts" x="47" y="97" text-anchor="middle">types + schema</text><text class="ts" x="47" y="124" text-anchor="middle">lands first, alone</text><path class="ln" d="M90,84 C 108,84 108,34 122,34"/><g class="gt winS" style="animation-delay:-7.56s"><path class="flow" d="M90,84 C 108,84 108,34 122,34"/></g><path class="ln rail" d="M122,34 L220,34"/><path class="draw24 grow" style="--L:98" d="M122,34 L220,34"/><text class="ts" x="171" y="20" text-anchor="middle">agent A · api/</text><circle class="pop30 dot sm" cx="148" cy="34" r="5"/><circle class="pop38 dot sm" cx="176" cy="34" r="5"/><circle class="pop46 dot sm" cx="206" cy="34" r="5"/><path class="ln" d="M220,34 C 236,34 236,84 246,84"/><g class="gt winS" style="animation-delay:-3.78s"><path class="flow" d="M220,34 C 236,34 236,84 246,84"/></g><path class="ln" d="M90,84 C 108,84 108,134 122,134"/><g class="gt winS" style="animation-delay:-7.56s"><path class="flow" d="M90,84 C 108,84 108,134 122,134"/></g><path class="ln rail" d="M122,134 L220,134"/><path class="draw24 grow" style="--L:98" d="M122,134 L220,134"/><text class="ts" x="171" y="156" text-anchor="middle">agent B · web/</text><circle class="pop32 dot sm" cx="148" cy="134" r="5"/><circle class="pop40 dot sm" cx="176" cy="134" r="5"/><circle class="pop48 dot sm" cx="206" cy="134" r="5"/><path class="ln" d="M220,134 C 236,134 236,84 246,84"/><g class="gt winS" style="animation-delay:-3.78s"><path class="flow" d="M220,134 C 236,134 236,84 246,84"/></g><rect class="box" x="246" y="66" width="78" height="36" rx="10"/><rect class="gt winS glow" style="animation-delay:-3.6s" x="246" y="66" width="78" height="36" rx="10"/><text class="t" x="285" y="82" text-anchor="middle">integration</text><text class="ts" x="285" y="96" text-anchor="middle">branch</text><g class="gt winS" style="animation-delay:-2.7s"><path class="flow tight" d="M285,102 L285,118"/></g><g class="up74"><rect class="pill" x="242" y="118" width="86" height="28" rx="14"/><text class="t" x="285" y="137" text-anchor="middle">1 pull request</text></g></svg></div></article>
+<article class="card" style="--c:#FB7185;--i:4"><header class="ch"><span class="badge">Mode 7</span><h2>Orchestrated team</h2><span class="chip">2-4 agents</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Orchestrated team workflow"><rect class="box" x="52" y="4" width="226" height="32" rx="12"/><text class="t" x="165" y="25" text-anchor="middle">you hold the write lock</text><path class="ln" d="M120,36 C 108,44 96,44 84,52"/><path class="ln" d="M210,36 C 222,44 234,44 246,52"/><g class="gt winS" style="animation-delay:0s"><path class="flow" d="M120,36 C 108,44 96,44 84,52"/></g><g class="gt winS" style="animation-delay:-4.86s"><path class="flow" d="M210,36 C 222,44 234,44 246,52"/></g><rect class="box" x="18" y="52" width="132" height="40" rx="12"/><rect class="gt winM glow" style="animation-delay:-8.82s" x="18" y="52" width="132" height="40" rx="12"/><text class="t" x="84" y="71" text-anchor="middle">agent A</text><text class="ts" x="84" y="85" text-anchor="middle">owns api/</text><rect class="box" x="180" y="52" width="132" height="40" rx="12"/><rect class="gt winM glow" style="animation-delay:-4.5s" x="180" y="52" width="132" height="40" rx="12"/><text class="t" x="246" y="71" text-anchor="middle">agent B</text><text class="ts" x="246" y="85" text-anchor="middle">owns tests/</text><rect class="box" x="26" y="130" width="278" height="34" rx="12"/><text class="t" x="165" y="147" text-anchor="middle">one directory · one branch</text><text class="ts" x="165" y="160" text-anchor="middle">no isolation at all, the turn taking is the mechanism</text><g class="lockmove"><path class="ln" d="M84,98 L84,92"/><rect class="pill" x="44" y="98" width="80" height="24" rx="12"/><text class="t" x="84" y="115" text-anchor="middle">write lock</text><path class="flow tight" d="M84,122 L84,138"/></g></svg></div></article>
+<article class="card" style="--c:#38BDF8;--i:5"><header class="ch"><span class="badge">Mode 9</span><h2>Stacked branches</h2><span class="chip">3-4 layers</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Stacked branches workflow"><rect class="box rail" x="4" y="146" width="322" height="18" rx="9"/><rect class="gt winS glow" style="animation-delay:-2.34s" x="4" y="146" width="322" height="18" rx="9"/><text class="ts" x="165" y="159" text-anchor="middle">master · the stack lands bottom-up, as one operation</text><path class="ln" d="M58,146 L58,140"/><g class="up6"><rect class="box" x="18" y="112" width="172" height="28" rx="9"/><text class="t" x="104" y="131" text-anchor="middle">layer 1 · schema + types</text></g><g class="up20"><rect class="box" x="42" y="74" width="172" height="28" rx="9"/><text class="t" x="128" y="93" text-anchor="middle">layer 2 · api + query</text></g><path class="up20 ln" d="M118,112 L118,102"/><g class="up34"><rect class="box" x="66" y="36" width="172" height="28" rx="9"/><text class="t" x="152" y="55" text-anchor="middle">layer 3 · web + tests</text></g><path class="up34 ln" d="M142,74 L142,64"/><g class="up50"><circle class="chk" cx="264" cy="126" r="14"/><path class="tick" d="M257.5,126 l4.5,4.5 l8.5,-8.5"/></g><g class="up50"><circle class="chk" cx="264" cy="88" r="14"/><path class="tick" d="M257.5,88 l4.5,4.5 l8.5,-8.5"/></g><g class="up50"><circle class="chk" cx="264" cy="50" r="14"/><path class="tick" d="M257.5,50 l4.5,4.5 l8.5,-8.5"/></g><text class="up50 ts" x="266" y="20" text-anchor="middle">3 reviews, in parallel</text></svg></div></article>
+<article class="card" style="--c:#A3E635;--i:6"><header class="ch"><span class="badge">Mode 10</span><h2>Ensemble / best-of-N</h2><span class="chip">N = 3</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Ensemble / best-of-N workflow"><rect class="box" x="4" y="60" width="72" height="48" rx="10"/><text class="t" x="40" y="80" text-anchor="middle">ONE task</text><text class="ts" x="40" y="95" text-anchor="middle">make it fast</text><g class="loser"><path class="ln" d="M76,84 C 86,84 86,22 96,22"/><rect class="box" x="96" y="4" width="110" height="36" rx="9"/><text class="t" x="151" y="20" text-anchor="middle">rewrite the query</text><rect class="track" x="108" y="28" width="86" height="5" rx="2.5"/><rect class="bar4 bar" x="108" y="28" width="86" height="5" rx="2.5"/><path class="ln" d="M206,22 C 214,22 214,84 220,84"/><g class="gt winS" style="animation-delay:-5.22s"><path class="flow" d="M206,22 C 214,22 214,84 220,84"/></g></g><g class="winner"><path class="ln" d="M76,84 C 86,84 86,84 96,84"/><rect class="box" x="96" y="66" width="110" height="36" rx="9"/><text class="t" x="151" y="82" text-anchor="middle">add an index</text><rect class="track" x="108" y="90" width="86" height="5" rx="2.5"/><rect class="bar7 bar" x="108" y="90" width="86" height="5" rx="2.5"/><path class="ln" d="M206,84 C 214,84 214,84 220,84"/><g class="gt winS" style="animation-delay:-5.22s"><path class="flow" d="M206,84 C 214,84 214,84 220,84"/></g></g><g class="loser"><path class="ln" d="M76,84 C 86,84 86,146 96,146"/><rect class="box" x="96" y="128" width="110" height="36" rx="9"/><text class="t" x="151" y="144" text-anchor="middle">batch the calls</text><rect class="track" x="108" y="152" width="86" height="5" rx="2.5"/><rect class="bar10 bar" x="108" y="152" width="86" height="5" rx="2.5"/><path class="ln" d="M206,146 C 214,146 214,84 220,84"/><g class="gt winS" style="animation-delay:-5.22s"><path class="flow" d="M206,146 C 214,146 214,84 220,84"/></g></g><rect class="box" x="220" y="60" width="58" height="48" rx="10"/><rect class="gt winS glow" style="animation-delay:-4.68s" x="220" y="60" width="58" height="48" rx="10"/><text class="t" x="249" y="80" text-anchor="middle">verifier</text><text class="ts" x="249" y="95" text-anchor="middle">picks 1</text><g class="gt winS" style="animation-delay:-3.42s"><path class="flow tight" d="M278,84 L288,84"/></g><g class="up64"><rect class="pill" x="288" y="64" width="40" height="40" rx="10"/><text class="t" x="308" y="89" text-anchor="middle">kept</text></g></svg></div></article>
+<article class="card" style="--c:#FB923C;--i:7"><header class="ch"><span class="badge">Mode 12</span><h2>Container per agent</h2><span class="chip">2-3 agents</span></header><div class="viz"><svg viewBox="0 0 330 168" role="img" aria-label="Container per agent workflow"><rect class="box" x="8" y="4" width="136" height="32" rx="16"/><text class="t" x="76" y="25" text-anchor="middle">agent 1</text><g class="gt winS" style="animation-delay:0s"><path class="flow tight" d="M76,36 L76,50"/></g><rect class="box" x="8" y="50" width="136" height="66" rx="10"/><rect class="gt winS glow" style="animation-delay:-5.4s" x="8" y="50" width="136" height="66" rx="10"/><text class="up8 ts" x="76" y="70" text-anchor="middle">db :5433</text><text class="up18 ts" x="76" y="88" text-anchor="middle">cache :6380</text><text class="up28 ts" x="76" y="106" text-anchor="middle">api :8081</text><g class="gt winS" style="animation-delay:-3.42s"><path class="flow tight" d="M76,116 L76,130"/></g><rect class="box" x="186" y="4" width="136" height="32" rx="16"/><text class="t" x="254" y="25" text-anchor="middle">agent 2</text><g class="gt winS" style="animation-delay:-8.64s"><path class="flow tight" d="M254,36 L254,50"/></g><rect class="box" x="186" y="50" width="136" height="66" rx="10"/><rect class="gt winS glow" style="animation-delay:-5.4s" x="186" y="50" width="136" height="66" rx="10"/><text class="up12 ts" x="254" y="70" text-anchor="middle">db :5443</text><text class="up22 ts" x="254" y="88" text-anchor="middle">cache :6390</text><text class="up32 ts" x="254" y="106" text-anchor="middle">api :8082</text><g class="gt winS" style="animation-delay:-3.15s"><path class="flow tight" d="M254,116 L254,130"/></g><path class="ln cut" d="M165,52 L165,114"/><g class="up46"><circle class="chk" cx="165" cy="83" r="14"/><path class="tick" d="M159,77 l12,12 M171,77 l-12,12"/></g><rect class="box" x="8" y="130" width="314" height="34" rx="12"/><rect class="gt winS glow" style="animation-delay:-2.7s" x="8" y="130" width="314" height="34" rx="12"/><text class="t" x="165" y="147" text-anchor="middle">one Docker daemon</text><text class="ts" x="165" y="160" text-anchor="middle">separate project names, volumes and host ports</text></svg></div></article>
+  </div>
+</div>
